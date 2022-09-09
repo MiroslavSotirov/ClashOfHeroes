@@ -1,0 +1,14 @@
+[remap]
+
+importer="raiix.spine_runtime.atlas"
+type="SpineAtlasResource"
+path="res://.import/helmet.atlas-dc0726699fa8888be206a80c9b334cd0.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Symbols/helmet.atlas"
+dest_files=[ "res://.import/helmet.atlas-dc0726699fa8888be206a80c9b334cd0.spatlas" ]
+
+[params]
+
+normal_texture_prefix="n"

@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Main/SpineSpriteExtension.gd" type="Script" id=1]
+[ext_resource path="res://Main/Animations/Ribbon/ribbon.json" type="SpineSkeletonJsonDataResource" id=2]
+[ext_resource path="res://Main/Animations/Ribbon/ribbon.atlas" type="SpineAtlasResource" id=3]
+[ext_resource path="res://Main/Ribbons.gd" type="Script" id=4]
+
+[sub_resource type="SpineSkeletonDataResource" id=453]
+atlas_res = ExtResource( 3 )
+skeleton_json_res = ExtResource( 2 )
+animations = null
+skins = null
+
+[sub_resource type="SpineAnimationStateDataResource" id=454]
+skeleton = SubResource( 453 )
+
+[node name="Ribbons" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Left" type="SpineSprite" parent="."]
+position = Vector2( -769, 300 )
+scale = Vector2( -1, 1 )
+animation_state_data_res = SubResource( 454 )
+script = ExtResource( 1 )
+
+[node name="Right" type="SpineSprite" parent="."]
+position = Vector2( 769, 300 )
+animation_state_data_res = SubResource( 454 )
+script = ExtResource( 1 )

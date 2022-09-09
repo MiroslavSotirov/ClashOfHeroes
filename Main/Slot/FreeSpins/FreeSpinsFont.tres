@@ -1,0 +1,26 @@
+[gd_resource type="BitmapFont" load_steps=12 format=2]
+
+[ext_resource path="res://addons/BitmapFontEasy/bmpfonthelper.gd" type="Script" id=1]
+[ext_resource path="res://Main/Textures/font-fs/2.webp" type="Texture" id=2]
+[ext_resource path="res://Main/Textures/font-fs/8.webp" type="Texture" id=3]
+[ext_resource path="res://Main/Textures/font-fs/0.webp" type="Texture" id=4]
+[ext_resource path="res://Main/Textures/font-fs/1.webp" type="Texture" id=5]
+[ext_resource path="res://Main/Textures/font-fs/5.webp" type="Texture" id=6]
+[ext_resource path="res://Main/Textures/font-fs/4.webp" type="Texture" id=7]
+[ext_resource path="res://Main/Textures/font-fs/7.webp" type="Texture" id=8]
+[ext_resource path="res://Main/Textures/font-fs/9.webp" type="Texture" id=9]
+[ext_resource path="res://Main/Textures/font-fs/3.webp" type="Texture" id=10]
+[ext_resource path="res://Main/Textures/font-fs/6.webp" type="Texture" id=11]
+
+[resource]
+textures = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 9 ) ]
+chars = PoolIntArray( 56, 8, 0, 0, 96, 131, -80, 0, 60, 48, 0, 0, 0, 120, 133, -80, 0, 60, 57, 9, 0, 0, 93, 133, -80, 0, 60, 49, 1, 0, 0, 85, 133, -80, 0, 60, 50, 2, 0, 0, 80, 133, -80, 0, 60, 51, 3, 0, 0, 80, 133, -80, 0, 60, 52, 4, 0, 0, 105, 132, -80, 0, 60, 53, 5, 0, 0, 85, 132, -80, 0, 60, 54, 6, 0, 0, 93, 131, -80, 0, 60, 55, 7, 0, 0, 89, 132, -80, 0, 60 )
+script = ExtResource( 1 )
+charset = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+textureSet = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 9 ) ]
+globalOffset = Vector2( -80, 0 )
+globalAdvance = 60.0
+letterSpecificOffset = {
+}
+letterSpecificAdvance = {
+}

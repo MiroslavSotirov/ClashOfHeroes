@@ -1,0 +1,13 @@
+[remap]
+
+importer="raiix.spine_runtime.json"
+type="SpineSkeletonJsonDataResource"
+path="res://.import/chest.json-f0e964c3b765c05d093b304107435d26.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/Symbols/chest.json"
+dest_files=[ "res://.import/chest.json-f0e964c3b765c05d093b304107435d26.spjson" ]
+
+[params]
+

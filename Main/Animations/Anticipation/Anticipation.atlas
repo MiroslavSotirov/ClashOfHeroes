@@ -1,0 +1,15 @@
+Anticipation.webp
+size:1986,250
+filter:Linear,Linear
+Border
+bounds:2,2,246,1222
+offsets:1,35,248,1281
+rotate:90
+sword1
+bounds:1226,66,182,468
+offsets:2,1,186,472
+rotate:90
+sword2
+bounds:1696,135,113,288
+offsets:1,1,115,290
+rotate:90

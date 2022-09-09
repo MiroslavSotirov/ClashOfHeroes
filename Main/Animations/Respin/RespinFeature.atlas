@@ -1,0 +1,12 @@
+RespinFeature.webp
+size:637,425
+filter:Linear,Linear
+scale:0.8
+RESPINTXT
+bounds:2,192,630,231
+RespinBacklight
+bounds:2,2,320,188
+offsets:0,2,320,193
+RespinParticles
+bounds:324,43,311,147
+offsets:0,1,320,151

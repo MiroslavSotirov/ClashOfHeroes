@@ -1,0 +1,141 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Main/SpineSpriteExtension.gd" type="Script" id=1]
+[ext_resource path="res://Main/Animations/Win Scenes/Winscene.json" type="SpineSkeletonJsonDataResource" id=2]
+[ext_resource path="res://Main/Animations/Win Scenes/Winscene.atlas" type="SpineAtlasResource" id=3]
+
+[sub_resource type="SpineSkeletonDataResource" id=96]
+atlas_res = ExtResource( 3 )
+skeleton_json_res = ExtResource( 2 )
+animations = null
+skins = null
+
+[sub_resource type="SpineAnimationStateDataResource" id=97]
+skeleton = SubResource( 96 )
+
+[sub_resource type="CanvasItemMaterial" id=98]
+
+[sub_resource type="CanvasItemMaterial" id=99]
+
+[sub_resource type="CanvasItemMaterial" id=100]
+
+[sub_resource type="CanvasItemMaterial" id=101]
+
+[sub_resource type="CanvasItemMaterial" id=102]
+
+[sub_resource type="CanvasItemMaterial" id=103]
+
+[sub_resource type="CanvasItemMaterial" id=104]
+
+[sub_resource type="CanvasItemMaterial" id=105]
+
+[sub_resource type="CanvasItemMaterial" id=106]
+
+[sub_resource type="CanvasItemMaterial" id=107]
+
+[sub_resource type="CanvasItemMaterial" id=108]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=109]
+
+[sub_resource type="CanvasItemMaterial" id=110]
+
+[sub_resource type="CanvasItemMaterial" id=111]
+
+[sub_resource type="CanvasItemMaterial" id=112]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=113]
+
+[sub_resource type="CanvasItemMaterial" id=114]
+
+[sub_resource type="CanvasItemMaterial" id=115]
+
+[sub_resource type="CanvasItemMaterial" id=116]
+
+[sub_resource type="CanvasItemMaterial" id=117]
+
+[sub_resource type="CanvasItemMaterial" id=118]
+
+[sub_resource type="CanvasItemMaterial" id=119]
+
+[sub_resource type="CanvasItemMaterial" id=120]
+
+[node name="BigWinAnimation" type="SpineSprite"]
+scale = Vector2( 0.8, 0.8 )
+animation_state_data_res = SubResource( 97 )
+script = ExtResource( 1 )
+skin = "default"
+startanimation = "start_bigwin"
+
+[node name="blinks" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 98 )
+
+[node name="blinks2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 99 )
+
+[node name="wings" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 100 )
+
+[node name="wings2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 101 )
+
+[node name="ribbonredback" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 102 )
+
+[node name="ribbonredback2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 103 )
+
+[node name="sword" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 104 )
+
+[node name="sword2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 105 )
+
+[node name="goldornaments" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 106 )
+
+[node name="goldornaments2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 107 )
+
+[node name="crown2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 108 )
+
+[node name="crown" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 109 )
+
+[node name="flag_totalwin" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 110 )
+
+[node name="flag_totalwin2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 111 )
+
+[node name="flag2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 112 )
+
+[node name="flag" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 113 )
+
+[node name="flag3" type="SpineSpriteMeshInstance2D" parent="."]
+visible = false
+material = SubResource( 114 )
+
+[node name="ribbonred" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 115 )
+
+[node name="ribbonred2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 116 )
+
+[node name="ribbonyellow" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 117 )
+
+[node name="ribbonyellow2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 118 )
+
+[node name="bangupred" type="SpineSpriteMeshInstance2D" parent="."]
+visible = false
+material = SubResource( 119 )
+
+[node name="bangupblue" type="SpineSpriteMeshInstance2D" parent="."]
+visible = false
+material = SubResource( 120 )

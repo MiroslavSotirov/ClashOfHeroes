@@ -1,0 +1,14 @@
+[remap]
+
+importer="raiix.spine_runtime.atlas"
+type="SpineAtlasResource"
+path="res://.import/Winscene.atlas-38689ef7888ff649469a1d4266108db4.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Win Scenes/Winscene.atlas"
+dest_files=[ "res://.import/Winscene.atlas-38689ef7888ff649469a1d4266108db4.spatlas" ]
+
+[params]
+
+normal_texture_prefix="n"

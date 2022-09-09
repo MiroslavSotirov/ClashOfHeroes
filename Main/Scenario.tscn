@@ -1,0 +1,1486 @@
+[gd_scene load_steps=94 format=2]
+
+[ext_resource path="res://addons/visual_fsm/fsm/vfsm_state.gd" type="Script" id=1]
+[ext_resource path="res://addons/visual_fsm/fsm/vfsm.gd" type="Script" id=2]
+[ext_resource path="res://addons/visual_fsm/visual_fsm.gd" type="Script" id=3]
+[ext_resource path="res://addons/visual_fsm/fsm/vfsm_trigger_action.gd" type="Script" id=4]
+[ext_resource path="res://addons/visual_fsm/fsm/vfsm_trigger_script.gd" type="Script" id=5]
+[ext_resource path="res://addons/visual_fsm/fsm/vfsm_trigger_timer.gd" type="Script" id=6]
+
+[sub_resource type="GDScript" id=139]
+script/source = "# State: Initialize
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### INIT STATE ###\");
+
+	Globals.singletons[\"Fader\"].tween(1,1,0);
+	yield(Globals, \"allready\")
+	var networking = Globals.singletons[\"Networking\"];
+	var stake = networking.initdata.defaultTotal;
+	var last_round;
+	if (networking.initdata.has(\"filteredLastRound\")):
+		last_round = networking.initdata.filteredLastRound;
+	else:
+		last_round = networking.lastround;
+	networking.apply_init();
+	yield(Globals.get_tree(),\"idle_frame\");
+
+	Globals.connect(\"configure_bets\", self, \"configure_bets\");
+	JS.connect(\"set_stake\", self, \"set_stake\");
+	JS.connect(\"toggle_turbo\", self, \"toggle_turbo\");
+	JS.connect(\"set_ticker_speed\", self, \"set_ticker_speed\");
+
+	Globals.round_closed = true; #Init should close previous round if open
+
+	Globals.update_win_configs(stake);
+	Globals.fsm_data[\"in_freespins\"] = last_round.action.find('freespin') != -1 && last_round.nextAction != \"finish\";
+	Globals.fsm_data[\"last_freespin\"] = false;
+	Globals.singletons[\"Stateful\"].init(last_round, stake);
+
+	if(\"roundWin\" in last_round && float(last_round.cumulativeWin) > 0.0):
+		Globals.singletons[\"TotalWinBar\"].set_text(float(last_round[\"roundWin\"]));
+		
+	Globals.singletons[\"Fader\"].tween(1,0,0.5);
+	Globals.fsm_data[\"initialized\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+	
+func set_stake(data):
+	Globals.set_stake(data.stake);
+
+func toggle_turbo(data):
+	Globals.singletons[\"Slot\"].toggle_turbo(data.value);
+
+func set_ticker_speed(data):
+	Engine.time_scale = float(data.value);
+"
+
+[sub_resource type="Resource" id=140]
+script = ExtResource( 1 )
+vfsm_id = 0
+name = "Initialize"
+position = Vector2( -20, 180 )
+trigger_ids = [ 0, 8 ]
+custom_script = SubResource( 139 )
+
+[sub_resource type="GDScript" id=141]
+script/source = "# State: Show Error
+extends VFSMStateBase
+
+
+func enter() -> void:
+	pass
+
+
+func update(_object, _delta: float) -> void:
+	pass
+
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=142]
+script = ExtResource( 1 )
+vfsm_id = 1
+name = "Init Error"
+position = Vector2( 300, 300 )
+trigger_ids = [  ]
+custom_script = SubResource( 141 )
+
+[sub_resource type="GDScript" id=148]
+script/source = "# State: Show Intro
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### INTRO STATE ###\");
+	Globals.singletons[\"Intro\"].show();
+	Globals.singletons[\"Audio\"].change_track(\"background\", \"MainTheme\", 500, 1, 0.5);
+	Globals.singletons[\"Audio\"].loop(\"Melody\", 0);
+	yield(Globals.singletons[\"Intro\"], \"pressed\");
+	
+	if (Globals.fsm_data[\"in_freespins\"]): 
+		Globals.singletons[\"Game\"].switch_to_fs_mode(false, Globals.singletons[\"Networking\"].initdata.filteredLastRound);
+
+	Globals.singletons[\"Fader\"].tween(0.0, 1.0, 1.0);
+	yield(Globals.singletons[\"Fader\"], \"done\")
+	
+	var slot_container = Globals.singletons[\"Game\"].get_node(\"SlotContainer\");
+	slot_container.visible = true;
+	Globals.singletons[\"Intro\"].queue_free();
+	Globals.singletons[\"WildsSystem\"].preload_resources();
+	Globals.singletons[\"SwordSystem\"].preload_resources();
+	Globals.singletons[\"Fader\"].tween(1.0, 0.0, 0.5);
+	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/Logo/SpineAnimation\").play_anim_then_loop(\"popup\", \"idle\");
+
+	yield(Globals.singletons[\"Fader\"], \"done\");
+	
+	Globals.fsm_data[\"intro_clicked\"] = true;
+	JS.output(\"\", \"elysiumgameshowui\");
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=149]
+script = ExtResource( 1 )
+vfsm_id = 2
+name = "Show Intro"
+position = Vector2( 300, 140 )
+trigger_ids = [ 2 ]
+custom_script = SubResource( 148 )
+
+[sub_resource type="GDScript" id=150]
+script/source = "# State: Ready
+extends VFSMStateBase
+
+var last_spin_time = 0.0;
+var melody_playing = false;
+
+func enter() -> void:
+	print(\"### READY STATE ###\");
+
+	Globals.fsm_data[\"spin_start_command\"] = false;
+	Globals.fsm_data[\"wins_shown\"] = false;
+	
+#	var has_respin = has_respin(Globals.singletons[\"Networking\"].lastround);
+	
+	if (!Globals.fsm_data[\"in_freespins\"]):
+		var bar = Globals.singletons[\"Stateful\"].get_value(\"counter\");
+		Globals.singletons[\"SegmentBar\"].update(bar);
+
+	if(JS.enabled):
+		JS.connect(\"spinstart\", self, \"start_spin\", [], CONNECT_ONESHOT);
+
+func start_spin(data):
+	last_spin_time = 0.0;
+	if(!melody_playing && !Globals.fsm_data[\"in_freespins\"]):
+		Globals.singletons[\"Audio\"].fade_to(\"Melody\", 1, 2000);
+		melody_playing = true;
+
+	Globals.fsm_data[\"spin_start_command\"] = true;
+
+func update(_object, delta: float) -> void:
+	if(!JS.enabled && Input.is_action_pressed(\"spin\")): start_spin({});
+	
+	if(!Globals.fsm_data[\"in_freespins\"]):
+		last_spin_time += delta;
+		if(melody_playing && last_spin_time > 5.0):
+			Globals.singletons[\"Audio\"].fade_to(\"Melody\", 0, 2000, 0);
+			melody_playing = false;
+
+#func has_respin(data):
+#	if (!data || !data.wins): return false;
+#	for win in data.wins:
+#		if(\"freespinE2\" in win.index || \"freespinE3\" in win.index): return true;
+#
+#	return false;
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=151]
+script = ExtResource( 1 )
+vfsm_id = 3
+name = "Ready"
+position = Vector2( 880, 260 )
+trigger_ids = [ 10 ]
+custom_script = SubResource( 150 )
+
+[sub_resource type="GDScript" id=152]
+script/source = "# State: Spin error
+extends VFSMStateBase
+
+
+func enter() -> void:
+	print('### SPIN ERROR STATE ###');
+	Globals.fsm_data[\"data_received\"] = true;
+	Globals.fsm_data[\"round_closed\"] = true;
+	Globals.fsm_data[\"reels_stopped\"] = false;
+	Globals.singletons[\"Slot\"].stop_spin();
+	yield(Globals.singletons[\"Slot\"], \"onstopped\");
+	JS.output(\"\", \"elysiumgameroundend\");
+	Globals.fsm_data[\"reels_stopped\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=153]
+script = ExtResource( 1 )
+vfsm_id = 4
+name = "Spin error"
+position = Vector2( 1120, 520 )
+trigger_ids = [ 4 ]
+custom_script = SubResource( 152 )
+
+[sub_resource type="GDScript" id=154]
+script/source = "# State: Spin Start
+extends VFSMStateBase
+
+func enter() -> void:
+	#TODO check all of these
+	Globals.fsm_data[\"network_error\"] = false;
+	Globals.fsm_data[\"data_received\"] = false;
+	Globals.fsm_data[\"round_closed\"] = false;
+	Globals.fsm_data[\"sword_feature_complete\"] = false;
+	Globals.fsm_data[\"respin_feature_complete\"] = false;
+	Globals.fsm_data[\"wild_feature_complete\"] = false;
+	Globals.fsm_data[\"slot_switch_completed\"] = false;
+	Globals.fsm_data[\"respin_fx_complete\"] = false;
+	
+	print('### SPIN START STATE ###');
+	
+	if(JS.enabled):
+		JS.connect(\"spindata\", self, \"spin_data_received\", [], CONNECT_ONESHOT);
+		JS.output(\"\", \"elysiumgamespinstart\");
+	else:
+		Globals.singletons[\"Networking\"].connect(\"spinreceived\", self, \"spin_data_received\", [], CONNECT_ONESHOT);
+		Globals.singletons[\"Networking\"].request_spin();
+
+	Globals.singletons[\"WinLines\"].hide_lines();
+	Globals.singletons[\"WinBar\"].hide();
+
+	var data = Globals.singletons[\"Networking\"].lastround;
+	if(!(\"freespin\" in data.nextAction)):
+		Globals.singletons[\"TotalWinBar\"].hide();
+
+	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = true;
+	Globals.singletons[\"Slot\"].start_spin();
+	
+	if (!Globals.fsm_data[\"in_freespins\"]): Globals.singletons[\"Audio\"].fade_to(\"Melody\", 1, 2000);
+		
+func spin_data_received(data):
+	if(\"code\" in data || \"hasError\" in data):
+		Globals.fsm_data[\"network_error\"] = true;
+		return;
+
+	data = _parse_data(data);
+	
+	if (JS.enabled): Globals.singletons[\"Networking\"].lastround = data;
+	if (!Globals.singletons[\"Slot\"].allspinning):
+		yield(Globals.singletons[\"Slot\"], \"onstartspin\");
+
+	if (Globals.fsm_data[\"in_freespins\"]):
+		Globals.singletons[\"FreeSpins\"].set_count(data.freeSpinsRemaining);
+	Globals.singletons[\"Networking\"].update_state(data);
+	Globals.singletons[\"Stateful\"].update_state_from_round(data);
+	Globals.fsm_data[\"data_received\"] = true;
+
+func _parse_data(data):
+	if !(\"features\" in data): return data;
+
+	var special_tiles = [11, 12];
+	data.parsed = {};
+	for feature in data.features: 
+		if (feature.type == \"ReplaceTile\" && special_tiles.has(int(feature.data.tileid))):
+			for pos in feature.data.positions:
+				var address = Globals.singletons[\"Slot\"].get_tile_address(pos);
+				data.view[address.x][address.y] = int(feature.data.replacewithid);
+
+	data.parsed.wild_data = _get_replace_tile_addresses(data, 1);
+	data.parsed.sword_data = _get_replace_tile_addresses(data, 4);
+	data.parsed.anticipation = Globals.singletons[\"Anticipation\"].parse_data(data.view);
+	data.parsed.respin = _has_respin(data);
+	
+	return data;
+
+func _get_replace_tile_addresses(data, feature_id):
+	if !(\"features\" in data): return null;
+
+	for feature in data.features: 
+		if (feature.type == \"ReplaceTile\" && int(feature.id) == feature_id):
+			return Globals.singletons[\"Slot\"].get_tiles_addresses(feature.data.positions);
+
+	return null
+
+func _has_respin(data):
+	var previous_data = Globals.singletons[\"Networking\"].lastround;
+	var previous;
+	if previous_data.has(\"parsed\") && previous_data.parsed.has(\"respin\"):
+		previous = previous_data.parsed.respin.current;
+	else:
+		previous = false;
+
+	if (!data || !data.wins): return { \"previous\": previous, \"current\": false };
+	for win in data.wins:
+		if(\"freespinE2\" in win.index || \"freespinE3\" in win.index): 
+			return { \"previous\": previous, \"current\": true };
+			
+	return { \"previous\": previous, \"current\": false };
+	
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=155]
+script = ExtResource( 1 )
+vfsm_id = 5
+name = "Spin Start"
+position = Vector2( 1100, 660 )
+trigger_ids = [ 1, 5 ]
+custom_script = SubResource( 154 )
+
+[sub_resource type="GDScript" id=156]
+script/source = "# State: Spin Stop
+# State: Spin Stop
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### SPIN STOP STATE: ###\");
+	var data = Globals.singletons[\"Networking\"].lastround;
+	var anticipation = Globals.singletons[\"Anticipation\"];
+	
+	Globals.fsm_data[\"reels_stopped\"] = false;
+	Globals.fsm_data[\"wild_feature_complete\"] = false;
+	Globals.fsm_data[\"sword_feature_complete\"] = false;
+
+	var anticipation_data = data.parsed.anticipation;
+	if (anticipation_data.value):
+		anticipation.show(anticipation_data);
+		anticipation.connect(\"activated\", self, \"_anticipation_on\", [], CONNECT_ONESHOT);
+		anticipation.connect(\"ended_on_reel\", self, \"_anticipation_off\");
+
+	if (data.parsed.respin.previous):
+		yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+
+	yield(Globals.singletons[\"Slot\"].stop_spin(data), \"completed\");
+	
+	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
+
+	if (data.parsed.respin.previous): 
+		Globals.singletons[\"WinlinesFadeAnimationPlayer\"].play(\"To_Normal\");
+
+	if(!Globals.fsm_data[\"in_freespins\"] && data.freeSpinsRemaining > 1):
+		yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+
+	var special_tiles = Globals.singletons[\"Slot\"].get_tiles_with_id(11);
+	if (len(special_tiles) > 0):
+		Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27, 1), 0.3, [11]);
+		var promises = []
+		for special in special_tiles:
+			promises.append(special.stop_popup());
+		Globals.singletons[\"Audio\"].play('Activator');
+		yield(Promise.all(promises), \"completed\");
+
+		Globals.singletons[\"Slot\"].tint(Color.white, 0.3);
+		var bar = Globals.singletons[\"Stateful\"].get_value(\"counter\");
+		Globals.singletons[\"SegmentBar\"].update(bar);
+
+	yield(Globals.singletons[\"SegmentBar\"].wait_to_update(), \"completed\");
+	Globals.fsm_data[\"reels_stopped\"] = true;
+
+func _anticipation_on():
+	Globals.singletons[\"Audio\"].loop('Anticipation0');
+	Globals.singletons[\"Audio\"].play('Impact');
+	Globals.singletons[\"Background\"].change_to(\"FreeSpins\");
+	Globals.singletons[\"Overlap\"].maybe_change_to(!Globals.fsm_data[\"in_freespins\"], \"Dark\", \"FreeSpins\");
+
+func _anticipation_off(reel_index, last_index, effect_index):
+	var sound = 'Anticipation' + str(effect_index);
+	var sound1 = 'Anticipation' + str(effect_index + 1);
+	Globals.singletons[\"Audio\"].fade_to(sound, 0, 1500, 1);
+
+	if (reel_index == last_index):
+		Globals.singletons[\"Audio\"].stop(\"Anticipation0\");
+		Globals.singletons[\"Audio\"].stop(\"Anticipation1\");
+		Globals.singletons[\"Audio\"].stop(\"Anticipation2\");
+		Globals.singletons[\"Anticipation\"].disconnect(\"ended_on_reel\", self, \"_anticipation_off\");
+	else:
+		Globals.singletons[\"Audio\"].play(sound1, 1);
+
+func update(_object, _delta: float) -> void:
+	pass;
+
+func exit() -> void:
+	pass;
+"
+
+[sub_resource type="Resource" id=157]
+script = ExtResource( 1 )
+vfsm_id = 6
+name = "Spin Stop"
+position = Vector2( 2160, 680 )
+trigger_ids = [ 6 ]
+custom_script = SubResource( 156 )
+
+[sub_resource type="GDScript" id=166]
+script/source = "# State: Close round
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### CLOSE STATE: ###\");
+	var data = Globals.singletons[\"Networking\"].lastround;
+		
+	if(JS.enabled): 
+		print(\"JS is enabled\");
+		if (data.nextAction == \"finish\"):
+			JS.output(\"\", \"elysiumgameroundend\");
+			JS.connect(\"close\", self, \"close_round_received\", [], CONNECT_ONESHOT);
+			JS.output(\"\", \"elysiumgameclose\");
+		else:
+#			yield(slot, \"ontilesremoved\");
+			yield(Globals.get_tree(),\"idle_frame\")
+			JS.output(\"\", \"elysiumgameroundend\");
+			print(\"closing the round\");
+			close_round_received();
+
+#		JS.output(\"\", \"elysiumgameroundend\")`;
+
+	else: 
+		if (data.nextAction == \"finish\"):
+			Globals.singletons[\"Networking\"].connect(\"closereceived\", self, \"close_round_received\", [], CONNECT_ONESHOT);
+			Globals.singletons[\"Networking\"].request_close();
+		else:
+#			yield(slot, \"ontilesremoved\");
+			close_round_received();
+		
+func close_round_received(_data = null):
+	Globals.fsm_data[\"round_closed\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=167]
+script = ExtResource( 1 )
+vfsm_id = 7
+name = "Close round"
+position = Vector2( 4060, 700 )
+trigger_ids = [ 7, 8 ]
+custom_script = SubResource( 166 )
+
+[sub_resource type="GDScript" id=175]
+script/source = "# State: Close Error
+extends VFSMStateBase
+
+
+func enter() -> void:
+	Globals.fsm_data[\"data_received\"] = true;
+	Globals.fsm_data[\"round_closed\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=176]
+script = ExtResource( 1 )
+vfsm_id = 8
+name = "Close Error"
+position = Vector2( 4600, 520 )
+trigger_ids = [ 13 ]
+custom_script = SubResource( 175 )
+
+[sub_resource type="GDScript" id=183]
+script/source = "# State: Wins Check
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### WIN STATE: ###\");
+	var data = Globals.singletons[\"Networking\"].lastround;
+	var line_wins = calculate_line_wins(data[\"wins\"]);
+	data[\"wins_lines_total\"] = line_wins;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+	
+func calculate_line_wins(wins):
+	if(wins == null): return 0.0;
+	var n : float = 0.0;
+
+	for win in wins: 
+		if (win[\"index\"].findn(\"freespin\") > -1): continue;
+		if (!win.has(\"winline\")): n += float(win[\"win\"]); #winline 0
+		elif (int(win[\"winline\"]) > -1): n += float(win[\"win\"]);
+
+	return n;
+"
+
+[sub_resource type="Resource" id=184]
+script = ExtResource( 1 )
+vfsm_id = 11
+name = "Wins Check"
+position = Vector2( 3020, 680 )
+trigger_ids = [ 14, 15 ]
+custom_script = SubResource( 183 )
+
+[sub_resource type="GDScript" id=189]
+script/source = "# State: Show Wins
+extends VFSMStateBase
+
+signal bangup_end;
+
+func enter() -> void:
+	print(\"### SHOW LINE WINS STATE: ###\");
+	var data = Globals.singletons[\"Networking\"].lastround;
+	var slot = Globals.singletons.Slot;
+	var win_tiles_positions = calcute_win_tiles_positions(data.wins);
+
+	JS.output(\"linewin\", \"elysiumgamefeature\");
+
+	if (data[\"wins_lines_total\"] > 0.0):
+		Globals.singletons[\"Audio\"].play(\"WinLine\");
+		slot.win_popup_tiles(win_tiles_positions);
+		yield(Globals.singletons[\"WinLines\"].show_lines(win_tiles_positions), \"completed\");
+		Globals.singletons[\"WinLines\"].loop_lines();
+		if(data[\"wins_lines_total\"] > Globals.singletons[\"BigWin\"].big_win_limit):
+			JS.output(\"bigwin\", \"elysiumgamefeature\");
+			Globals.singletons[\"BigWin\"].show_win(data[\"wins_lines_total\"]);
+			yield(Globals.singletons[\"BigWin\"], \"HideEnd\")
+			Globals.fsm_data[\"big_win_shown\"] = true;
+			if(\"roundWin\" in data):
+				Globals.singletons[\"TotalWinBar\"].set_text(data[\"roundWin\"], true);
+			elif(\"spinWin\" in data):
+				Globals.singletons[\"TotalWinBar\"].set_text(data[\"spinWin\"], true);
+			
+		else:
+#			print(\"BANGUP \", data[\"wins_lines_total\"]);
+			bangup_wins(data[\"wins_lines_total\"], int(data.roundMultiplier));
+			yield(self, \"bangup_end\");
+
+	Globals.fsm_data[\"wins_shown\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+	
+func bangup_wins(n, multiplier):
+	Globals.singletons[\"WinBar\"].show_win(float(n), false);
+	yield(Globals.singletons[\"WinBar\"], \"CountEnd\");
+	Globals.singletons[\"WinBar\"].hide(true);
+	
+	var data = Globals.singletons[\"Networking\"].lastround;
+	if(\"roundWin\" in data):
+		Globals.singletons[\"TotalWinBar\"].set_text(data[\"roundWin\"], true);
+	elif(\"spinWin\" in data):
+		Globals.singletons[\"TotalWinBar\"].set_text(data[\"spinWin\"], true);
+	Globals.singletons[\"Audio\"].play(\"CoinsEndlessHit\")
+	emit_signal(\"bangup_end\");
+	
+func calcute_win_tiles_positions(wins):
+	if (wins == null): return {};
+
+	var positions = [];
+	var symbols = {}
+	for win in wins:
+		if (!win.has(\"symbol_positions\")): continue;
+		for symbol in win.symbol_positions:
+			# getting only the unique values
+			if (!symbols.has(symbol)):
+				symbols[symbol] = true;
+				positions.append(symbol);
+
+	return Globals.singletons.Slot.get_tiles_addresses(positions, true);
+"
+
+[sub_resource type="Resource" id=190]
+script = ExtResource( 1 )
+vfsm_id = 12
+name = "Show Line Wins"
+position = Vector2( 3320, 560 )
+trigger_ids = [ 17 ]
+custom_script = SubResource( 189 )
+
+[sub_resource type="GDScript" id=212]
+script/source = "# State: Switch Slot State
+extends VFSMStateBase
+
+
+func enter() -> void:
+	var data = Globals.singletons[\"Networking\"].lastround;
+	var in_fs = Globals.fsm_data[\"in_freespins\"];
+	
+	if(!in_fs && data.freeSpinsRemaining > 1):
+		Globals.singletons[\"Game\"].switch_to_fs_mode(true);
+		yield(Globals.singletons[\"Game\"], \"splash_end\");
+	elif(in_fs && data.nextAction == \"finish\"):
+		Globals.singletons[\"Game\"].switch_to_normal_mode();
+		Globals.singletons[\"BigWin\"].show_win(data[\"cumulativeWin\"], true);
+		yield(Globals.singletons[\"BigWin\"], \"HideEnd\");
+	else:
+		Globals.singletons[\"Background\"].maybe_change_to(!in_fs, \"Normal\", \"FreeSpins\");
+		Globals.singletons[\"Overlap\"].maybe_change_to(!in_fs, \"Normal\", \"FreeSpins\");
+
+	Globals.fsm_data[\"slot_switch_completed\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=213]
+script = ExtResource( 1 )
+vfsm_id = 16
+name = "Switch Slot State"
+position = Vector2( 3560, 720 )
+trigger_ids = [ 23 ]
+custom_script = SubResource( 212 )
+
+[sub_resource type="GDScript" id=220]
+script/source = "# State: Slash Feature
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### WILD FEATURE HIT STATE: ###\");
+	var data = Globals.singletons[\"Networking\"].lastround;
+	if(data.parsed.wild_data == null):
+		Globals.fsm_data[\"wild_feature_complete\"] = true;
+		return;
+
+	Globals.singletons[\"Background\"].change_to(\"FreeSpins\");
+	Globals.singletons[\"Overlap\"].maybe_change_to(!Globals.fsm_data[\"in_freespins\"], \"Dark\", \"FreeSpins\")
+	Globals.singletons[\"Audio\"].play(\"Impact\", 0.8);
+	yield(Globals.get_tree().create_timer(0.4), \"timeout\");
+	
+	Globals.singletons[\"SideCharacter\"].spine_play(\"RW_slash2\", null, false);
+	Globals.singletons[\"SideCharacter\"].play(\"Character Slash\", 0.75);
+	Globals.singletons[\"Audio\"].play_after(\"CharacterPass\", 550);
+	yield(Globals.get_tree().create_timer(0.7), \"timeout\");
+
+	Globals.singletons[\"Audio\"].play(\"Electricity\");
+	for pos in data.parsed.wild_data:
+		Globals.singletons[\"WildsSystem\"].activate_on(pos.x, pos.y);
+	
+	yield(Globals.get_tree().create_timer(1.6), \"timeout\");
+	
+	Globals.singletons[\"WildsSystem\"].activate_all();
+	Globals.singletons[\"SideCharacter\"].play(\"RESET\");
+	Globals.singletons[\"SideCharacter\"].lightning_show(\"wild\");
+	Globals.singletons[\"Audio\"].play(\"Blast\", 0.5);
+	yield(Globals.get_tree().create_timer(1), \"timeout\");
+	
+	Globals.singletons[\"Audio\"].loop(\"Electricity1\");
+	Globals.fsm_data[\"wild_feature_complete\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=221]
+script = ExtResource( 1 )
+vfsm_id = 18
+name = "Wild Feature Hit"
+position = Vector2( 1500, 680 )
+trigger_ids = [ 25 ]
+custom_script = SubResource( 220 )
+
+[sub_resource type="GDScript" id=224]
+script/source = "# State: Swords Feature
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### SWORD FEATURE HIT STATE: ###\");
+	var data = Globals.singletons[\"Networking\"].lastround;
+	if (data.parsed.sword_data == null):
+		Globals.fsm_data[\"sword_feature_complete\"] = true;
+		return;
+	
+	Globals.singletons[\"Audio\"].play(\"Impact2\");
+	Globals.singletons[\"Audio\"].play(\"CharacterSwordLift\");
+	Globals.singletons[\"SideCharacter\"].spine_play(\"FS_lifting\", \"FS_idle\")
+	Globals.singletons[\"Background\"].change_to(\"Special\");
+	Globals.singletons[\"Foreground\"].change_to(\"Special\");
+	yield(Globals.get_tree().create_timer(2), \"timeout\");
+	
+	yield(Globals.singletons[\"Background\"].activate_lightnings(),  \"completed\");
+
+	Globals.singletons[\"SideCharacter\"].electrify_sword();
+	yield(Globals.get_tree().create_timer(0.8), \"timeout\");
+	
+	var reels = [];
+	for pos in data.parsed.sword_data:
+		if (reels.has(pos.x)): continue;
+		Globals.singletons[\"SwordSystem\"].fall_sword_on(pos.x);
+		reels.append(pos.x);
+		yield(Globals.get_tree().create_timer(0.1), \"timeout\");
+	
+	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
+	Globals.fsm_data[\"sword_feature_complete\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=225]
+script = ExtResource( 1 )
+vfsm_id = 19
+name = "Swords Feature Hit"
+position = Vector2( 1840, 680 )
+trigger_ids = [ 26 ]
+custom_script = SubResource( 224 )
+
+[sub_resource type="GDScript" id=228]
+script/source = "# State: Wild Feature End
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### WILD FEATURE END STATE: ###\");
+	var data = Globals.singletons[\"Networking\"].lastround;
+
+	if (data.parsed.wild_data == null):
+		Globals.fsm_data[\"wild_feature_complete\"] = true;
+		return;
+
+	for pos in data.parsed.wild_data:
+		Globals.singletons[\"Slot\"].replace_tile(pos.x, pos.y, 10);
+
+	Globals.singletons[\"WildsSystem\"].deactivate_all();
+	Globals.singletons[\"Audio\"].fade_to(\"Electricity1\", 0, 500, 1);
+	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
+	
+	Globals.fsm_data[\"wild_feature_complete\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=229]
+script = ExtResource( 1 )
+vfsm_id = 20
+name = "Wild Feature"
+position = Vector2( 2440, 680 )
+trigger_ids = [ 25 ]
+custom_script = SubResource( 228 )
+
+[sub_resource type="GDScript" id=230]
+script/source = "# State: Swords Feature End
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### SWORD FEATURE END STATE: ###\");
+	var data = Globals.singletons[\"Networking\"].lastround;
+
+	if(data.parsed.sword_data == null):
+		Globals.fsm_data[\"sword_feature_complete\"] = true;
+		return;
+
+	Globals.singletons[\"SideCharacter\"].electrify();
+	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
+	
+	Globals.singletons[\"SideCharacter\"].spine_play(\"FS_thrusting\", null, false);
+	Globals.singletons[\"Audio\"].play(\"CharacterSwordHit\");
+	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
+	
+	Globals.singletons[\"SwordSystem\"].explode_swords();
+	var t = Globals.get_tree().create_timer(0.5);
+	t.connect(\"timeout\", Globals.singletons[\"Foreground\"], \"hide\", [0], CONNECT_ONESHOT);
+
+	for pos in data.parsed.sword_data:
+		Globals.singletons[\"Slot\"].replace_tile(pos.x, pos.y, 10);
+	
+#	yield(Globals.singletons[\"SideCharacter\"], \"animation_finished\");
+	yield(Globals.get_tree().create_timer(0.9), \"timeout\");
+	
+	Globals.singletons[\"SideCharacter\"].spine_play(\"FS_back\", \"idle1\");
+	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
+	
+	Globals.singletons[\"Background\"].maybe_change_to(!Globals.fsm_data[\"in_freespins\"], \"Normal\", \"FreeSpins\");
+	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	
+	Globals.fsm_data[\"sword_feature_complete\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=231]
+script = ExtResource( 1 )
+vfsm_id = 21
+name = "Swords Feature"
+position = Vector2( 2720, 680 )
+trigger_ids = [ 26 ]
+custom_script = SubResource( 230 )
+
+[sub_resource type="GDScript" id=236]
+script/source = "# State: Respin
+extends VFSMStateBase
+
+func enter() -> void:
+	print(\"### RESPIN STATE ###\");
+	var data = Globals.singletons[\"Networking\"].lastround
+	var has_respin = data.parsed.respin.current if data.has(\"parsed\") else false;
+
+	if (!has_respin):
+		Globals.fsm_data[\"respin_fx_complete\"] = true;
+		return;
+	
+	var character = Globals.singletons[\"SideCharacter\"];
+	var splash = Globals.singletons[\"RespinSplash\"];
+	Globals.singletons[\"Background\"].change_to(\"FreeSpins\");
+	Globals.singletons[\"Overlap\"].maybe_change_to(!Globals.fsm_data[\"in_freespins\"], \"Dark\", \"FreeSpins\");
+	Globals.singletons[\"Audio\"].play(\"Impact\", 0.8);
+	yield(Globals.get_tree().create_timer(0.3), \"timeout\");
+	character.spine_play(\"respin_thrusting\", \"respin_idle\");
+	Globals.singletons[\"Audio\"].play(\"CharacterSwordHit\");
+	Globals.singletons[\"Audio\"].play_after(\"CharacterSwordLift\", 2400);
+#	Globals.singletons[\"Background\"].change_to(\"FreeSpins\");
+	Globals.singletons[\"WinlinesFadeAnimationPlayer\"].play(\"To_Winline\");
+	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
+	yield(Globals.get_tree().create_timer(0.9), \"timeout\");
+
+	Globals.singletons[\"SideCharacter\"].electrify();
+	splash.play(\"ShowBg\");
+	splash.spine_play(\"popup\", \"idle\");
+	Globals.singletons[\"Audio\"].play(\"Respin\");
+	yield(Globals.get_tree().create_timer(0.4), \"timeout\");
+	
+	Globals.singletons[\"Background\"].activate_lightnings();
+	yield(Globals.get_tree().create_timer(1), \"timeout\");
+
+	splash.play(\"HideBg\");
+	character.spine_play(\"respin_lifting\", \"idle1\");
+	Globals.singletons[\"Slot\"].tint(Color.white, 0.5);
+	yield(Globals.get_tree().create_timer(0.3), \"timeout\");
+
+	Globals.fsm_data[\"respin_fx_complete\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	Globals.fsm_data[\"respin_fx_complete\"] = false;
+	pass
+"
+
+[sub_resource type="Resource" id=237]
+script = ExtResource( 1 )
+vfsm_id = 23
+name = "Respin effect end"
+position = Vector2( 700, 700 )
+trigger_ids = [ 27 ]
+custom_script = SubResource( 236 )
+
+[sub_resource type="GDScript" id=143]
+script/source = "# Trigger: Initialized
+extends VFSMTriggerBase
+
+func enter() -> void:
+	pass
+	
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"initialized\");
+
+"
+
+[sub_resource type="Resource" id=144]
+script = ExtResource( 5 )
+vfsm_id = 0
+name = "Initialized"
+custom_script = SubResource( 143 )
+
+[sub_resource type="GDScript" id=145]
+script/source = "# Trigger: Error
+extends VFSMTriggerBase
+
+func enter() -> void:
+	pass
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"network_error\");
+"
+
+[sub_resource type="Resource" id=146]
+script = ExtResource( 5 )
+vfsm_id = 1
+name = "Error"
+custom_script = SubResource( 145 )
+
+[sub_resource type="GDScript" id=158]
+script/source = "# Trigger: Click
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"intro_clicked\");
+"
+
+[sub_resource type="Resource" id=159]
+script = ExtResource( 5 )
+vfsm_id = 2
+name = "Click"
+custom_script = SubResource( 158 )
+
+[sub_resource type="GDScript" id=160]
+script/source = "# Trigger: Start Spin command
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.fsm_data[\"start_spin_command\"]
+"
+
+[sub_resource type="Resource" id=161]
+script = ExtResource( 5 )
+vfsm_id = 3
+name = "Start Spin"
+custom_script = SubResource( 160 )
+
+[sub_resource type="GDScript" id=162]
+script/source = "# Trigger: Reels stopped
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"reels_stopped\");
+"
+
+[sub_resource type="Resource" id=163]
+script = ExtResource( 5 )
+vfsm_id = 4
+name = "Reels stopped"
+custom_script = SubResource( 162 )
+
+[sub_resource type="GDScript" id=164]
+script/source = "# Trigger: Spin started
+extends VFSMTriggerBase
+
+func enter() -> void:
+	pass
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"data_received\");
+"
+
+[sub_resource type="Resource" id=165]
+script = ExtResource( 5 )
+vfsm_id = 5
+name = "Spin started"
+custom_script = SubResource( 164 )
+
+[sub_resource type="GDScript" id=168]
+script/source = "# Trigger: Spin stopped
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"reels_stopped\");
+"
+
+[sub_resource type="Resource" id=169]
+script = ExtResource( 5 )
+vfsm_id = 6
+name = "Spin stopped"
+custom_script = SubResource( 168 )
+
+[sub_resource type="GDScript" id=170]
+script/source = "# Trigger: Round closed
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"round_closed\");
+"
+
+[sub_resource type="Resource" id=171]
+script = ExtResource( 5 )
+vfsm_id = 7
+name = "Round closed"
+custom_script = SubResource( 170 )
+
+[sub_resource type="GDScript" id=172]
+script/source = "# Trigger: Error
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"network_error\");
+"
+
+[sub_resource type="Resource" id=173]
+script = ExtResource( 5 )
+vfsm_id = 8
+name = "Error"
+custom_script = SubResource( 172 )
+
+[sub_resource type="Resource" id=174]
+script = ExtResource( 4 )
+vfsm_id = 9
+name = ""
+action_list = [  ]
+
+[sub_resource type="GDScript" id=177]
+script/source = "# Trigger: Spin Start Command
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"spin_start_command\");
+"
+
+[sub_resource type="Resource" id=178]
+script = ExtResource( 5 )
+vfsm_id = 10
+name = "Spin Start Command"
+custom_script = SubResource( 177 )
+
+[sub_resource type="Resource" id=179]
+script = ExtResource( 6 )
+vfsm_id = 11
+name = ""
+duration = 0.0
+
+[sub_resource type="Resource" id=180]
+script = ExtResource( 4 )
+vfsm_id = 12
+name = ""
+action_list = [  ]
+
+[sub_resource type="GDScript" id=181]
+script/source = "# Trigger: Continue
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return true
+"
+
+[sub_resource type="Resource" id=182]
+script = ExtResource( 5 )
+vfsm_id = 13
+name = "Continue"
+custom_script = SubResource( 181 )
+
+[sub_resource type="GDScript" id=185]
+script/source = "# Trigger: Has Wins
+extends VFSMTriggerBase
+
+func enter() -> void:
+	pass
+
+func is_triggered(_object, _delta: float) -> bool:
+	var data = Globals.singletons[\"Networking\"].lastround;
+	var wins = float(data[\"spinWin\"]);
+	return wins > 0.0;
+"
+
+[sub_resource type="Resource" id=186]
+script = ExtResource( 5 )
+vfsm_id = 14
+name = "Has Wins"
+custom_script = SubResource( 185 )
+
+[sub_resource type="GDScript" id=187]
+script/source = "# Trigger: No wins
+extends VFSMTriggerBase
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	var data = Globals.singletons[\"Networking\"].lastround;
+	var wins = float(data[\"spinWin\"]);
+	return wins == 0.0;
+"
+
+[sub_resource type="Resource" id=188]
+script = ExtResource( 5 )
+vfsm_id = 15
+name = "No wins"
+custom_script = SubResource( 187 )
+
+[sub_resource type="Resource" id=191]
+script = ExtResource( 4 )
+vfsm_id = 16
+name = ""
+action_list = [  ]
+
+[sub_resource type="GDScript" id=194]
+script/source = "# Trigger: Big win shown
+extends VFSMTriggerBase
+
+func enter() -> void:
+	pass
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"wins_shown\");
+"
+
+[sub_resource type="Resource" id=195]
+script = ExtResource( 5 )
+vfsm_id = 17
+name = "Has Big Win"
+custom_script = SubResource( 194 )
+
+[sub_resource type="GDScript" id=196]
+script/source = "# Trigger: No Big Win
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	var data = Globals.singletons[\"Networking\"].lastround;
+	return Globals.get_fsm_data(\"wins_shown\") && \\
+		data[\"wins_lines_total\"] <= Globals.singletons[\"BigWin\"].big_win_limit;
+"
+
+[sub_resource type="Resource" id=197]
+script = ExtResource( 5 )
+vfsm_id = 18
+name = "No Big Win"
+custom_script = SubResource( 196 )
+
+[sub_resource type="GDScript" id=198]
+script/source = "# Trigger: Big Win End
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"big_win_shown\")
+"
+
+[sub_resource type="Resource" id=199]
+script = ExtResource( 5 )
+vfsm_id = 19
+name = "Big Win End"
+custom_script = SubResource( 198 )
+
+[sub_resource type="GDScript" id=202]
+script/source = "# Trigger: Princess Feature Done
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.fsm_data[\"princess_feature_completed\"];
+"
+
+[sub_resource type="Resource" id=203]
+script = ExtResource( 5 )
+vfsm_id = 20
+name = "Princess Feature Done"
+custom_script = SubResource( 202 )
+
+[sub_resource type="GDScript" id=208]
+script/source = "# Trigger: Dragon Feature Done
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.fsm_data[\"dragon_feature_completed\"]
+"
+
+[sub_resource type="Resource" id=209]
+script = ExtResource( 5 )
+vfsm_id = 21
+name = "Dragon Feature Done"
+custom_script = SubResource( 208 )
+
+[sub_resource type="GDScript" id=210]
+script/source = "# Trigger: Tiger Feature Done
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.fsm_data[\"tiger_feature_completed\"]
+"
+
+[sub_resource type="Resource" id=211]
+script = ExtResource( 5 )
+vfsm_id = 22
+name = "Tiger Feature Done"
+custom_script = SubResource( 210 )
+
+[sub_resource type="GDScript" id=214]
+script/source = "# Trigger: Switch slot completed
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.fsm_data[\"slot_switch_completed\"];
+"
+
+[sub_resource type="Resource" id=215]
+script = ExtResource( 5 )
+vfsm_id = 23
+name = "Switch slot completed"
+custom_script = SubResource( 214 )
+
+[sub_resource type="GDScript" id=218]
+script/source = "# Trigger: Bar Fill Done
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"bar_fill_completed\");
+"
+
+[sub_resource type="Resource" id=219]
+script = ExtResource( 5 )
+vfsm_id = 24
+name = "Bar Fill Done"
+custom_script = SubResource( 218 )
+
+[sub_resource type="GDScript" id=222]
+script/source = "# Trigger: Wild Feature End
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"wild_feature_complete\");
+"
+
+[sub_resource type="Resource" id=223]
+script = ExtResource( 5 )
+vfsm_id = 25
+name = "Wild Feature End"
+custom_script = SubResource( 222 )
+
+[sub_resource type="GDScript" id=226]
+script/source = "# Trigger: Sword Feature End
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"sword_feature_complete\")
+"
+
+[sub_resource type="Resource" id=227]
+script = ExtResource( 5 )
+vfsm_id = 26
+name = "Sword Feature End"
+custom_script = SubResource( 226 )
+
+[sub_resource type="GDScript" id=234]
+script/source = "# Trigger: Respin effect completed
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"respin_fx_complete\");
+"
+
+[sub_resource type="Resource" id=235]
+script = ExtResource( 5 )
+vfsm_id = 27
+name = "Respin effect completed"
+custom_script = SubResource( 234 )
+
+[sub_resource type="Resource" id=147]
+script = ExtResource( 2 )
+start_state_vfsm_id = 0
+start_position = Vector2( -200, 200 )
+_states = {
+0: SubResource( 140 ),
+1: SubResource( 142 ),
+2: SubResource( 149 ),
+3: SubResource( 151 ),
+4: SubResource( 153 ),
+5: SubResource( 155 ),
+6: SubResource( 157 ),
+7: SubResource( 167 ),
+8: SubResource( 176 ),
+11: SubResource( 184 ),
+12: SubResource( 190 ),
+16: SubResource( 213 ),
+18: SubResource( 221 ),
+19: SubResource( 225 ),
+20: SubResource( 229 ),
+21: SubResource( 231 ),
+23: SubResource( 237 )
+}
+_trigger_vfsm_id_map = {
+0: SubResource( 144 ),
+1: SubResource( 146 ),
+2: SubResource( 159 ),
+3: SubResource( 161 ),
+4: SubResource( 163 ),
+5: SubResource( 165 ),
+6: SubResource( 169 ),
+7: SubResource( 171 ),
+8: SubResource( 173 ),
+9: SubResource( 174 ),
+10: SubResource( 178 ),
+11: SubResource( 179 ),
+12: SubResource( 180 ),
+13: SubResource( 182 ),
+14: SubResource( 186 ),
+15: SubResource( 188 ),
+16: SubResource( 191 ),
+17: SubResource( 195 ),
+18: SubResource( 197 ),
+19: SubResource( 199 ),
+20: SubResource( 203 ),
+21: SubResource( 209 ),
+22: SubResource( 211 ),
+23: SubResource( 215 ),
+24: SubResource( 219 ),
+25: SubResource( 223 ),
+26: SubResource( 227 ),
+27: SubResource( 235 )
+}
+_transitions = {
+0: {
+0: 2,
+8: 1
+},
+1: {
+},
+2: {
+2: 3
+},
+3: {
+10: 23
+},
+4: {
+4: 3
+},
+5: {
+1: 4,
+5: 18
+},
+6: {
+6: 20
+},
+7: {
+7: 3,
+8: 8
+},
+8: {
+13: 3
+},
+11: {
+14: 12,
+15: 16
+},
+12: {
+17: 16
+},
+16: {
+23: 7
+},
+18: {
+25: 19
+},
+19: {
+26: 6
+},
+20: {
+25: 21
+},
+21: {
+26: 11
+},
+23: {
+27: 5
+}
+}
+states = [ SubResource( 140 ), SubResource( 142 ), SubResource( 149 ), SubResource( 151 ), SubResource( 153 ), SubResource( 155 ), SubResource( 157 ), SubResource( 167 ), SubResource( 176 ), SubResource( 184 ), SubResource( 190 ), SubResource( 213 ), SubResource( 221 ), SubResource( 225 ), SubResource( 229 ), SubResource( 231 ), SubResource( 237 ) ]
+triggers = [ SubResource( 144 ), SubResource( 146 ), SubResource( 159 ), SubResource( 161 ), SubResource( 163 ), SubResource( 165 ), SubResource( 169 ), SubResource( 171 ), SubResource( 173 ), SubResource( 174 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 182 ), SubResource( 186 ), SubResource( 188 ), SubResource( 191 ), SubResource( 195 ), SubResource( 197 ), SubResource( 199 ), SubResource( 203 ), SubResource( 209 ), SubResource( 211 ), SubResource( 215 ), SubResource( 219 ), SubResource( 223 ), SubResource( 227 ), SubResource( 235 ) ]
+transitions = [ 0, 8, 1, 0, 0, 2, 2, 2, 3, 3, 10, 23, 4, 4, 3, 5, 1, 4, 5, 5, 18, 6, 6, 20, 7, 8, 8, 7, 7, 3, 8, 13, 3, 11, 14, 12, 11, 15, 16, 12, 17, 16, 16, 23, 7, 18, 25, 19, 19, 26, 6, 20, 25, 21, 21, 26, 11, 23, 27, 5 ]
+
+[node name="Scenario" type="Node"]
+script = ExtResource( 3 )
+finite_state_machine = SubResource( 147 )

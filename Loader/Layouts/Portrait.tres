@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Loader/Layouts/Layout.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+viewport = Vector2( 1350, 1800 )
+name = "portrait"
+threshold = 0.0
+thresholdEnd = 0.65
+max_zoom = 1.0

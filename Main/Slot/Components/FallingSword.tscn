@@ -1,0 +1,249 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://Main/SpineSpriteExtension.gd" type="Script" id=1]
+[ext_resource path="res://Main/Animations/FallingSwards/Sword/FallingSwords.atlas" type="SpineAtlasResource" id=2]
+[ext_resource path="res://Main/Animations/FallingSwards/Sword/FallingSwords.json" type="SpineSkeletonJsonDataResource" id=3]
+
+[sub_resource type="SpineSkeletonDataResource" id=1]
+atlas_res = ExtResource( 2 )
+skeleton_json_res = ExtResource( 3 )
+animations = null
+skins = null
+
+[sub_resource type="SpineAnimationStateDataResource" id=2]
+skeleton = SubResource( 1 )
+
+[sub_resource type="Animation" id=41]
+resource_name = "Fall"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -1000.0, 2151.0 ]
+}
+
+[sub_resource type="Animation" id=42]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=43]
+
+[sub_resource type="CanvasItemMaterial" id=44]
+
+[sub_resource type="CanvasItemMaterial" id=45]
+
+[sub_resource type="CanvasItemMaterial" id=46]
+
+[sub_resource type="CanvasItemMaterial" id=47]
+
+[sub_resource type="CanvasItemMaterial" id=48]
+
+[sub_resource type="CanvasItemMaterial" id=49]
+
+[sub_resource type="CanvasItemMaterial" id=50]
+
+[sub_resource type="CanvasItemMaterial" id=51]
+
+[sub_resource type="CanvasItemMaterial" id=52]
+
+[sub_resource type="CanvasItemMaterial" id=53]
+
+[sub_resource type="CanvasItemMaterial" id=54]
+
+[sub_resource type="CanvasItemMaterial" id=55]
+
+[sub_resource type="CanvasItemMaterial" id=56]
+
+[sub_resource type="CanvasItemMaterial" id=57]
+
+[sub_resource type="CanvasItemMaterial" id=58]
+
+[sub_resource type="CanvasItemMaterial" id=59]
+
+[sub_resource type="CanvasItemMaterial" id=60]
+
+[sub_resource type="CanvasItemMaterial" id=61]
+
+[sub_resource type="CanvasItemMaterial" id=62]
+
+[sub_resource type="CanvasItemMaterial" id=63]
+
+[sub_resource type="CanvasItemMaterial" id=64]
+
+[sub_resource type="CanvasItemMaterial" id=65]
+
+[sub_resource type="CanvasItemMaterial" id=66]
+
+[sub_resource type="CanvasItemMaterial" id=67]
+
+[sub_resource type="CanvasItemMaterial" id=68]
+
+[sub_resource type="CanvasItemMaterial" id=69]
+
+[sub_resource type="CanvasItemMaterial" id=70]
+
+[sub_resource type="CanvasItemMaterial" id=71]
+
+[sub_resource type="CanvasItemMaterial" id=72]
+
+[sub_resource type="CanvasItemMaterial" id=73]
+
+[sub_resource type="CanvasItemMaterial" id=74]
+
+[sub_resource type="CanvasItemMaterial" id=75]
+
+[sub_resource type="CanvasItemMaterial" id=76]
+
+[sub_resource type="CanvasItemMaterial" id=77]
+
+[sub_resource type="CanvasItemMaterial" id=78]
+
+[sub_resource type="CanvasItemMaterial" id=79]
+
+[sub_resource type="CanvasItemMaterial" id=80]
+
+[node name="FallingSword" type="SpineSprite"]
+scale = Vector2( 1.1, 1.1 )
+animation_state_data_res = SubResource( 2 )
+script = ExtResource( 1 )
+skin = "default"
+startanimation = "Falling sward"
+loop = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fall = SubResource( 41 )
+anims/RESET = SubResource( 42 )
+
+[node name="FallingSward" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 43 )
+
+[node name="crash_mask" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 44 )
+
+[node name="crash" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 45 )
+
+[node name="Light" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 46 )
+
+[node name="ExplorePartticles" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 47 )
+
+[node name="ExplorePartticles2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 48 )
+
+[node name="SwordPieces32" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 49 )
+
+[node name="SwordPieces31" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 50 )
+
+[node name="SwordPieces30" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 51 )
+
+[node name="SwordPieces29" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 52 )
+
+[node name="SwordPieces28" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 53 )
+
+[node name="SwordPieces27" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 54 )
+
+[node name="SwordPieces26" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 55 )
+
+[node name="SwordPieces25" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 56 )
+
+[node name="SwordPieces24" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 57 )
+
+[node name="SwordPieces23" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 58 )
+
+[node name="SwordPieces22" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 59 )
+
+[node name="SwordPieces21" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 60 )
+
+[node name="SwordPieces20" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 61 )
+
+[node name="SwordPieces19" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 62 )
+
+[node name="SwordPieces18" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 63 )
+
+[node name="SwordPieces17" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 64 )
+
+[node name="SwordPieces16" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 65 )
+
+[node name="SwordPieces15" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 66 )
+
+[node name="SwordPieces14" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 67 )
+
+[node name="SwordPieces13" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 68 )
+
+[node name="SwordPieces12" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 69 )
+
+[node name="SwordPieces11" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 70 )
+
+[node name="SwordPieces10" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 71 )
+
+[node name="SwordPieces9" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 72 )
+
+[node name="SwordPieces8" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 73 )
+
+[node name="SwordPieces7" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 74 )
+
+[node name="SwordPieces6" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 75 )
+
+[node name="SwordPieces5" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 76 )
+
+[node name="SwordPieces4" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 77 )
+
+[node name="SwordPieces3" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 78 )
+
+[node name="SwordPieces2" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 79 )
+
+[node name="SwordPieces1" type="SpineSpriteMeshInstance2D" parent="."]
+material = SubResource( 80 )
+
+[connection signal="ready" from="AnimationPlayer" to="AnimationPlayer" method="play" binds= [ "Fall" ]]

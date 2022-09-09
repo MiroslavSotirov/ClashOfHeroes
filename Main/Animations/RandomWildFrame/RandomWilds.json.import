@@ -1,0 +1,13 @@
+[remap]
+
+importer="raiix.spine_runtime.json"
+type="SpineSkeletonJsonDataResource"
+path="res://.import/RandomWilds.json-799f930f9a045b2de12df8b2334703c2.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/RandomWildFrame/RandomWilds.json"
+dest_files=[ "res://.import/RandomWilds.json-799f930f9a045b2de12df8b2334703c2.spjson" ]
+
+[params]
+

@@ -1,0 +1,13 @@
+[remap]
+
+importer="raiix.spine_runtime.json"
+type="SpineSkeletonJsonDataResource"
+path="res://.import/FreeSpins.json-3378c6237d0b27579a27c05ea497257a.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/FreeSpinsSplashScreen/FreeSpins.json"
+dest_files=[ "res://.import/FreeSpins.json-3378c6237d0b27579a27c05ea497257a.spjson" ]
+
+[params]
+

@@ -1,0 +1,13 @@
+[remap]
+
+importer="raiix.spine_runtime.json"
+type="SpineSkeletonJsonDataResource"
+path="res://.import/crown.json-0a86acb022aad5a28b9bb36b08788127.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/Symbols/crown.json"
+dest_files=[ "res://.import/crown.json-0a86acb022aad5a28b9bb36b08788127.spjson" ]
+
+[params]
+
