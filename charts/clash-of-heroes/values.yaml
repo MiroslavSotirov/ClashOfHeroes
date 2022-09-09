@@ -2,7 +2,7 @@ namespace: elysium
 
 image:
   repo: "harbor.elysiumstudios.se/elysium/"
-  name: "sword-king"
+  name: "clash-of-heroes"
 
 imagePullSecrets:
   - name: harborcred
@@ -30,7 +30,7 @@ ingress:
   hosts:
     - host: dev.elysiumstudios.se
       paths:
-        - path: /sword-king
+        - path: /clash-of-heroes
           pathType: Prefix
   tls: []
 
