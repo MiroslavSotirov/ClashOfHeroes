@@ -97,7 +97,7 @@ is_translation = true
 
 [node name="Networking" type="Node" parent="."]
 script = ExtResource( 5 )
-init_sessionID = "test1"
+init_sessionID = "test12"
 game = "sword-king"
 mode = "demo"
 operator = "mav"

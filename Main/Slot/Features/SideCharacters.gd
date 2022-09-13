@@ -9,38 +9,18 @@ func _ready():
 	Globals.connect("layoutchanged", self, "_on_layout_changed");
 	_on_layout_changed(Globals.current_layout);
 	$AnimationPlayer.connect("animation_finished", self, "_on_animation_finished");
-	$Character.connect("animation_complete", self, "_on_animation_finished");
+	#$Character.connect("animation_complete", self, "_on_animation_finished");
 
 func electrify_sword():
-	$SwordEffect/AnimationPlayer.play("show");
-	$SwordEffect/effect1.frame = 0;
-	$SwordEffect/effect2.frame = 0;
-	$SwordEffect/effect1.play("active");
-	$SwordEffect/effect2.play("active");
 	Globals.singletons["Audio"].play("Electricity4");
 
 func electrify():
 	#CharacterLanding
 	Globals.singletons["Audio"].play("CharacterLanding", 0.6);
-	$LightingBolt.frame = 0;
-	$LightingBolt.visible = true;
-	$LightingBolt.play("hit");
-	yield($LightingBolt,  "animation_finished")
-	$LightingBolt.visible = false;
 
 func lightning_show(type = "intro"):
-	$Lightning/AnimationPlayer.play("Show");
-
-	if (type == "intro"):
-		$Character.play_anim("RW_appear", false, 2);
-		yield($Character, "animation_complete");
-		$Character.play_anim("idle1", true);
-	else:
-		$Character.play_anim_then_loop("respin_lifting", "idle1");
+	pass
 	
-	yield(Globals.get_tree(), "idle_frame");
-	$Character.setup_pose_trigger = true;
-
 func play(anim, delay = 0.0):
 	if (delay > 0.0):
 		 yield(get_tree().create_timer(delay), "timeout");

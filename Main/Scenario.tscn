@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://addons/visual_fsm/fsm/vfsm_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/visual_fsm/fsm/vfsm.gd" type="Script" id=2]
@@ -113,8 +113,6 @@ func enter() -> void:
 	var slot_container = Globals.singletons[\"Game\"].get_node(\"SlotContainer\");
 	slot_container.visible = true;
 	Globals.singletons[\"Intro\"].queue_free();
-	Globals.singletons[\"WildsSystem\"].preload_resources();
-	Globals.singletons[\"SwordSystem\"].preload_resources();
 	Globals.singletons[\"Fader\"].tween(1.0, 0.0, 0.5);
 	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/Logo/SpineAnimation\").play_anim_then_loop(\"popup\", \"idle\");
 
@@ -153,10 +151,6 @@ func enter() -> void:
 	
 #	var has_respin = has_respin(Globals.singletons[\"Networking\"].lastround);
 	
-	if (!Globals.fsm_data[\"in_freespins\"]):
-		var bar = Globals.singletons[\"Stateful\"].get_value(\"counter\");
-		Globals.singletons[\"SegmentBar\"].update(bar);
-
 	if(JS.enabled):
 		JS.connect(\"spinstart\", self, \"start_spin\", [], CONNECT_ONESHOT);
 
@@ -223,7 +217,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 4
 name = "Spin error"
-position = Vector2( 1120, 520 )
+position = Vector2( 1360, 340 )
 trigger_ids = [ 4 ]
 custom_script = SubResource( 152 )
 
@@ -333,7 +327,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 5
 name = "Spin Start"
-position = Vector2( 1100, 660 )
+position = Vector2( 1100, 640 )
 trigger_ids = [ 1, 5 ]
 custom_script = SubResource( 154 )
 
@@ -381,9 +375,9 @@ func enter() -> void:
 
 		Globals.singletons[\"Slot\"].tint(Color.white, 0.3);
 		var bar = Globals.singletons[\"Stateful\"].get_value(\"counter\");
-		Globals.singletons[\"SegmentBar\"].update(bar);
+		#Globals.singletons[\"SegmentBar\"].update(bar);
 
-	yield(Globals.singletons[\"SegmentBar\"].wait_to_update(), \"completed\");
+	#yield(Globals.singletons[\"SegmentBar\"].wait_to_update(), \"completed\");
 	Globals.fsm_data[\"reels_stopped\"] = true;
 
 func _anticipation_on():
@@ -416,7 +410,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 6
 name = "Spin Stop"
-position = Vector2( 2160, 680 )
+position = Vector2( 1500, 640 )
 trigger_ids = [ 6 ]
 custom_script = SubResource( 156 )
 
@@ -465,7 +459,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 7
 name = "Close round"
-position = Vector2( 4060, 700 )
+position = Vector2( 2840, 460 )
 trigger_ids = [ 7, 8 ]
 custom_script = SubResource( 166 )
 
@@ -490,7 +484,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 8
 name = "Close Error"
-position = Vector2( 4600, 520 )
+position = Vector2( 3220, 480 )
 trigger_ids = [ 13 ]
 custom_script = SubResource( 175 )
 
@@ -526,7 +520,7 @@ func calculate_line_wins(wins):
 script = ExtResource( 1 )
 vfsm_id = 11
 name = "Wins Check"
-position = Vector2( 3020, 680 )
+position = Vector2( 1900, 640 )
 trigger_ids = [ 14, 15 ]
 custom_script = SubResource( 183 )
 
@@ -605,47 +599,9 @@ func calcute_win_tiles_positions(wins):
 script = ExtResource( 1 )
 vfsm_id = 12
 name = "Show Line Wins"
-position = Vector2( 3320, 560 )
+position = Vector2( 2180, 500 )
 trigger_ids = [ 17 ]
 custom_script = SubResource( 189 )
-
-[sub_resource type="GDScript" id=212]
-script/source = "# State: Switch Slot State
-extends VFSMStateBase
-
-
-func enter() -> void:
-	var data = Globals.singletons[\"Networking\"].lastround;
-	var in_fs = Globals.fsm_data[\"in_freespins\"];
-	
-	if(!in_fs && data.freeSpinsRemaining > 1):
-		Globals.singletons[\"Game\"].switch_to_fs_mode(true);
-		yield(Globals.singletons[\"Game\"], \"splash_end\");
-	elif(in_fs && data.nextAction == \"finish\"):
-		Globals.singletons[\"Game\"].switch_to_normal_mode();
-		Globals.singletons[\"BigWin\"].show_win(data[\"cumulativeWin\"], true);
-		yield(Globals.singletons[\"BigWin\"], \"HideEnd\");
-	else:
-		Globals.singletons[\"Background\"].maybe_change_to(!in_fs, \"Normal\", \"FreeSpins\");
-		Globals.singletons[\"Overlap\"].maybe_change_to(!in_fs, \"Normal\", \"FreeSpins\");
-
-	Globals.fsm_data[\"slot_switch_completed\"] = true;
-
-func update(_object, _delta: float) -> void:
-	pass
-
-
-func exit() -> void:
-	pass
-"
-
-[sub_resource type="Resource" id=213]
-script = ExtResource( 1 )
-vfsm_id = 16
-name = "Switch Slot State"
-position = Vector2( 3560, 720 )
-trigger_ids = [ 23 ]
-custom_script = SubResource( 212 )
 
 [sub_resource type="GDScript" id=220]
 script/source = "# State: Slash Feature
@@ -654,7 +610,8 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### WILD FEATURE HIT STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	if(data.parsed.wild_data == null):
+	#if(data.parsed.wild_data == null):
+	if(true):
 		Globals.fsm_data[\"wild_feature_complete\"] = true;
 		return;
 
@@ -694,7 +651,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 18
 name = "Wild Feature Hit"
-position = Vector2( 1500, 680 )
+position = Vector2( 1100, 820 )
 trigger_ids = [ 25 ]
 custom_script = SubResource( 220 )
 
@@ -705,7 +662,8 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### SWORD FEATURE HIT STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	if (data.parsed.sword_data == null):
+	if(true):
+#	if (data.parsed.sword_data == null):
 		Globals.fsm_data[\"sword_feature_complete\"] = true;
 		return;
 	
@@ -742,7 +700,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 19
 name = "Swords Feature Hit"
-position = Vector2( 1840, 680 )
+position = Vector2( 1100, 960 )
 trigger_ids = [ 26 ]
 custom_script = SubResource( 224 )
 
@@ -753,8 +711,8 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### WILD FEATURE END STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-
-	if (data.parsed.wild_data == null):
+	#if(data.parsed.wild_data == null):
+	if (true):
 		Globals.fsm_data[\"wild_feature_complete\"] = true;
 		return;
 
@@ -778,7 +736,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 20
 name = "Wild Feature"
-position = Vector2( 2440, 680 )
+position = Vector2( 1500, 780 )
 trigger_ids = [ 25 ]
 custom_script = SubResource( 228 )
 
@@ -790,7 +748,8 @@ func enter() -> void:
 	print(\"### SWORD FEATURE END STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
 
-	if(data.parsed.sword_data == null):
+	#if(data.parsed.sword_data == null):
+	if(true):
 		Globals.fsm_data[\"sword_feature_complete\"] = true;
 		return;
 
@@ -830,7 +789,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 21
 name = "Swords Feature"
-position = Vector2( 2720, 680 )
+position = Vector2( 1500, 920 )
 trigger_ids = [ 26 ]
 custom_script = SubResource( 230 )
 
@@ -843,9 +802,11 @@ func enter() -> void:
 	var data = Globals.singletons[\"Networking\"].lastround
 	var has_respin = data.parsed.respin.current if data.has(\"parsed\") else false;
 
-	if (!has_respin):
+	#if (!has_respin):
+	if (true):
 		Globals.fsm_data[\"respin_fx_complete\"] = true;
 		return;
+		
 	
 	var character = Globals.singletons[\"SideCharacter\"];
 	var splash = Globals.singletons[\"RespinSplash\"];
@@ -1384,7 +1345,6 @@ _states = {
 8: SubResource( 176 ),
 11: SubResource( 184 ),
 12: SubResource( 190 ),
-16: SubResource( 213 ),
 18: SubResource( 221 ),
 19: SubResource( 225 ),
 20: SubResource( 229 ),
@@ -1453,13 +1413,10 @@ _transitions = {
 },
 11: {
 14: 12,
-15: 16
+15: 7
 },
 12: {
-17: 16
-},
-16: {
-23: 7
+17: 7
 },
 18: {
 25: 19
@@ -1477,9 +1434,9 @@ _transitions = {
 27: 5
 }
 }
-states = [ SubResource( 140 ), SubResource( 142 ), SubResource( 149 ), SubResource( 151 ), SubResource( 153 ), SubResource( 155 ), SubResource( 157 ), SubResource( 167 ), SubResource( 176 ), SubResource( 184 ), SubResource( 190 ), SubResource( 213 ), SubResource( 221 ), SubResource( 225 ), SubResource( 229 ), SubResource( 231 ), SubResource( 237 ) ]
+states = [ SubResource( 140 ), SubResource( 142 ), SubResource( 149 ), SubResource( 151 ), SubResource( 153 ), SubResource( 155 ), SubResource( 157 ), SubResource( 167 ), SubResource( 176 ), SubResource( 184 ), SubResource( 190 ), SubResource( 221 ), SubResource( 225 ), SubResource( 229 ), SubResource( 231 ), SubResource( 237 ) ]
 triggers = [ SubResource( 144 ), SubResource( 146 ), SubResource( 159 ), SubResource( 161 ), SubResource( 163 ), SubResource( 165 ), SubResource( 169 ), SubResource( 171 ), SubResource( 173 ), SubResource( 174 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 182 ), SubResource( 186 ), SubResource( 188 ), SubResource( 191 ), SubResource( 195 ), SubResource( 197 ), SubResource( 199 ), SubResource( 203 ), SubResource( 209 ), SubResource( 211 ), SubResource( 215 ), SubResource( 219 ), SubResource( 223 ), SubResource( 227 ), SubResource( 235 ) ]
-transitions = [ 0, 8, 1, 0, 0, 2, 2, 2, 3, 3, 10, 23, 4, 4, 3, 5, 1, 4, 5, 5, 18, 6, 6, 20, 7, 8, 8, 7, 7, 3, 8, 13, 3, 11, 14, 12, 11, 15, 16, 12, 17, 16, 16, 23, 7, 18, 25, 19, 19, 26, 6, 20, 25, 21, 21, 26, 11, 23, 27, 5 ]
+transitions = [ 0, 8, 1, 0, 0, 2, 2, 2, 3, 3, 10, 23, 4, 4, 3, 5, 1, 4, 5, 5, 18, 6, 6, 20, 7, 8, 8, 7, 7, 3, 8, 13, 3, 11, 14, 12, 11, 15, 7, 12, 17, 7, 18, 25, 19, 19, 26, 6, 20, 25, 21, 21, 26, 11, 23, 27, 5 ]
 
 [node name="Scenario" type="Node"]
 script = ExtResource( 3 )
