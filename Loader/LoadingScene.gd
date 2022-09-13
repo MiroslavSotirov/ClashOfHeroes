@@ -55,24 +55,24 @@ func _ready():
 func generate_tile_images():
 	var tilepaths = Globals.get_dir_contents("res://Main/Slot/Tiles");
 	for path in tilepaths: Globals.tiles.append(load(path));
-	var tile_image_generation_scene = load("res://Main/Slot/TileImageGenerator.tscn")
+#	var tile_image_generation_scene = load("res://Main/Slot/TileImageGenerator.tscn")
 	var viewport = Viewport.new();
 	viewport.render_target_v_flip = true;
 	viewport.usage = Viewport.USAGE_2D;
 	viewport.transparent_bg = true;
 	add_child(viewport);
 	for tile in Globals.tiles:
-		var tilescene = tile_image_generation_scene.instance();
+#		var tilescene = tile_image_generation_scene.instance();
 
-		tilescene.set_new_state_data(tile.spine_data);
-		tilescene.set_skin(tile.skin);
-#		tilescene.play_anim(tile.image_creation_animation, false);
-		tilescene.reset_pose();
-		yield(VisualServer, "frame_pre_draw");
-		
+#		tilescene.set_new_state_data(tile.spine_data);
+#		tilescene.set_skin(tile.skin);
+##		tilescene.play_anim(tile.image_creation_animation, false);
+#		tilescene.reset_pose();
+#		yield(VisualServer, "frame_pre_draw");
+#
 		viewport.size = tile.image_size;
-		viewport.add_child(tilescene)
-		tilescene.position = (tile.image_size/2);
+#		viewport.add_child(tilescene)
+#		tilescene.position = (tile.image_size/2);
 		yield(get_tree(),"idle_frame");
 		viewport.render_target_update_mode = Viewport.UPDATE_ONCE;
 		yield(VisualServer, "frame_post_draw")
@@ -81,7 +81,7 @@ func generate_tile_images():
 		tile.static_image = ImageTexture.new();
 		tile.static_image.create_from_image(img);
 		tile.static_image.lossy_quality = 0.0;
-		viewport.remove_child(tilescene);
+#		viewport.remove_child(tilescene);
 		
 	viewport.queue_free();
 	emit_signal("tiles_generated");
