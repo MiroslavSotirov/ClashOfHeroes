@@ -7,7 +7,7 @@ func _ready():
 	$Elements/IntroCharacter.visible = false;
 
 func show():
-	$Elements/Logo/SpineSprite.play_anim_then_loop('popup', "idle");
+#	$Elements/Logo/SpineSprite.play_anim_then_loop('popup', "idle");
 	Globals.singletons["Audio"].play("LogoPopup", 0.5);
 	yield(get_tree().create_timer(1), "timeout");
 		
