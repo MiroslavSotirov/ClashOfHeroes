@@ -14,7 +14,7 @@ dest_files=[ "res://.import/crown.webp-ad8fa0fd0f1c0ff817429a60af676f89.stex" ]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

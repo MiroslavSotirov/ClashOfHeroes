@@ -49,6 +49,9 @@ func set_children_material():
 	
 # Used to change the tiles 
 func set_new_state_data(data, newskin = null, playanim = false):
+	skeleton_data_res = data;
+	
+	
 #	self.animation_state_data_res = data;
 #	#yield(VisualServer, "frame_post_draw");
 #	if(newskin): set_skin(newskin);	
@@ -59,7 +62,15 @@ func set_new_state_data(data, newskin = null, playanim = false):
 	pass;
 		
 func set_skin(skin):
-	pass;
+	if (skeleton_data_res == null): return;
+
+	var skeleton = get_skeleton();
+	if (skeleton_data_res.find_skin(skin) != null):
+		skeleton.set_skin_by_name(skin);
+	else:
+		var default_skin = "EN" if skeleton_data_res.find_skin("EN") != null else "default";
+		skeleton.set_skin_by_name(default_skin);
+		
 #	if(animation_state_data_res == null): return;
 #	if(animation_state_data_res.skeleton.find_skin(skin) == null):
 #		if(animation_state_data_res.skeleton.find_skin("EN") != null):
@@ -80,23 +91,27 @@ func play_anim(anim, loop, timescale_override = null, has_delay = true):
 #	else: set_timescale(timescale);
 	
 func play_anim_then_loop(anim, loopanim):
-	play_anim(anim, false);
-	yield(self, "animation_complete");
-	if(current_anim == anim): play_anim(loopanim, true);
+#	play_anim(anim, false);
+#	yield(self, "animation_complete");
+#	if(current_anim == anim): play_anim(loopanim, true);
+	pass;
 
 func stop():
-	get_animation_state().clear_tracks();
+#	get_animation_state().clear_tracks();
+	pass;
 
 func set_timescale(scale, permanent=true):
-	scale = float(scale);
-	if(get_animation_state()):
-		get_animation_state().set_time_scale(scale);
-	if(permanent): timescale = scale;
+#	scale = float(scale);
+#	if(get_animation_state()):
+#		get_animation_state().set_time_scale(scale);
+#	if(permanent): timescale = scale;
+	pass;
 
 func reset_pose():
-	if(get_skeleton()): 
+	if (get_skeleton()): 
 		get_skeleton().set_bones_to_setup_pose();
 		get_skeleton().set_slots_to_setup_pose();
+
 
 func has_animation(name):
 	return false;

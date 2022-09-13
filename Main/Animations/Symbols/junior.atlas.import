@@ -1,6 +1,6 @@
 [remap]
 
-importer="raiix.spine_runtime.atlas"
+importer="spine.atlas"
 type="SpineAtlasResource"
 path="res://.import/junior.atlas-0b00edcc27060eb6f9008cb2691d6bec.spatlas"
 
@@ -11,4 +11,4 @@ dest_files=[ "res://.import/junior.atlas-0b00edcc27060eb6f9008cb2691d6bec.spatla
 
 [params]
 
-normal_texture_prefix="n"
+normal_map_prefix="n"

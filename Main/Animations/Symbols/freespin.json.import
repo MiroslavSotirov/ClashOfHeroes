@@ -1,7 +1,7 @@
 [remap]
 
-importer="raiix.spine_runtime.json"
-type="SpineSkeletonJsonDataResource"
+importer="spine.json"
+type="SpineSkeletonFileResource"
 path="res://.import/freespin.json-282b6a90f8f8175a8c915f023bbc0954.spjson"
 
 [deps]

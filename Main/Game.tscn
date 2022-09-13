@@ -1,13 +1,15 @@
-[gd_scene load_steps=89 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Textures/slot/FrameFS2.webp" type="Texture" id=2]
 [ext_resource path="res://Main/Textures/slot/FrameFill.webp" type="Texture" id=3]
 [ext_resource path="res://Main/Slot/Slot.gd" type="Script" id=4]
+[ext_resource path="res://Main/Animations/Symbols/chest.json" type="SpineSkeletonFileResource" id=5]
 [ext_resource path="res://Main/Game.gd" type="Script" id=6]
 [ext_resource path="res://Main/Misc/Fader.gd" type="Script" id=7]
 [ext_resource path="res://Main/Textures/slot/PASBacklight.webp" type="Texture" id=8]
 [ext_resource path="res://Main/Textures/slot/SlotFrame.webp" type="Texture" id=9]
+[ext_resource path="res://Main/Animations/Symbols/chest.atlas" type="SpineAtlasResource" id=10]
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/prah1.png" type="Texture" id=14]
 [ext_resource path="res://Main/Textures/slot/FSHeaderParticles.png" type="Texture" id=15]
 [ext_resource path="res://Main/Textures/slot/FrameFS1.webp" type="Texture" id=17]
@@ -1036,6 +1038,10 @@ tracks/0/keys = {
 "values": [ 60.0, 0 ]
 }
 
+[sub_resource type="SpineSkeletonDataResource" id=459]
+atlas_res = ExtResource( 10 )
+skeleton_file_res = ExtResource( 5 )
+
 [sub_resource type="CanvasItemMaterial" id=113]
 blend_mode = 1
 light_mode = 1
@@ -1757,6 +1763,13 @@ texture = ExtResource( 31 )
 anims/RESET = SubResource( 408 )
 anims/winbar_fs = SubResource( 409 )
 anims/winbar_normal = SubResource( 410 )
+
+[node name="SpineSprite" type="SpineSprite" parent="SlotContainer"]
+skeleton_data_res = SubResource( 459 )
+preview_skin = "Default"
+preview_animation = "idle"
+preview_frame = false
+preview_time = 0.0
 
 [node name="UIContainer" type="Control" parent="."]
 visible = false

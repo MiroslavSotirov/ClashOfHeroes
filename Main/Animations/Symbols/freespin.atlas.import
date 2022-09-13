@@ -1,6 +1,6 @@
 [remap]
 
-importer="raiix.spine_runtime.atlas"
+importer="spine.atlas"
 type="SpineAtlasResource"
 path="res://.import/freespin.atlas-28eeacf2419a574829c9e9e77012872d.spatlas"
 
@@ -11,4 +11,4 @@ dest_files=[ "res://.import/freespin.atlas-28eeacf2419a574829c9e9e77012872d.spat
 
 [params]
 
-normal_texture_prefix="n"
+normal_map_prefix="n"
