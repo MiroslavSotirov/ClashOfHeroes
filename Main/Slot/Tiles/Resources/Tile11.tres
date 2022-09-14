@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://Main/Slot/TileDescription.gd" type="Script" id=1]
+[ext_resource path="res://Main/Slot/Tiles/TileDescription.gd" type="Script" id=1]
 [ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.atlas" type="SpineAtlasResource" id=2]
 [ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.json" type="SpineSkeletonFileResource" id=3]
 

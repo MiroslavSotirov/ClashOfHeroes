@@ -24,7 +24,7 @@ func show_lines(win_data):
 	
 	_shown = true;
 	_win_data = win_data
-	var win_line_scene = preload("res://Main/Slot/Components/WinlineTile.tscn");
+	var win_line_scene = preload("res://Main/Slot/Features/WinLines/WinlineTile.tscn");
 	var promises = [];
 	for i in win_data:
 		for j in win_data[i]:

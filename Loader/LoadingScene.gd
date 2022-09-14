@@ -53,9 +53,9 @@ func _ready():
 	#queue_free();
 
 func generate_tile_images():
-	var tiles_paths = Globals.get_dir_contents("res://Main/Slot/Tiles");
+	var tiles_paths = Globals.get_dir_contents("res://Main/Slot/Tiles/Resources");
 	for path in tiles_paths: Globals.tiles.append(load(path));
-	var tile_image_generation_scene = load("res://Main/Slot/TileImageGenerator.tscn")
+	var tile_image_generation_scene = load("res://Main/Slot/Tiles/TileImageGenerator.tscn")
 	var viewport = Viewport.new();
 	viewport.render_target_v_flip = true;
 	viewport.usage = Viewport.USAGE_2D;

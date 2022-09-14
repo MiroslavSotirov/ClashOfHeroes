@@ -1,8 +1,8 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://Main/Slot/TileDescription.gd" type="Script" id=1]
-[ext_resource path="res://Main/Animations/Symbols/Symbols_junior4.json" type="SpineSkeletonFileResource" id=2]
-[ext_resource path="res://Main/Animations/Symbols/Symbols_junior4.atlas" type="SpineAtlasResource" id=3]
+[ext_resource path="res://Main/Slot/Tiles/TileDescription.gd" type="Script" id=1]
+[ext_resource path="res://Main/Animations/Symbols/Symbols_junior3.json" type="SpineSkeletonFileResource" id=2]
+[ext_resource path="res://Main/Animations/Symbols/Symbols_junior3.atlas" type="SpineAtlasResource" id=3]
 
 [sub_resource type="SpineSkeletonDataResource" id=1]
 atlas_res = ExtResource( 3 )
@@ -10,15 +10,15 @@ skeleton_file_res = ExtResource( 2 )
 
 [resource]
 script = ExtResource( 1 )
-id = 1
+id = 2
 size_x = 1
 size_y = 1
 spine_data = SubResource( 1 )
 popup = false
-popup_z_change = 0
+popup_z_change = false
 popup_wait = false
 image_creation_animation = "popup"
-skin = "10"
+skin = "J"
 spine_popup_anim = "popup"
 spine_popup_anim_speed = 1.0
 stop_popup_sfx = ""

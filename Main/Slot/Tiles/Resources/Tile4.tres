@@ -1,34 +1,34 @@
 [gd_resource type="Resource" load_steps=5 format=2]
 
-[ext_resource path="res://Main/Slot/TileDescription.gd" type="Script" id=1]
-[ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.atlas" type="SpineAtlasResource" id=2]
-[ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.json" type="SpineSkeletonFileResource" id=3]
+[ext_resource path="res://Main/Slot/Tiles/TileDescription.gd" type="Script" id=1]
+[ext_resource path="res://Main/Animations/Symbols/Symbols_junior1.json" type="SpineSkeletonFileResource" id=2]
+[ext_resource path="res://Main/Animations/Symbols/Symbols_junior1.atlas" type="SpineAtlasResource" id=3]
 
 [sub_resource type="SpineSkeletonDataResource" id=1]
-atlas_res = ExtResource( 2 )
-skeleton_file_res = ExtResource( 3 )
+atlas_res = ExtResource( 3 )
+skeleton_file_res = ExtResource( 2 )
 
 [resource]
 script = ExtResource( 1 )
-id = 12
+id = 4
 size_x = 1
 size_y = 1
 spine_data = SubResource( 1 )
-popup = true
-popup_z_change = 5
+popup = false
+popup_z_change = 0
 popup_wait = false
 image_creation_animation = "popup"
-skin = "default"
+skin = "K"
 spine_popup_anim = "popup"
 spine_popup_anim_speed = 1.0
-stop_popup_sfx = "FreeSpinsPopup"
+stop_popup_sfx = ""
 win_popup_sfx = ""
 spine_idle_anim = ""
 spine_win_anim = "popup"
 spine_win_anim_animation_repeat = -1
 image_offset = Vector2( 0, 0 )
-image_size = Vector2( 350, 350 )
-bounds = Vector2( 246, 200 )
+image_size = Vector2( 246, 200 )
+bounds = Vector2( 0, 0 )
 tile_scale = Vector2( 1, 1 )
 posible_reels = [  ]
 max_count = 0

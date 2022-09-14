@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Main/Misc/canvasadditive.tres" type="Material" id=1]
-[ext_resource path="res://Main/Slot/Features/WinTile.gd" type="Script" id=3]
+[ext_resource path="res://Main/Slot/Features/WinLines/WinTile.gd" type="Script" id=3]
 [ext_resource path="res://Main/Textures/slot/WinlineCircle.webp" type="Texture" id=4]
 
 [sub_resource type="Animation" id=442]
