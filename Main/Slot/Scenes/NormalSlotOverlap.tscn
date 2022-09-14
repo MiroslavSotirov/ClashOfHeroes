@@ -89,6 +89,30 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( -426, -460 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Side/Frame1P2-16:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Top:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Show"
@@ -130,43 +154,55 @@ tracks/2/keys = {
 "values": [ Vector2( -60, -402 ), Vector2( -60, -15 ), Vector2( -60, -15 ), Vector2( -649, -15 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Side/Frame1P2-16:rotation_degrees")
+tracks/3/path = NodePath("Top/FrameTop2:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 1 ),
-"transitions": PoolRealArray( 1, 2, 1 ),
-"update": 0,
-"values": [ -90.0, -90.0, 0.0 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Top/FrameTop2:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 0.3, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1e-05 ), Vector2( 1, 0 ), Vector2( 1, 1 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Top/FrameTop:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -350, -460 ), Vector2( -425, -460 ) ]
+}
 tracks/5/type = "value"
-tracks/5/path = NodePath("Top/FrameTop:position")
+tracks/5/path = NodePath("Side/Frame1P2-16:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Top:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -350, -460 ), Vector2( -426, -460 ) ]
+"values": [ Vector2( 350, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Side/FrameWing1:scale")
@@ -240,8 +276,32 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( -426, -460 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("Side/Frame1P2-16:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Top:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
 resource_name = "Show"
 length = 1.5
 tracks/0/type = "value"
@@ -281,40 +341,52 @@ tracks/2/keys = {
 "values": [ Vector2( -60, -402 ), Vector2( -60, -15 ), Vector2( -60, -15 ), Vector2( -649, -15 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Side/Frame1P2-16:rotation_degrees")
+tracks/3/path = NodePath("Top/FrameTop2:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.7, 1 ),
-"transitions": PoolRealArray( 1, 2, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ -90.0, -90.0, 0.0 ]
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 0 ), Vector2( 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Top/FrameTop2:scale")
+tracks/4/path = NodePath("Top/FrameTop:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.3, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 0 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( -350, -460 ), Vector2( -425, -460 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Top/FrameTop:position")
+tracks/5/path = NodePath("Side/Frame1P2-16:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.3 ),
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Top:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -350, -460 ), Vector2( -426, -460 ) ]
+"values": [ Vector2( 350, 0 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -430,87 +502,87 @@ tracks/0/keys = {
 "clips": PoolStringArray( "Show" ),
 "times": PoolRealArray( 0 )
 }
-tracks/1/type = "animation"
-tracks/1/path = NodePath("RightSide/AnimationPlayer")
+tracks/1/type = "value"
+tracks/1/path = NodePath("Backlight:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"clips": PoolStringArray( "Show" ),
-"times": PoolRealArray( 0 )
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Backlight:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 1, 1.1, 1.45 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 0.764706, 0.764706, 0.764706, 1 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("Backlight:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/path = NodePath("Backlight:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("FrameFill:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/path = NodePath("FrameFill:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.35, 1.4, 1.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false, true, false, true, false, true, true, true ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("FrameFill:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/path = NodePath("FrameFill:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 1, 1.45 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("Backlight:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/path = NodePath("Backlight:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 1, 1.1, 1.45 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.95, 0.95 ), Vector2( 1.2, 1.089 ), Vector2( 1, 1 ) ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath(".:position")
+tracks/6/type = "value"
+tracks/6/path = NodePath(".:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 0.25, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -200 ), Vector2( 0, 0 ) ]
+}
+tracks/7/type = "animation"
+tracks/7/path = NodePath("RightSide/AnimationPlayer")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 0.25, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -200 ), Vector2( 0, 0 ) ]
+"clips": PoolStringArray( "Show" ),
+"times": PoolRealArray( 0 )
 }
 
 [node name="Normal" type="Node2D"]
@@ -634,8 +706,8 @@ offset = Vector2( 0, -100 )
 position = Vector2( -426, -460 )
 texture = ExtResource( 9 )
 
-[node name="FrameTopP2" type="Sprite" parent="RightSide/Top"]
-position = Vector2( -431, -339 )
+[node name="FrameTopP2" type="Sprite" parent="RightSide/Top/FrameTop"]
+position = Vector2( -5, 121 )
 z_index = -2
 texture = ExtResource( 1 )
 
@@ -669,8 +741,8 @@ rotation = -0.349066
 texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RightSide"]
-anims/RESET = SubResource( 6 )
-anims/Show = SubResource( 7 )
+anims/RESET = SubResource( 9 )
+anims/Show = SubResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 8 )
