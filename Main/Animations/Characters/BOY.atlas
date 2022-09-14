@@ -1,0 +1,110 @@
+BOY.webp
+size:2281,623
+filter:Linear,Linear
+scale:0.8
+boy/bagBelt
+bounds:1003,4,25,91
+rotate:90
+boy/beltt
+bounds:1730,83,72,86
+boy/boy-glow
+bounds:284,6,304,717
+rotate:90
+boy/face
+bounds:2197,226,73,78
+rotate:90
+boy/fingers
+bounds:1544,75,29,38
+rotate:90
+boy/gun
+bounds:1632,79,96,87
+boy/hair
+bounds:1720,3,94,74
+boy/hand
+bounds:2076,174,62,50
+boy/index
+bounds:1112,2,12,11
+boy/jacket1
+bounds:1628,391,132,230
+boy/jacket2
+bounds:1484,6,66,234
+rotate:90
+boy/legL
+bounds:1544,106,86,251
+boy/legR
+bounds:1552,375,74,246
+boy/mouth-shoot
+bounds:1096,4,25,14
+rotate:90
+boy/shadow
+bounds:1632,168,221,84
+rotate:90
+boy/shirt
+bounds:1389,359,161,262
+boy/shoesL
+bounds:2197,301,78,116
+boy/shoesR
+bounds:2114,419,121,78
+boy/sleevR
+bounds:1278,2,204,70
+boy/string
+bounds:1112,15,14,94
+rotate:90
+boy/thumb
+bounds:2237,462,42,35
+fx/Electricity 011/Electricity-011-Ray-Up_00000
+bounds:2117,8,62,47
+fx/Electricity 011/Electricity-011-Ray-Up_00001
+bounds:2117,8,62,47
+fx/Electricity 011/Electricity-011-Ray-Up_00002
+bounds:2117,57,133,59
+fx/Electricity 011/Electricity-011-Ray-Up_00003
+bounds:1932,174,142,79
+fx/Electricity 011/Electricity-011-Ray-Up_00004
+bounds:1968,545,145,76
+fx/Electricity 011/Electricity-011-Ray-Up_00007
+bounds:2117,499,146,122
+fx/Electricity 011/Electricity-011-Ray-Up_00009
+bounds:1968,416,144,127
+fx/Electricity 011/Electricity-011-Ray-Up_00012
+bounds:1969,23,146,149
+fx/Electricity 011/Electricity-011-Ray-Up_00013
+bounds:1816,5,151,164
+fx/Electricity 011/Electricity-011-Ray-Up_00015
+bounds:1932,255,150,135
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00016
+bounds:1932,255,150,135
+rotate:90
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00000
+bounds:2069,274,126,140
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00001
+bounds:1762,407,204,214
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00002
+bounds:1120,346,275,267
+rotate:90
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00003
+bounds:844,322,299,274
+rotate:90
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00004
+bounds:567,321,300,275
+rotate:90
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00005
+bounds:286,317,304,279
+rotate:90
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00006
+bounds:2,4,306,280
+rotate:90
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00007
+bounds:2,312,309,282
+rotate:90
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00008
+bounds:1003,31,289,273
+rotate:90
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00009
+bounds:1278,74,270,264
+rotate:90
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00010
+bounds:1718,171,212,218
+fx/Electricity 024/Energy-024-Impact-Explosion-Right_00011
+bounds:2140,118,137,106

@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/Respin.atlas-c21241c9f29c766111fa4df4a511a21e.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Respin/Respin.atlas"
+dest_files=[ "res://.import/Respin.atlas-c21241c9f29c766111fa4df4a511a21e.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"

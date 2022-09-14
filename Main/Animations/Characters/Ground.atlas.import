@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/Ground.atlas-69993c5238618bf5c6b85d911470d7ed.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Characters/Ground.atlas"
+dest_files=[ "res://.import/Ground.atlas-69993c5238618bf5c6b85d911470d7ed.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"

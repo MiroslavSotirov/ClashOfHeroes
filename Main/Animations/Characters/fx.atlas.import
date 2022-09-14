@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/fx.atlas-3dd12a78806b18fe40016bceeaf1a3d0.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Characters/fx.atlas"
+dest_files=[ "res://.import/fx.atlas-3dd12a78806b18fe40016bceeaf1a3d0.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"

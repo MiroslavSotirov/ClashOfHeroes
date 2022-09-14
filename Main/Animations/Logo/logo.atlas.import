@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/logo.atlas-172a825fc06513f56cf1e8c22ebc2b1a.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Logo/logo.atlas"
+dest_files=[ "res://.import/logo.atlas-172a825fc06513f56cf1e8c22ebc2b1a.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"

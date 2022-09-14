@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/Robot2.atlas-30f7e18032780788bc5209fee52a54c3.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Characters/Robot2.atlas"
+dest_files=[ "res://.import/Robot2.atlas-30f7e18032780788bc5209fee52a54c3.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"

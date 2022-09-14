@@ -1,0 +1,80 @@
+fx.webp
+size:4005,3796
+filter:Linear,Linear
+scale:0.5
+fx/NRG 07/NRG 07_00004
+bounds:577,3254,960,540
+fx/NRG 07/NRG 07_00005
+bounds:1539,3254,960,540
+fx/NRG 07/NRG 07_00006
+bounds:2501,3254,960,540
+fx/NRG 07/NRG 07_00007
+bounds:3463,2834,960,540
+rotate:90
+fx/NRG 07/NRG 07_00008
+bounds:2,2712,960,540
+fx/NRG 07/NRG 07_00009
+bounds:964,2712,960,540
+fx/NRG 07/NRG 07_00010
+bounds:1926,2712,960,540
+fx/NRG 07/NRG 07_00011
+bounds:2888,2292,960,540
+fx/NRG 07/NRG 07_00012
+bounds:2,2170,960,540
+fx/NRG 07/NRG 07_00013
+bounds:964,2170,960,540
+fx/cloud
+bounds:333,3552,242,242
+fx/core
+bounds:2,3643,151,151
+fx/elec 03/Elctr_03_00000
+bounds:1926,2170,960,540
+fx/elec 03/Elctr_03_00001
+bounds:2888,1750,960,540
+fx/elec 03/Elctr_03_00002
+bounds:2888,1750,960,540
+fx/elec 03/Elctr_03_00003
+bounds:2,1628,960,540
+fx/elec 03/Elctr_03_00004
+bounds:964,1628,960,540
+fx/elec 03/Elctr_03_00005
+bounds:1926,1628,960,540
+fx/elec 03/Elctr_03_00006
+bounds:2888,1208,960,540
+fx/elec 03/Elctr_03_00007
+bounds:2,1086,960,540
+fx/elec 03/Elctr_03_00008
+bounds:964,1086,960,540
+fx/elec 03/Elctr_03_00009
+bounds:1926,1086,960,540
+fx/elec 03/Elctr_03_00010
+bounds:2888,666,960,540
+fx/elec 03/Elctr_03_00011
+bounds:2,544,960,540
+fx/elec 03/Elctr_03_00012
+bounds:964,544,960,540
+fx/elec 03/Elctr_03_00013
+bounds:1926,544,960,540
+fx/elec 03/Elctr_03_00017
+bounds:1926,544,960,540
+fx/elec 03/Elctr_03_00019
+bounds:1926,544,960,540
+fx/elec 03/Elctr_03_00014
+bounds:2888,124,960,540
+fx/elec 03/Elctr_03_00015
+bounds:2,2,960,540
+fx/elec 03/Elctr_03_00016
+bounds:964,2,960,540
+fx/elec 03/Elctr_03_00018
+bounds:1926,2,960,540
+fx/waveout
+bounds:155,3618,176,176
+
+fx_2.webp
+size:1926,544
+filter:Linear,Linear
+scale:0.5
+fx/elec 03/Elctr_03_00020
+bounds:2,2,960,540
+fx/elec 03/Elctr_03_00021
+bounds:964,2,960,540

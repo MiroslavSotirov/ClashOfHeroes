@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+path="res://.import/BOY.json-10d5d651d2628fcddf8c64ad7c7ee955.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/Characters/BOY.json"
+dest_files=[ "res://.import/BOY.json-10d5d651d2628fcddf8c64ad7c7ee955.spjson" ]
+
+[params]
+

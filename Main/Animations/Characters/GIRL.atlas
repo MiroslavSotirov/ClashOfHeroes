@@ -1,0 +1,194 @@
+GIRL.webp
+size:3971,468
+filter:Linear,Linear
+scale:0.8
+fx/Electricity 004/Electricity-004-Ray-Up_00000
+bounds:3799,7,113,105
+fx/Electricity 004/Electricity-004-Ray-Up_00001
+bounds:3701,232,114,122
+rotate:90
+fx/Electricity 004/Electricity-004-Ray-Up_00002
+bounds:3799,348,118,123
+rotate:90
+fx/Electricity 004/Electricity-004-Ray-Up_00003
+bounds:2828,70,122,135
+fx/Electricity 004/Electricity-004-Ray-Up_00004
+bounds:902,16,118,146
+fx/Electricity 004/Electricity-004-Ray-Up_00005
+bounds:1523,9,118,168
+fx/Electricity 004/Electricity-004-Ray-Up_00006
+bounds:2224,3,118,182
+fx/Electricity 004/Electricity-004-Ray-Up_00007
+bounds:2442,4,113,194
+fx/Electricity 004/Electricity-004-Ray-Up_00008
+bounds:2706,4,120,201
+fx/Electricity 004/Electricity-004-Ray-Up_00009
+bounds:3475,4,123,221
+fx/Electricity 004/Electricity-004-Ray-Up_00010
+bounds:513,11,117,147
+fx/Electricity 004/Electricity-004-Ray-Up_00011
+bounds:1413,24,108,143
+fx/Electricity 004/Electricity-004-Ray-Up_00012
+bounds:3701,364,96,102
+fx/Electricity 004/Electricity-004-Ray-Up_00013
+bounds:2828,2,68,66
+fx/Electricity 011/Electricity-011-Ray-Up_00000
+bounds:3917,232,62,47
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00001
+bounds:3917,232,62,47
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00002
+bounds:3032,73,133,59
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00003
+bounds:2557,56,142,79
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00004
+bounds:1206,22,145,76
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00007
+bounds:778,16,146,122
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00009
+bounds:1284,23,144,127
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00012
+bounds:305,9,146,149
+fx/Electricity 011/Electricity-011-Ray-Up_00013
+bounds:2,7,151,164
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00015
+bounds:168,8,150,135
+rotate:90
+fx/Electricity 011/Electricity-011-Ray-Up_00016
+bounds:168,8,150,135
+rotate:90
+fx/Energy 034/Energy-034-Slash-Radial_00000
+bounds:632,2,144,160
+fx/Energy 034/Energy-034-Slash-Radial_00001
+bounds:1643,3,271,178
+fx/Energy 034/Energy-034-Slash-Radial_00002
+bounds:1607,183,283,249
+rotate:90
+fx/Energy 034/Energy-034-Slash-Radial_00003
+bounds:1202,169,274,297
+fx/Energy 034/Energy-034-Slash-Radial_00004
+bounds:619,164,302,293
+rotate:90
+fx/Energy 034/Energy-034-Slash-Radial_00005
+bounds:914,166,300,286
+rotate:90
+fx/Energy 034/Energy-034-Slash-Radial_00006
+bounds:2131,187,268,279
+fx/Energy 034/Energy-034-Slash-Radial_00007
+bounds:2401,200,260,266
+fx/Energy 034/Energy-034-Slash-Radial_00008
+bounds:2663,207,258,259
+fx/Energy 034/Energy-034-Slash-Radial_00009
+bounds:2923,208,258,258
+fx/Energy 034/Energy-034-Slash-Radial_00010
+bounds:3183,218,248,247
+rotate:90
+fx/Energy 034/Energy-034-Slash-Radial_00011
+bounds:1916,6,176,187
+rotate:90
+fx/Energy 034/Energy-034-Slash-Radial_00012
+bounds:1022,3,161,182
+rotate:90
+fx/Energy 034/Energy-034-Slash-Radial_00013
+bounds:2952,73,78,133
+fx/Energy 034/Energy-034-Slash-Radial_00014
+bounds:3129,3,70,75
+rotate:90
+girl/Girl-glow
+bounds:2,160,306,615
+rotate:90
+girl/Lhair-tail
+bounds:1206,2,18,88
+rotate:90
+girl/Rfingers
+bounds:2192,4,34,30
+rotate:90
+girl/Rglove
+bounds:3924,357,42,32
+girl/Rhair-tail
+bounds:3700,104,33,126
+girl/belt
+bounds:2105,4,85,34
+girl/beltR2
+bounds:3825,200,89,82
+girl/blink
+bounds:3708,3,89,99
+girl/body
+bounds:2105,40,114,142
+girl/charm
+bounds:3206,3,23,70
+girl/eyeL2
+bounds:1346,3,18,17
+rotate:90
+girl/eyeR2
+bounds:1323,3,21,18
+girl/eyeRblink
+bounds:3916,208,22,22
+girl/face
+bounds:3735,114,58,74
+rotate:90
+girl/gun
+bounds:3825,284,62,90
+rotate:90
+girl/hair
+bounds:3823,120,78,103
+rotate:90
+girl/hair-back
+bounds:2344,3,96,182
+girl/handL
+bounds:453,9,58,149
+girl/handL2
+bounds:3506,231,235,118
+rotate:90
+girl/handR
+bounds:2557,4,50,78
+rotate:90
+girl/jacket-Belt
+bounds:2638,56,60,142
+girl/jacket-front
+bounds:3600,99,98,130
+girl/jacket-front2
+bounds:2898,3,65,133
+rotate:90
+girl/jacketback
+bounds:3093,75,131,126
+rotate:90
+girl/kneeL
+bounds:3924,296,37,59
+girl/legL
+bounds:3626,232,73,234
+girl/legR
+bounds:1478,179,127,287
+girl/mouth1
+bounds:1365,4,21,17
+girl/mouth2
+bounds:1296,2,25,19
+girl/pantsBase
+bounds:3600,3,94,106
+rotate:90
+girl/shadow
+bounds:3432,227,239,72
+rotate:90
+girl/shoesL1
+bounds:3033,8,94,63
+girl/shoesL2
+bounds:3924,391,45,75
+girl/shoesR1
+bounds:2637,5,49,67
+rotate:90
+girl/shoesR2
+bounds:3735,174,56,86
+rotate:90
+girl/sword
+bounds:1858,184,282,271
+rotate:90
+girl/sword-glow
+bounds:3231,4,212,242
+rotate:90

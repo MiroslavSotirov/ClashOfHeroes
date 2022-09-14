@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+path="res://.import/Respin.json-3d40f1a3b78801af5b48f1342a055150.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/Respin/Respin.json"
+dest_files=[ "res://.import/Respin.json-3d40f1a3b78801af5b48f1342a055150.spjson" ]
+
+[params]
+

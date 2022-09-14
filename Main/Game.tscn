@@ -4,12 +4,10 @@
 [ext_resource path="res://Main/Textures/slot/FrameFS2.webp" type="Texture" id=2]
 [ext_resource path="res://Main/Textures/slot/FrameFill.webp" type="Texture" id=3]
 [ext_resource path="res://Main/Slot/Slot.gd" type="Script" id=4]
-[ext_resource path="res://Main/Animations/Symbols/chest.json" type="SpineSkeletonFileResource" id=5]
 [ext_resource path="res://Main/Game.gd" type="Script" id=6]
 [ext_resource path="res://Main/Misc/Fader.gd" type="Script" id=7]
 [ext_resource path="res://Main/Textures/slot/PASBacklight.webp" type="Texture" id=8]
 [ext_resource path="res://Main/Textures/slot/SlotFrame.webp" type="Texture" id=9]
-[ext_resource path="res://Main/Animations/Symbols/chest.atlas" type="SpineAtlasResource" id=10]
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/prah1.png" type="Texture" id=14]
 [ext_resource path="res://Main/Textures/slot/FSHeaderParticles.png" type="Texture" id=15]
 [ext_resource path="res://Main/Textures/slot/FrameFS1.webp" type="Texture" id=17]
@@ -76,7 +74,7 @@ tracks/0/keys = {
 "values": [ Color( 0.321569, 0.0745098, 0, 0 ), Color( 0.176471, 0.223529, 0.176471, 1 ) ]
 }
 
-[sub_resource type="Animation" id=446]
+[sub_resource type="Animation" id=459]
 resource_name = "Idle"
 length = 10.0
 loop = true
@@ -130,7 +128,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=447]
+[sub_resource type="Animation" id=460]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Particles1:scale")
@@ -181,7 +179,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=448]
+[sub_resource type="Animation" id=461]
 resource_name = "Idle"
 length = 10.0
 loop = true
@@ -235,7 +233,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=449]
+[sub_resource type="Animation" id=462]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Particles1:scale")
@@ -468,6 +466,51 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+
+[sub_resource type="Animation" id=463]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=464]
+resource_name = "ZoomIn"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ) ]
+}
+
+[sub_resource type="Animation" id=465]
+resource_name = "ZoomOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Gradient" id=423]
@@ -1038,10 +1081,6 @@ tracks/0/keys = {
 "values": [ 60.0, 0 ]
 }
 
-[sub_resource type="SpineSkeletonDataResource" id=459]
-atlas_res = ExtResource( 10 )
-skeleton_file_res = ExtResource( 5 )
-
 [sub_resource type="CanvasItemMaterial" id=113]
 blend_mode = 1
 light_mode = 1
@@ -1057,6 +1096,7 @@ __meta__ = {
 shakefalloff = 7.0
 
 [node name="Intro" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -1205,6 +1245,122 @@ script = ExtResource( 32 )
 zoomamount = Vector2( 0.75, 0.8 )
 yoffset = Vector2( 0, 200 )
 
+[node name="Background" type="Control" parent="SlotContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Background" type="Node2D" parent="SlotContainer/Background"]
+scale = Vector2( 1.125, 1.125 )
+script = ExtResource( 106 )
+
+[node name="Normal" type="Sprite" parent="SlotContainer/Background/Background"]
+texture = ExtResource( 20 )
+
+[node name="FrameDropShadow" type="Sprite" parent="SlotContainer/Background/Background/Normal"]
+position = Vector2( -40, 471.111 )
+texture = ExtResource( 64 )
+
+[node name="Particles1" type="Node2D" parent="SlotContainer/Background/Background/Normal"]
+
+[node name="Particles1" type="Sprite" parent="SlotContainer/Background/Background/Normal/Particles1"]
+material = ExtResource( 39 )
+position = Vector2( 0, -150 )
+texture = ExtResource( 72 )
+
+[node name="Particles2" type="Node2D" parent="SlotContainer/Background/Background/Normal"]
+rotation = 3.14159
+
+[node name="Particles2" type="Sprite" parent="SlotContainer/Background/Background/Normal/Particles2"]
+material = ExtResource( 39 )
+position = Vector2( 0, -150 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 69 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Background/Background/Normal"]
+anims/Idle = SubResource( 459 )
+anims/RESET = SubResource( 460 )
+
+[node name="Special" type="Sprite" parent="SlotContainer/Background/Background"]
+visible = false
+texture = ExtResource( 26 )
+
+[node name="FrameDropShadow" type="Sprite" parent="SlotContainer/Background/Background/Special"]
+position = Vector2( -40, 471.111 )
+texture = ExtResource( 64 )
+
+[node name="Particles1" type="Node2D" parent="SlotContainer/Background/Background/Special"]
+
+[node name="Particles1" type="Sprite" parent="SlotContainer/Background/Background/Special/Particles1"]
+material = ExtResource( 39 )
+position = Vector2( 0, -150 )
+texture = ExtResource( 72 )
+
+[node name="Particles2" type="Node2D" parent="SlotContainer/Background/Background/Special"]
+rotation = 3.14159
+
+[node name="Particles2" type="Sprite" parent="SlotContainer/Background/Background/Special/Particles2"]
+material = ExtResource( 39 )
+position = Vector2( 0, -150 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 69 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Background/Background/Special"]
+anims/Idle = SubResource( 461 )
+anims/RESET = SubResource( 462 )
+
+[node name="CornerFades" type="Node2D" parent="SlotContainer/Background/Background"]
+
+[node name="TextureRect" type="TextureRect" parent="SlotContainer/Background/Background/CornerFades"]
+margin_left = -1539.58
+margin_top = -1524.15
+margin_right = -1283.58
+margin_bottom = 1555.85
+rect_pivot_offset = Vector2( 1403.5, 998.347 )
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="SlotContainer/Background/Background/CornerFades"]
+margin_left = -1152.58
+margin_top = -2212.15
+margin_right = -896.578
+margin_bottom = 867.848
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 999.347, 1669.5 )
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="SlotContainer/Background/Background/CornerFades"]
+margin_left = -1537.58
+margin_top = 1553.85
+margin_right = -1281.58
+margin_bottom = 4633.85
+rect_rotation = -89.9999
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="SlotContainer/Background/Background/CornerFades"]
+margin_left = 1548.42
+margin_top = 1546.85
+margin_right = 1804.42
+margin_bottom = 4626.85
+rect_rotation = 180.0
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Slot" type="Control" parent="SlotContainer"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1227,116 +1383,6 @@ reelStopDelay = 0.1
 [node name="Background" type="Control" parent="SlotContainer/Slot"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="Background" type="Node2D" parent="SlotContainer/Slot/Background"]
-scale = Vector2( 1.125, 1.125 )
-script = ExtResource( 106 )
-
-[node name="Normal" type="Sprite" parent="SlotContainer/Slot/Background/Background"]
-texture = ExtResource( 20 )
-
-[node name="FrameDropShadow" type="Sprite" parent="SlotContainer/Slot/Background/Background/Normal"]
-position = Vector2( -40, 471.111 )
-texture = ExtResource( 64 )
-
-[node name="Particles1" type="Node2D" parent="SlotContainer/Slot/Background/Background/Normal"]
-
-[node name="Particles1" type="Sprite" parent="SlotContainer/Slot/Background/Background/Normal/Particles1"]
-material = ExtResource( 39 )
-position = Vector2( 0, -150 )
-texture = ExtResource( 72 )
-
-[node name="Particles2" type="Node2D" parent="SlotContainer/Slot/Background/Background/Normal"]
-rotation = 3.14159
-
-[node name="Particles2" type="Sprite" parent="SlotContainer/Slot/Background/Background/Normal/Particles2"]
-material = ExtResource( 39 )
-position = Vector2( 0, -150 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 69 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Slot/Background/Background/Normal"]
-anims/Idle = SubResource( 446 )
-anims/RESET = SubResource( 447 )
-
-[node name="Special" type="Sprite" parent="SlotContainer/Slot/Background/Background"]
-visible = false
-texture = ExtResource( 26 )
-
-[node name="FrameDropShadow" type="Sprite" parent="SlotContainer/Slot/Background/Background/Special"]
-position = Vector2( -40, 471.111 )
-texture = ExtResource( 64 )
-
-[node name="Particles1" type="Node2D" parent="SlotContainer/Slot/Background/Background/Special"]
-
-[node name="Particles1" type="Sprite" parent="SlotContainer/Slot/Background/Background/Special/Particles1"]
-material = ExtResource( 39 )
-position = Vector2( 0, -150 )
-texture = ExtResource( 72 )
-
-[node name="Particles2" type="Node2D" parent="SlotContainer/Slot/Background/Background/Special"]
-rotation = 3.14159
-
-[node name="Particles2" type="Sprite" parent="SlotContainer/Slot/Background/Background/Special/Particles2"]
-material = ExtResource( 39 )
-position = Vector2( 0, -150 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 69 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Slot/Background/Background/Special"]
-anims/Idle = SubResource( 448 )
-anims/RESET = SubResource( 449 )
-
-[node name="CornerFades" type="Node2D" parent="SlotContainer/Slot/Background/Background"]
-
-[node name="TextureRect" type="TextureRect" parent="SlotContainer/Slot/Background/Background/CornerFades"]
-margin_left = -1539.58
-margin_top = -1524.15
-margin_right = -1283.58
-margin_bottom = 1555.85
-rect_pivot_offset = Vector2( 1403.5, 998.347 )
-texture = SubResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect2" type="TextureRect" parent="SlotContainer/Slot/Background/Background/CornerFades"]
-margin_left = -1152.58
-margin_top = -2212.15
-margin_right = -896.578
-margin_bottom = 867.848
-rect_rotation = 90.0
-rect_pivot_offset = Vector2( 999.347, 1669.5 )
-texture = SubResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect3" type="TextureRect" parent="SlotContainer/Slot/Background/Background/CornerFades"]
-margin_left = -1537.58
-margin_top = 1553.85
-margin_right = -1281.58
-margin_bottom = 4633.85
-rect_rotation = -89.9999
-texture = SubResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect4" type="TextureRect" parent="SlotContainer/Slot/Background/Background/CornerFades"]
-margin_left = 1548.42
-margin_top = 1546.85
-margin_right = 1804.42
-margin_bottom = 4626.85
-rect_rotation = 180.0
-texture = SubResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DSceenReels" type="Sprite" parent="SlotContainer/Slot/Background"]
 position = Vector2( 0, 60 )
@@ -1646,6 +1692,12 @@ script = ExtResource( 107 )
 
 [node name="Normal" type="Node2D" parent="SlotContainer/Slot/Foreground"]
 
+[node name="SlotAnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Slot"]
+anims/RESET = SubResource( 463 )
+anims/ZoomIn = SubResource( 464 )
+anims/ZoomOut = SubResource( 465 )
+script = ExtResource( 114 )
+
 [node name="BigWin" type="Control" parent="SlotContainer"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1654,9 +1706,6 @@ anchor_bottom = 0.5
 margin_right = -1024.0
 margin_bottom = -1024.0
 script = ExtResource( 98 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Background" type="Sprite" parent="SlotContainer/BigWin"]
 visible = false
@@ -1763,13 +1812,6 @@ texture = ExtResource( 31 )
 anims/RESET = SubResource( 408 )
 anims/winbar_fs = SubResource( 409 )
 anims/winbar_normal = SubResource( 410 )
-
-[node name="SpineSprite" type="SpineSprite" parent="SlotContainer"]
-skeleton_data_res = SubResource( 459 )
-preview_skin = "Default"
-preview_animation = "idle"
-preview_frame = false
-preview_time = 0.0
 
 [node name="UIContainer" type="Control" parent="."]
 visible = false
@@ -1880,8 +1922,8 @@ default = Color( 0.2, 1, 0.945098, 1 )
 
 [node name="Scenario" parent="." instance=ExtResource( 1 )]
 
-[connection signal="ready" from="SlotContainer/Slot/Background/Background/Normal/AnimationPlayer" to="SlotContainer/Slot/Background/Background/Normal/AnimationPlayer" method="play" binds= [ "Idle" ]]
-[connection signal="ready" from="SlotContainer/Slot/Background/Background/Special/AnimationPlayer" to="SlotContainer/Slot/Background/Background/Special/AnimationPlayer" method="play" binds= [ "Idle" ]]
+[connection signal="ready" from="SlotContainer/Background/Background/Normal/AnimationPlayer" to="SlotContainer/Background/Background/Normal/AnimationPlayer" method="play" binds= [ "Idle" ]]
+[connection signal="ready" from="SlotContainer/Background/Background/Special/AnimationPlayer" to="SlotContainer/Background/Background/Special/AnimationPlayer" method="play" binds= [ "Idle" ]]
 [connection signal="ready" from="SlotContainer/Slot/Overlap/Light/AnimationPlayer" to="SlotContainer/Slot/Overlap/Light/AnimationPlayer" method="play" binds= [ "Idle" ]]
 [connection signal="pressed" from="UIContainer/ErrorPopup/Button" to="UIContainer/ErrorPopup" method="_on_Button_pressed"]
 [connection signal="tween_completed" from="Fader/Tween" to="Fader" method="_tween_completed"]

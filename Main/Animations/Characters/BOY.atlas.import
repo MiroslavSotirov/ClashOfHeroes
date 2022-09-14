@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/BOY.atlas-f09d3477344ba7320c14b4015e27c79b.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Characters/BOY.atlas"
+dest_files=[ "res://.import/BOY.atlas-f09d3477344ba7320c14b4015e27c79b.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"

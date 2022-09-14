@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/GIRL.atlas-4277d44681e702996cb1df3da9b1a1e5.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Characters/GIRL.atlas"
+dest_files=[ "res://.import/GIRL.atlas-4277d44681e702996cb1df3da9b1a1e5.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"
