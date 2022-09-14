@@ -79,11 +79,12 @@ func generate_tile_images():
 		viewport.render_target_update_mode = Viewport.UPDATE_ONCE;
 		yield(VisualServer, "frame_post_draw")
 		var img = viewport.get_texture().get_data();
-		#img.save_png("res://test/"+String(tile.id)+".png")
+		# img.save_png("res://test/"+String(tile.id)+".png")
 		tile_data.static_image = ImageTexture.new();
 		tile_data.static_image.create_from_image(img);
 		tile_data.static_image.lossy_quality = 0.0;
-		viewport.remove_child(tile_scene.reset_pose());
+#		viewport.remove_child(tile_scene.reset_pose());
+		viewport.remove_child(tile_scene);
 		
 	viewport.queue_free();
 	emit_signal("tiles_generated");

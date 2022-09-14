@@ -1,13 +1,11 @@
 [remap]
 
-importer="raiix.spine_runtime.json"
-type="SpineSkeletonJsonDataResource"
-path="res://.import/Winscene.json-2ae5cc7c8a11f99aea27f1fed9590e63.spjson"
+importer="spine.json"
+type="SpineSkeletonFileResource"
+valid=false
 
 [deps]
 
 source_file="res://Main/Animations/Win Scenes/Winscene.json"
-dest_files=[ "res://.import/Winscene.json-2ae5cc7c8a11f99aea27f1fed9590e63.spjson" ]
-
 [params]
 

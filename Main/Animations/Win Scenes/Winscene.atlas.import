@@ -1,6 +1,6 @@
 [remap]
 
-importer="raiix.spine_runtime.atlas"
+importer="spine.atlas"
 type="SpineAtlasResource"
 path="res://.import/Winscene.atlas-38689ef7888ff649469a1d4266108db4.spatlas"
 
@@ -11,4 +11,4 @@ dest_files=[ "res://.import/Winscene.atlas-38689ef7888ff649469a1d4266108db4.spat
 
 [params]
 
-normal_texture_prefix="n"
+normal_map_prefix="n"

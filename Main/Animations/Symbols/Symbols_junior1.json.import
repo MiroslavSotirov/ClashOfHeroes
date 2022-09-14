@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+path="res://.import/Symbols_junior1.json-a7b860120e245240df413ae0a061da16.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/Symbols/Symbols_junior1.json"
+dest_files=[ "res://.import/Symbols_junior1.json-a7b860120e245240df413ae0a061da16.spjson" ]
+
+[params]
+
