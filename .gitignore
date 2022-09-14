@@ -1,3 +1,5 @@
 packages
 Translations/export/
 dist
+package.json
+config.json

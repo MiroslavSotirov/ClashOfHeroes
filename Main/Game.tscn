@@ -4,18 +4,18 @@
 [ext_resource path="res://Main/Textures/slot/FrameFS2.webp" type="Texture" id=2]
 [ext_resource path="res://Main/Textures/slot/FrameFill.webp" type="Texture" id=3]
 [ext_resource path="res://Main/Slot/Slot.gd" type="Script" id=4]
+[ext_resource path="res://Main/Textures/slotcoh/SpecialSceneBG.webp" type="Texture" id=5]
 [ext_resource path="res://Main/Game.gd" type="Script" id=6]
 [ext_resource path="res://Main/Misc/Fader.gd" type="Script" id=7]
 [ext_resource path="res://Main/Textures/slot/PASBacklight.webp" type="Texture" id=8]
 [ext_resource path="res://Main/Textures/slot/SlotFrame.webp" type="Texture" id=9]
+[ext_resource path="res://Main/Textures/slotcoh/SlotSceneBG.webp" type="Texture" id=10]
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/prah1.png" type="Texture" id=14]
 [ext_resource path="res://Main/Textures/slot/FSHeaderParticles.png" type="Texture" id=15]
 [ext_resource path="res://Main/Textures/slot/FrameFS1.webp" type="Texture" id=17]
 [ext_resource path="res://Main/SideCharacters.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Main/Textures/slot/SlotSceneBG.webp" type="Texture" id=20]
 [ext_resource path="res://Main/Intro.gd" type="Script" id=22]
 [ext_resource path="res://Main/Slot/ReelSpinning.gd" type="Script" id=25]
-[ext_resource path="res://Main/Textures/slot/FallingS_BG.webp" type="Texture" id=26]
 [ext_resource path="res://Main/Textures/slot/FSBorder.webp" type="Texture" id=28]
 [ext_resource path="res://Main/easings/spin_end.tres" type="Curve" id=29]
 [ext_resource path="res://Main/easings/spin_start.tres" type="Curve" id=30]
@@ -1096,7 +1096,6 @@ __meta__ = {
 shakefalloff = 7.0
 
 [node name="Intro" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -1143,7 +1142,7 @@ config = {
 
 [node name="normal" type="Sprite" parent="Intro/Elements/Backround"]
 scale = Vector2( 0.65, 0.65 )
-texture = ExtResource( 20 )
+texture = ExtResource( 10 )
 
 [node name="CornerFades" type="Node2D" parent="Intro/Elements/Backround"]
 scale = Vector2( 0.65, 0.65 )
@@ -1235,6 +1234,7 @@ node = NodePath("..")
 anims/show = SubResource( 452 )
 
 [node name="SlotContainer" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 512, 512 )
@@ -1256,7 +1256,7 @@ scale = Vector2( 1.125, 1.125 )
 script = ExtResource( 106 )
 
 [node name="Normal" type="Sprite" parent="SlotContainer/Background/Background"]
-texture = ExtResource( 20 )
+texture = ExtResource( 10 )
 
 [node name="FrameDropShadow" type="Sprite" parent="SlotContainer/Background/Background/Normal"]
 position = Vector2( -40, 471.111 )
@@ -1284,7 +1284,7 @@ anims/RESET = SubResource( 460 )
 
 [node name="Special" type="Sprite" parent="SlotContainer/Background/Background"]
 visible = false
-texture = ExtResource( 26 )
+texture = ExtResource( 5 )
 
 [node name="FrameDropShadow" type="Sprite" parent="SlotContainer/Background/Background/Special"]
 position = Vector2( -40, 471.111 )
@@ -1320,9 +1320,6 @@ margin_bottom = 1555.85
 rect_pivot_offset = Vector2( 1403.5, 998.347 )
 texture = SubResource( 2 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect2" type="TextureRect" parent="SlotContainer/Background/Background/CornerFades"]
 margin_left = -1152.58
