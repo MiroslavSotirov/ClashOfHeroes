@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/Symbol_Wild.atlas-d340a830c4a9d66fd081faca754a0608.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Symbols/Symbol_Wild.atlas"
+dest_files=[ "res://.import/Symbol_Wild.atlas-d340a830c4a9d66fd081faca754a0608.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"

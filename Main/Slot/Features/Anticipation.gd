@@ -5,7 +5,7 @@ export (Color) var darken_color = Color.black;
 export (float) var extra_reel_time = 2; # the additional tile added per reel
 #export(String) var effect_path = "res://Main/Slot/Features/Anticipation.tscn";
 
-var Effect = preload("res://Main/Slot/Features/Anticipation.tscn");
+#var Effect = preload("res://Main/Slot/Features/Anticipation.tscn");
 var _effects = {};
 var _tweens = {};
 
@@ -98,18 +98,19 @@ func _tint_reels(data, reels, color):
 				if !(data.tiles.has(int(tile.id))): tile.tint(color, 0.5);
 
 func _add_on_reel(reel, initial, last_index):
-	if (!_effects.has(reel.index)):
-		var e = Effect.instance();
-		e.index = reel.index - initial;
-		reel.add_child(e);
-		_effects[reel.index] = e;
+#	if (!_effects.has(reel.index)):
+#		var e = Effect.instance();
+#		e.index = reel.index - initial;
+#		reel.add_child(e);
+#		_effects[reel.index] = e;
+#
+#	var effect = _effects[reel.index];
+#	reel.move_child(effect, 0);
+##	reel.add_extra_duration(extra_reel_time);
+#	reel.connect("stopeasingbegin", self, "_on_reel_stopped", [reel, effect, last_index], CONNECT_ONESHOT);
 	
-	var effect = _effects[reel.index];
-	reel.move_child(effect, 0);
-#	reel.add_extra_duration(extra_reel_time);
-	reel.connect("stopeasingbegin", self, "_on_reel_stopped", [reel, effect, last_index], CONNECT_ONESHOT);
-	
-	return effect;
+#	return effect;
+	pass;
 
 func _on_reel_stopped(reel, effect, last_index):
 	yield(effect.hide(), "completed");

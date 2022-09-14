@@ -1,6 +1,6 @@
 [remap]
 
-importer="raiix.spine_runtime.atlas"
+importer="spine.atlas"
 type="SpineAtlasResource"
 path="res://.import/swords.atlas-79ca789813e01a3bff79b4ba4f9cc15b.spatlas"
 
@@ -11,4 +11,4 @@ dest_files=[ "res://.import/swords.atlas-79ca789813e01a3bff79b4ba4f9cc15b.spatla
 
 [params]
 
-normal_texture_prefix="n"
+normal_map_prefix="n"

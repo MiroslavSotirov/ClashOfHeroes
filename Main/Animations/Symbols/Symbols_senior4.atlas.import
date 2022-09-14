@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/Symbols_senior4.atlas-1448b2643c5acea115da6e7e729c9218.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/Symbols/Symbols_senior4.atlas"
+dest_files=[ "res://.import/Symbols_senior4.atlas-1448b2643c5acea115da6e7e729c9218.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"

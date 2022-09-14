@@ -14,7 +14,7 @@ dest_files=[ "res://.import/freespin.webp-c5deca0c0330e7c99b68d484ec0ff1fc.stex"
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

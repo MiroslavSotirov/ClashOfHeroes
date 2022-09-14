@@ -14,8 +14,8 @@ dest_files=[ "res://.import/swords.webp-8e587486b5d7f8c6d33cb2bfb675e5d2.stex" ]
 
 [params]
 
-compress/mode=1
-compress/lossy_quality=0.9
+compress/mode=0
+compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
