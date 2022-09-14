@@ -118,6 +118,7 @@ anims/RESET = SubResource( 426 )
 anims/Show = SubResource( 427 )
 
 [node name="Boy" type="SpineSprite" parent="."]
+visible = false
 position = Vector2( -818, 467 )
 skeleton_data_res = SubResource( 428 )
 preview_skin = "Default"
@@ -129,6 +130,7 @@ skin = "default"
 startanimation = "idle"
 
 [node name="Girl" type="SpineSprite" parent="."]
+visible = false
 position = Vector2( 753, 507 )
 skeleton_data_res = SubResource( 429 )
 preview_skin = "Default"

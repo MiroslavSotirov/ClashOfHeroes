@@ -582,8 +582,8 @@ offset = Vector2( 0, -100 )
 position = Vector2( -426, -460 )
 texture = ExtResource( 9 )
 
-[node name="FrameTopP2" type="Sprite" parent="LeftSide/Top"]
-position = Vector2( -431, -339 )
+[node name="FrameTopP2" type="Sprite" parent="LeftSide/Top/FrameTop"]
+position = Vector2( -5, 121 )
 z_index = -2
 texture = ExtResource( 1 )
 
