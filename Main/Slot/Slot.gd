@@ -149,7 +149,7 @@ func parse_spin_data(data):
 					else:
 						view[i + l][j - k * direction] = invisible_tile;
 
-#	return [[9, 2, 1, 9], [2,2,2,2], [3,3,3,3], [4,4,4,4], [5,5,6,5], [7, 8, 9, 7]]
+#	return [[5, 5, 5, 5], [6, 0, 6, 0], [0, 7, 0, 7], [8, 11, 0, 0], [9, 9, 9, 9], [7, 8, 9, 7]]
 	return view;
 
 func get_safe_spin_data():
