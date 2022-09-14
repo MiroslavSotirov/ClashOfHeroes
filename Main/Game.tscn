@@ -12,7 +12,7 @@
 [ext_resource path="res://Main/Animations/Logo/logo.json" type="SpineSkeletonFileResource" id=11]
 [ext_resource path="res://Main/Textures/slotcoh/FrameDropShadow.webp" type="Texture" id=12]
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/prah1.png" type="Texture" id=14]
-[ext_resource path="res://Main/SideCharacters.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Main/Slot/Features/SideCharacters.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Main/Intro.gd" type="Script" id=22]
 [ext_resource path="res://Main/Slot/ReelSpinning.gd" type="Script" id=25]
 [ext_resource path="res://Main/easings/spin_end.tres" type="Curve" id=29]
