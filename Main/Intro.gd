@@ -4,7 +4,6 @@ signal pressed;
 
 func _ready():
 	Globals.register_singleton("Intro", self);
-	$Elements/IntroCharacter.visible = false;
 
 func show():
 #	$Elements/Logo/SpineSprite.play_anim_then_loop('popup', "idle");

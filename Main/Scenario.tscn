@@ -114,12 +114,15 @@ func enter() -> void:
 	slot_container.visible = true;
 	Globals.singletons[\"Intro\"].queue_free();
 	Globals.singletons[\"Fader\"].tween(1.0, 0.0, 0.5);
-	#Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/Logo/SpineAnimation\").play_anim_then_loop(\"popup\", \"idle\");
+	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/Logo/SpineSpriteExtension\").play_anim_then_loop(\"popup\", \"idle\");
 	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/Overlap/Normal/Normal/AnimationPlayer\").play(\"Show\");
-
+	Globals.singletons[\"FrameAnimationPlayer\"].play(\"ZoomIn\");
+	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
+	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
+	
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");	
 	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/ReelContainer\").visible = true;
-	
+	Globals.singletons[\"Game\"].shake += Vector2.ONE * 5.0;
 	yield(Globals.get_tree().create_timer(0.5), \"timeout\");	
 	
 	Globals.fsm_data[\"intro_clicked\"] = true;
