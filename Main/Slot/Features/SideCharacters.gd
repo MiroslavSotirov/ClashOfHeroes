@@ -34,15 +34,15 @@ func play(anim, delay = 0.0):
 		 yield(get_tree().create_timer(delay), "timeout");
 	$AnimationPlayer.play(anim);
 
-func spine_play(anim, idle = "idle1", loop = false):
-	$Character.reset_pose();
+func spine_play(character, anim, idle = "idle", loop = false):
+	get_node(character).reset_pose();
 	if (idle == null):
-		$Character.play_anim(anim, loop);
+		get_node(character).play_anim(anim, loop);
 	else:
-		$Character.play_anim_then_loop(anim, idle);
+		get_node(character).play_anim_then_loop(anim, idle);
 	
-func get_char():
-	return $Character;
+func get_char(character):
+	return get_node(character);
 
 func _on_animation_finished(name, track = null, __ = null):
 	if (track == null):
