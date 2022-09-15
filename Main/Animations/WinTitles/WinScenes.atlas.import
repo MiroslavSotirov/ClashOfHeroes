@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+path="res://.import/WinScenes.atlas-e7f794ec437d10d15a1e2a6afe62694b.spatlas"
+
+[deps]
+
+source_file="res://Main/Animations/WinTitles/WinScenes.atlas"
+dest_files=[ "res://.import/WinScenes.atlas-e7f794ec437d10d15a1e2a6afe62694b.spatlas" ]
+
+[params]
+
+normal_map_prefix="n"

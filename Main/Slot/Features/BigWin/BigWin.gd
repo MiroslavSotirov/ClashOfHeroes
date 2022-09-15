@@ -32,7 +32,7 @@ func _ready():
 func show_win(target, is_total = false):
 	if(shown): return;
 	if(first_time): 
-		add_child_below_node($Background, load("res://Main/Slot/Components/BigWinAnimation.tscn").instance());
+		add_child_below_node($Background, load("res://Main/Slot/Features/BigWin/BigWinAnimation.tscn").instance());
 		first_time = false;
 	shown = true;
 	in_big_win = !is_total;

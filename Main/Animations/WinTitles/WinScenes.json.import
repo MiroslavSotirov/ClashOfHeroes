@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+path="res://.import/WinScenes.json-18d316b06c086d34fc8551b4abb2358e.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/WinTitles/WinScenes.json"
+dest_files=[ "res://.import/WinScenes.json-18d316b06c086d34fc8551b4abb2358e.spjson" ]
+
+[params]
+

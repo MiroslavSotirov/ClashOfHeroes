@@ -69,11 +69,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Main/Slot/Reels/ReelSpinning.gd"
 }, {
-"base": "SpineSpriteExtension",
-"class": "SpineDebugVisualizer",
-"language": "GDScript",
-"path": "res://Utils/SpineVisualizer.gd"
-}, {
 "base": "SpineSprite",
 "class": "SpineSpriteExtension",
 "language": "GDScript",
@@ -172,7 +167,6 @@ _global_script_class_icons={
 "Positioner": "",
 "Reel": "",
 "ReelSpinning": "",
-"SpineDebugVisualizer": "",
 "SpineSpriteExtension": "",
 "SpriteChanger": "",
 "Stateful": "",
@@ -194,7 +188,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="SwordKing"
+config/name="ClashOfHeroes"
 run/main_scene="res://Loader/LoadingScene.tscn"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
