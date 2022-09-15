@@ -770,15 +770,19 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### SWAP TILES FEATURE STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	#if(data.parsed.wild_data == null):
-	if (true):
+	if(data.parsed.wild_data == null):
 		Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
 		return;
-
+	
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"slash\");
+	yield(Globals.get_tree().create_timer(0.5), \"timeout\");	
+	
 	for pos in data.parsed.wild_data:
+		Globals.singletons[\"SwapTilesSystem\"].activate_on(pos.x, pos.y);
 		Globals.singletons[\"Slot\"].replace_tile(pos.x, pos.y, 10);
+	
+	yield(Globals.get_tree().create_timer(1.0), \"timeout\");	
 
-	Globals.singletons[\"WildsSystem\"].deactivate_all();
 	Globals.singletons[\"Audio\"].fade_to(\"Electricity1\", 0, 500, 1);
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	
@@ -790,7 +794,8 @@ func update(_object, _delta: float) -> void:
 
 
 func exit() -> void:
-	pass"
+	pass
+"
 
 [sub_resource type="Resource" id=239]
 script = ExtResource( 1 )

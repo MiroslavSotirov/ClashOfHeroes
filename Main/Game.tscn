@@ -1,6 +1,7 @@
-[gd_scene load_steps=91 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
 [ext_resource path="res://Main/Animations/Logo/logo.atlas" type="SpineAtlasResource" id=3]
 [ext_resource path="res://Main/Slot/Slot.gd" type="Script" id=4]
 [ext_resource path="res://Main/Textures/slotcoh/SpecialSceneBG.webp" type="Texture" id=5]
@@ -11,6 +12,7 @@
 [ext_resource path="res://Main/Textures/slotcoh/SlotSceneBG.webp" type="Texture" id=10]
 [ext_resource path="res://Main/Animations/Logo/logo.json" type="SpineSkeletonFileResource" id=11]
 [ext_resource path="res://Main/Textures/slotcoh/FrameDropShadow.webp" type="Texture" id=12]
+[ext_resource path="res://Main/Slot/Features/SwapTiles/Swing.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/prah1.png" type="Texture" id=14]
 [ext_resource path="res://Main/Slot/Features/SideCharacters.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Main/Slot/Features/Intro.gd" type="Script" id=22]
@@ -1747,6 +1749,10 @@ nudgefx_sound = "Nudge"
 script = ExtResource( 42 )
 
 [node name="SideCharacters" parent="SlotContainer/Slot/Features" instance=ExtResource( 18 )]
+
+[node name="SwapTiles" type="Node2D" parent="SlotContainer/Slot/Features"]
+script = ExtResource( 2 )
+center_slash_scene = ExtResource( 13 )
 
 [node name="WinlinesFadeAnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Slot"]
 anims/To_Normal = SubResource( 259 )
