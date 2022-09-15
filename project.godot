@@ -188,7 +188,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="ClashOfHeroes"
+config/name="SwordKing"
 run/main_scene="res://Loader/LoadingScene.tscn"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
