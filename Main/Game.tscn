@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
@@ -15,9 +15,19 @@
 [ext_resource path="res://Main/Slot/Features/SwapTiles/Swing.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/prah1.png" type="Texture" id=14]
 [ext_resource path="res://Main/Slot/Features/RandomWilds/WildsSystem.gd" type="Script" id=15]
+[ext_resource path="res://Main/Animations/Characters/Robot1.json" type="SpineSkeletonFileResource" id=16]
+[ext_resource path="res://Main/Animations/Characters/Robot2.json" type="SpineSkeletonFileResource" id=17]
 [ext_resource path="res://Main/Slot/Features/SideCharacters.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Main/Animations/Characters/Robot2.atlas" type="SpineAtlasResource" id=19]
+[ext_resource path="res://Main/Animations/Characters/Robot1.atlas" type="SpineAtlasResource" id=20]
+[ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.json" type="SpineSkeletonFileResource" id=21]
 [ext_resource path="res://Main/Slot/Features/Intro.gd" type="Script" id=22]
+[ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.atlas" type="SpineAtlasResource" id=23]
+[ext_resource path="res://Main/Animations/Characters/fx.json" type="SpineSkeletonFileResource" id=24]
 [ext_resource path="res://Main/Slot/Reels/ReelSpinning.gd" type="Script" id=25]
+[ext_resource path="res://Main/Animations/Characters/fx.atlas" type="SpineAtlasResource" id=26]
+[ext_resource path="res://Main/Textures/particles/circle.webp" type="Texture" id=27]
+[ext_resource path="res://Main/Slot/Features/ExpandingWilds/ExpandingWilds.gd" type="Script" id=28]
 [ext_resource path="res://Main/Slot/Reels/easings/spin_end.tres" type="Curve" id=29]
 [ext_resource path="res://Main/Slot/Reels/easings/spin_start.tres" type="Curve" id=30]
 [ext_resource path="res://Main/Textures/slot/winGlow.png" type="Texture" id=31]
@@ -520,6 +530,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=464]
 resource_name = "ZoomIn"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_scale")
 tracks/0/interp = 1
@@ -527,14 +538,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.25, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.5, 0.5 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 0.85, 0.85 ) ]
 }
 
 [sub_resource type="Animation" id=465]
 resource_name = "ZoomOut"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_scale")
 tracks/0/interp = 1
@@ -542,10 +554,355 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 2, 1 ),
 "update": 0,
-"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 0.85, 0.85 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="SpineSkeletonDataResource" id=471]
+atlas_res = ExtResource( 20 )
+skeleton_file_res = ExtResource( 16 )
+
+[sub_resource type="SpineSkeletonDataResource" id=472]
+atlas_res = ExtResource( 19 )
+skeleton_file_res = ExtResource( 17 )
+
+[sub_resource type="SpineSkeletonDataResource" id=473]
+atlas_res = ExtResource( 23 )
+skeleton_file_res = ExtResource( 21 )
+
+[sub_resource type="SpineSkeletonDataResource" id=476]
+atlas_res = ExtResource( 26 )
+skeleton_file_res = ExtResource( 24 )
+
+[sub_resource type="Animation" id=475]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("RobotLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -611, 240 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RobotLeft:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RobotRight:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 721, 266 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RobotRight:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Fx1:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Fx2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Fx2:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3, 3 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Fx2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Fx3:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3, 3 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Fx3:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0.905882, 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Fx3:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath(".:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=474]
+resource_name = "Show"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("RobotLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1.25, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2611, 312.088 ), Vector2( -711, 312.088 ), Vector2( -686, 312.088 ), Vector2( 0, 312.088 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RobotLeft:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RobotRight:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1.25, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2721, 338.088 ), Vector2( 821, 338.088 ), Vector2( 796, 338.088 ), Vector2( 0, 338.088 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RobotRight:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Wild")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ "popup", false, null ],
+"method": "play_anim"
+}, {
+"args": [  ],
+"method": "reset_pose"
+}, {
+"args": [ "transform", false, null ],
+"method": "play_anim"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Fx1:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("Fx1")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "animation", false, null ],
+"method": "play_anim"
+} ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Fx2:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Fx2:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.5, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 3 ), Vector2( 6, 6 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Fx2:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.5, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.905882, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Fx3:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.5, 1.3 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 6, 6 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Fx3:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0.5, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.129412, 0.129412, 0.129412, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Fx3:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath(".:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Gradient" id=423]
@@ -1255,7 +1612,6 @@ node = NodePath("..")
 anims/show = SubResource( 452 )
 
 [node name="SlotContainer" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 512, 512 )
@@ -1791,6 +2147,81 @@ anims/ZoomIn = SubResource( 464 )
 anims/ZoomOut = SubResource( 465 )
 script = ExtResource( 114 )
 
+[node name="ExpandingWilds" type="Control" parent="SlotContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource( 28 )
+
+[node name="RobotFightFx" type="Node2D" parent="SlotContainer/ExpandingWilds"]
+visible = false
+
+[node name="RobotRight" type="SpineSprite" parent="SlotContainer/ExpandingWilds/RobotFightFx"]
+position = Vector2( 721, 266 )
+scale = Vector2( 0.6, 0.6 )
+skeleton_data_res = SubResource( 471 )
+preview_skin = "Default"
+preview_animation = "fight"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+startanimation = "fight"
+
+[node name="RobotLeft" type="SpineSprite" parent="SlotContainer/ExpandingWilds/RobotFightFx"]
+position = Vector2( -611, 240 )
+scale = Vector2( 0.6, 0.6 )
+skeleton_data_res = SubResource( 472 )
+preview_skin = "Default"
+preview_animation = "fight"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+startanimation = "fight"
+
+[node name="Wild" type="SpineSprite" parent="SlotContainer/ExpandingWilds/RobotFightFx"]
+skeleton_data_res = SubResource( 473 )
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+startanimation = "popup"
+loop = false
+
+[node name="Fx1" type="SpineSprite" parent="SlotContainer/ExpandingWilds/RobotFightFx"]
+visible = false
+scale = Vector2( 2, 2 )
+skeleton_data_res = SubResource( 476 )
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+loop = false
+timescale = 2.0
+
+[node name="Fx2" type="Sprite" parent="SlotContainer/ExpandingWilds/RobotFightFx"]
+visible = false
+material = ExtResource( 39 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 53 )
+
+[node name="Fx3" type="Sprite" parent="SlotContainer/ExpandingWilds/RobotFightFx"]
+visible = false
+modulate = Color( 0, 0.905882, 1, 1 )
+material = ExtResource( 39 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 27 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer/ExpandingWilds/RobotFightFx"]
+anims/RESET = SubResource( 475 )
+anims/Show = SubResource( 474 )
+
 [node name="BigWin" type="Control" parent="SlotContainer"]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
@@ -1887,9 +2318,6 @@ grow_vertical = 2
 custom_fonts/font = ExtResource( 89 )
 text = "123"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer/TotalWinbarContainer/TotalWinBar"]
 anims/GoDown = SubResource( 372 )
