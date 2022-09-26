@@ -1752,11 +1752,10 @@ sounds = {
 reelStopDelay = 0.1
 
 [node name="ReelContainer" type="Control" parent="SlotContainer/Slot"]
-visible = false
 margin_left = -695.0
-margin_top = -340.0
+margin_top = -362.0
 margin_right = 695.0
-margin_bottom = 460.0
+margin_bottom = 357.0
 rect_clip_content = true
 
 [node name="Reel1" type="Node2D" parent="SlotContainer/Slot/ReelContainer"]
@@ -1764,12 +1763,13 @@ position = Vector2( 90, 0 )
 script = ExtResource( 25 )
 blurMultiplier = 2.0
 topTileCount = 1
+visibleTilesCount = 3
 bottomTileCount = 1
 acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 200 )
+tile_size = Vector2( 246, 235 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",
@@ -1786,12 +1786,13 @@ position = Vector2( 328, 0 )
 script = ExtResource( 25 )
 blurMultiplier = 2.0
 topTileCount = 1
+visibleTilesCount = 3
 bottomTileCount = 1
 acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 200 )
+tile_size = Vector2( 246, 235 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",
@@ -1808,12 +1809,13 @@ position = Vector2( 572, 0 )
 script = ExtResource( 25 )
 blurMultiplier = 2.0
 topTileCount = 1
+visibleTilesCount = 3
 bottomTileCount = 1
 acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 200 )
+tile_size = Vector2( 246, 235 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",
@@ -1830,12 +1832,13 @@ position = Vector2( 815, 0 )
 script = ExtResource( 25 )
 blurMultiplier = 2.0
 topTileCount = 1
+visibleTilesCount = 3
 bottomTileCount = 1
 acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 200 )
+tile_size = Vector2( 246, 235 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",
@@ -1852,12 +1855,13 @@ position = Vector2( 1058, 0 )
 script = ExtResource( 25 )
 blurMultiplier = 2.0
 topTileCount = 1
+visibleTilesCount = 3
 bottomTileCount = 1
 acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 200 )
+tile_size = Vector2( 246, 235 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",

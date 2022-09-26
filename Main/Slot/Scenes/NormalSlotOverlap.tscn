@@ -15,7 +15,8 @@
 [ext_resource path="res://Main/Misc/canvasadditive.tres" type="Material" id=14]
 [ext_resource path="res://Main/Textures/slot/Divider.webp" type="Texture" id=15]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=9]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Side/FrameWing1:scale")
@@ -51,10 +52,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -60, -402 ) ]
+"values": [ Vector2( -649, -15 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Side/Frame1P2-16:rotation_degrees")
+tracks/3/path = NodePath("Top/FrameTop2:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -63,10 +64,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Top/FrameTop2:scale")
+tracks/4/path = NodePath("Top/FrameTop:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -75,10 +76,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( -425, -460 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Top/FrameTop:position")
+tracks/5/path = NodePath("Side/Frame1P2-16:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -87,27 +88,15 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -426, -460 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Side/Frame1P2-16:scale")
+tracks/6/path = NodePath("Top:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Top:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -202,7 +191,8 @@ tracks/6/keys = {
 "values": [ Vector2( 350, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Side/FrameWing1:scale")
@@ -238,10 +228,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -60, -402 ) ]
+"values": [ Vector2( -649, -15 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Side/Frame1P2-16:rotation_degrees")
+tracks/3/path = NodePath("Top/FrameTop2:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -250,10 +240,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Top/FrameTop2:scale")
+tracks/4/path = NodePath("Top/FrameTop:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -262,10 +252,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Vector2( -425, -460 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Top/FrameTop:position")
+tracks/5/path = NodePath("Side/Frame1P2-16:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -274,10 +264,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -426, -460 ) ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Side/Frame1P2-16:scale")
+tracks/6/path = NodePath("Top:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -286,22 +276,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Top:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 resource_name = "Show"
 length = 1.5
 tracks/0/type = "value"
@@ -392,7 +370,7 @@ tracks/6/keys = {
 [sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Backlight/FrameBacklight1White:visible")
+tracks/0/path = NodePath("Backlight:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -401,10 +379,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Backlight/FrameBacklight1White:modulate")
+tracks/1/path = NodePath("Backlight:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -413,10 +391,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Backlight:modulate")
+tracks/2/path = NodePath("FrameFill:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -425,10 +403,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Backlight:visible")
+tracks/3/path = NodePath("FrameFill:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -437,10 +415,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("FrameFill:visible")
+tracks/4/path = NodePath("Backlight:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -449,10 +427,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ Vector2( 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("FrameFill:modulate")
+tracks/5/path = NodePath(".:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -461,10 +439,10 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Backlight:scale")
+tracks/6/path = NodePath("White:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -473,10 +451,10 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath(".:position")
+tracks/7/path = NodePath("White:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -485,7 +463,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -584,13 +562,36 @@ tracks/7/keys = {
 "clips": PoolStringArray( "Show" ),
 "times": PoolRealArray( 0 )
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("White:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1.05, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("White:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.05, 1.05, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
 [node name="Normal" type="Node2D"]
 
 [node name="Backlight" type="Node2D" parent="."]
 
 [node name="FrameBacklight1White" type="Sprite" parent="Backlight"]
-visible = false
 material = ExtResource( 14 )
 position = Vector2( -518, -80 )
 rotation = -3.14159
@@ -617,6 +618,18 @@ position = Vector2( -67, 23.5 )
 rotation = -3.14159
 scale = Vector2( 1.125, -1.125 )
 texture = ExtResource( 8 )
+
+[node name="White" type="Node2D" parent="."]
+visible = false
+z_index = 4
+
+[node name="ColorRect" type="ColorRect" parent="White"]
+material = ExtResource( 14 )
+margin_left = -606.0
+margin_top = -362.0
+margin_right = 606.0
+margin_bottom = 355.0
+color = Color( 0.407843, 1, 1, 1 )
 
 [node name="FrameFill" type="Sprite" parent="."]
 z_index = -1
@@ -651,7 +664,7 @@ texture = ExtResource( 11 )
 offset = Vector2( 0, -100 )
 
 [node name="FrameTop" type="Sprite" parent="LeftSide/Top"]
-position = Vector2( -426, -460 )
+position = Vector2( -425, -460 )
 texture = ExtResource( 9 )
 
 [node name="FrameTopP2" type="Sprite" parent="LeftSide/Top/FrameTop"]
@@ -664,7 +677,7 @@ position = Vector2( -287, -383 )
 texture = ExtResource( 4 )
 
 [node name="Side" type="Sprite" parent="LeftSide"]
-position = Vector2( -60, -402 )
+position = Vector2( -649, -15 )
 texture = ExtResource( 7 )
 
 [node name="Frame1P2-16" type="Sprite" parent="LeftSide/Side"]
@@ -689,7 +702,7 @@ rotation = -0.349066
 texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LeftSide"]
-anims/RESET = SubResource( 1 )
+anims/RESET = SubResource( 9 )
 anims/Show = SubResource( 2 )
 
 [node name="RightSide" type="Node2D" parent="."]
@@ -703,7 +716,7 @@ texture = ExtResource( 11 )
 offset = Vector2( 0, -100 )
 
 [node name="FrameTop" type="Sprite" parent="RightSide/Top"]
-position = Vector2( -426, -460 )
+position = Vector2( -425, -460 )
 texture = ExtResource( 9 )
 
 [node name="FrameTopP2" type="Sprite" parent="RightSide/Top/FrameTop"]
@@ -716,7 +729,7 @@ position = Vector2( -287, -383 )
 texture = ExtResource( 4 )
 
 [node name="Side" type="Sprite" parent="RightSide"]
-position = Vector2( -60, -402 )
+position = Vector2( -649, -15 )
 texture = ExtResource( 7 )
 
 [node name="Frame1P2-16" type="Sprite" parent="RightSide/Side"]
@@ -741,8 +754,8 @@ rotation = -0.349066
 texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RightSide"]
-anims/RESET = SubResource( 9 )
-anims/Show = SubResource( 10 )
+anims/RESET = SubResource( 10 )
+anims/Show = SubResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 8 )

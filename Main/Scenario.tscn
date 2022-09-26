@@ -118,7 +118,6 @@ func enter() -> void:
 	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/Overlap/Normal/Normal/AnimationPlayer\").play(\"Show\");
 	Globals.singletons[\"FrameAnimationPlayer\"].play(\"ZoomIn\");
 
-	
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");	
 
 	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/ReelContainer\").visible = true;
@@ -274,7 +273,8 @@ func spin_data_received(data):
 
 	data = _parse_data(data);
 	
-	if (JS.enabled): Globals.singletons[\"Networking\"].lastround = data;
+	#if (JS.enabled): 
+	Globals.singletons[\"Networking\"].lastround = data;
 	if (!Globals.singletons[\"Slot\"].allspinning):
 		yield(Globals.singletons[\"Slot\"], \"onstartspin\");
 
@@ -285,10 +285,10 @@ func spin_data_received(data):
 	Globals.fsm_data[\"data_received\"] = true;
 
 func _parse_data(data):
-	if !(\"features\" in data): return data;
-
 	var special_tiles = [11, 12];
 	data.parsed = {};
+	if !(\"features\" in data): data.features = [];
+	
 	for feature in data.features: 
 		if (feature.type == \"ReplaceTile\" && special_tiles.has(int(feature.data.tileid))):
 			for pos in feature.data.positions:
@@ -349,27 +349,27 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### SPIN STOP STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	var anticipation = Globals.singletons[\"Anticipation\"];
+	#var anticipation = Globals.singletons[\"Anticipation\"];
 	
 	Globals.fsm_data[\"reels_stopped\"] = false;
 	Globals.fsm_data[\"wild_feature_complete\"] = false;
 	Globals.fsm_data[\"sword_feature_complete\"] = false;
 
-	var anticipation_data = data.parsed.anticipation;
-	if (anticipation_data.value):
-		anticipation.show(anticipation_data);
-		anticipation.connect(\"activated\", self, \"_anticipation_on\", [], CONNECT_ONESHOT);
-		anticipation.connect(\"ended_on_reel\", self, \"_anticipation_off\");
+	#var anticipation_data = data.parsed.anticipation;
+	#if (anticipation_data.value):
+	#	anticipation.show(anticipation_data);
+	#	anticipation.connect(\"activated\", self, \"_anticipation_on\", [], CONNECT_ONESHOT);
+	#	anticipation.connect(\"ended_on_reel\", self, \"_anticipation_off\");
 
-	if (data.parsed.respin.previous):
-		yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	#if (data.parsed.respin.previous):
+	#	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 
 	yield(Globals.singletons[\"Slot\"].stop_spin(data), \"completed\");
 	
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 
-	if (data.parsed.respin.previous): 
-		Globals.singletons[\"WinlinesFadeAnimationPlayer\"].play(\"To_Normal\");
+	#if (data.parsed.respin.previous): 
+	#	Globals.singletons[\"WinlinesFadeAnimationPlayer\"].play(\"To_Normal\");
 
 	if(!Globals.fsm_data[\"in_freespins\"] && data.freeSpinsRemaining > 1):
 		yield(Globals.get_tree().create_timer(1.5), \"timeout\");
@@ -770,6 +770,7 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### SWAP TILES FEATURE STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
+	print(data);
 	if(data.parsed.wild_data == null):
 		Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
 		return;
