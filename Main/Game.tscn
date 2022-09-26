@@ -1770,7 +1770,7 @@ acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 235 )
+tile_size = Vector2( 244, 245 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",
@@ -1793,7 +1793,7 @@ acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 235 )
+tile_size = Vector2( 244, 245 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",
@@ -1816,7 +1816,7 @@ acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 235 )
+tile_size = Vector2( 244, 245 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",
@@ -1839,7 +1839,7 @@ acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 235 )
+tile_size = Vector2( 244, 245 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",
@@ -1862,7 +1862,7 @@ acceleration = 30.0
 maxSpeed = 40.0
 tileScene = ExtResource( 70 )
 auto_arrange = false
-tile_size = Vector2( 246, 235 )
+tile_size = Vector2( 244, 245 )
 use_spine_as_static = true
 sounds = {
 "spin": "SpinningReel",
