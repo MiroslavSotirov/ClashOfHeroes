@@ -29,7 +29,7 @@ func deactivate_all():
 	for fx in active_fxs.duplicate():
 		deactivate(fx);
 	
-	for pos in Globals.singletons["Networking"].lastround.parsed.swap_data.tiles:
+	for pos in Globals.singletons["Networking"].lastround.parsed.randomwild_data.tiles:
 		Globals.singletons["Slot"].replace_tile(pos.x, pos.y, 10);
 		
 func deactivate(fx):
