@@ -100,12 +100,12 @@ particles_anim_loop = false
 [node name="RandomWildFx" type="SpineSprite"]
 skeleton_data_res = SubResource( 1 )
 preview_skin = "Default"
-preview_animation = "animation"
+preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
 script = ExtResource( 1 )
 skin = "default"
-startanimation = "animation"
+startanimation = "popup"
 loop = false
 
 [node name="SlashFx" type="Sprite" parent="."]
@@ -140,3 +140,4 @@ scale_amount_random = 0.4
 color = Color( 0, 1, 0.929412, 1 )
 anim_speed = 1.0
 
+[connection signal="ready" from="AnimationPlayer" to="AnimationPlayer" method="play" binds= [ "Show" ]]
