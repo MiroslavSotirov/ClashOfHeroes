@@ -140,4 +140,3 @@ scale_amount_random = 0.4
 color = Color( 0, 1, 0.929412, 1 )
 anim_speed = 1.0
 
-[connection signal="ready" from="AnimationPlayer" to="AnimationPlayer" method="play" binds= [ "Show" ]]

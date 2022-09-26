@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://addons/visual_fsm/fsm/vfsm_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/visual_fsm/fsm/vfsm.gd" type="Script" id=2]
@@ -239,9 +239,10 @@ func enter() -> void:
 	Globals.fsm_data[\"network_error\"] = false;
 	Globals.fsm_data[\"data_received\"] = false;
 	Globals.fsm_data[\"round_closed\"] = false;
-	Globals.fsm_data[\"sword_feature_complete\"] = false;
-	Globals.fsm_data[\"respin_feature_complete\"] = false;
+	Globals.fsm_data[\"expanding_tiles_feature_complete\"] = false;
+	Globals.fsm_data[\"swap_tiles_feature_complete\"] = false;
 	Globals.fsm_data[\"wild_feature_complete\"] = false;
+	Globals.fsm_data[\"respin_feature_complete\"] = false;
 	Globals.fsm_data[\"slot_switch_completed\"] = false;
 	Globals.fsm_data[\"respin_fx_complete\"] = false;
 	
@@ -285,18 +286,13 @@ func spin_data_received(data):
 	Globals.fsm_data[\"data_received\"] = true;
 
 func _parse_data(data):
-	var special_tiles = [11, 12];
+	#var special_tiles = [11, 12];
 	data.parsed = {};
 	if !(\"features\" in data): data.features = [];
-	
-	for feature in data.features: 
-		if (feature.type == \"ReplaceTile\" && special_tiles.has(int(feature.data.tileid))):
-			for pos in feature.data.positions:
-				var address = Globals.singletons[\"Slot\"].get_tile_address(pos);
-				data.view[address.x][address.y] = int(feature.data.replacewithid);
 
-	data.parsed.wild_data = _get_replace_tile_addresses(data, 1);
-	data.parsed.sword_data = _get_replace_tile_addresses(data, 4);
+	data.parsed.randomwild_data = _get_replace_tile_addresses(data, 1);
+	data.parsed.swap_data = _get_replace_tile_addresses(data, 2);
+	data.parsed.expanding_wild = _get_feature_data(data, \"ExpandingWild\")
 	#data.parsed.anticipation = Globals.singletons[\"Anticipation\"].parse_data(data.view);
 	data.parsed.respin = _has_respin(data);
 	
@@ -304,13 +300,28 @@ func _parse_data(data):
 
 func _get_replace_tile_addresses(data, feature_id):
 	if !(\"features\" in data): return null;
-
-	for feature in data.features: 
-		if (feature.type == \"ReplaceTile\" && int(feature.id) == feature_id):
-			return Globals.singletons[\"Slot\"].get_tiles_addresses(feature.data.positions);
+	
+	var feature = _get_feature_data_with_id(data, \"ReplaceTile\", feature_id);
+	if(feature != null):
+		return {
+			\"tiles\" : Globals.singletons[\"Slot\"].get_tiles_addresses(feature.data.positions),
+			\"targetid\" : feature.data.replacewithid
+			};
 
 	return null
-
+	
+func _get_feature_data_with_id(data, type, id):
+	for feature in data.features: 
+		if (feature.type == type && int(feature.id) == id):
+			return feature;
+	return null;
+	
+func _get_feature_data(data, type):
+	for feature in data.features: 
+		if (feature.type == type):
+			return feature;
+	return null;
+	
 func _has_respin(data):
 	var previous_data = Globals.singletons[\"Networking\"].lastround;
 	var previous;
@@ -321,7 +332,7 @@ func _has_respin(data):
 
 	if (!data || !data.wins): return { \"previous\": previous, \"current\": false };
 	for win in data.wins:
-		if(\"freespinE2\" in win.index || \"freespinE3\" in win.index): 
+		if(\"freespinE2\" in win.index || \"freespinE3\" in win.index || \"respinall1\" in win.index): 
 			return { \"previous\": previous, \"current\": true };
 			
 	return { \"previous\": previous, \"current\": false };
@@ -420,7 +431,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 6
 name = "Spin Stop"
-position = Vector2( 1500, 640 )
+position = Vector2( 1480, 640 )
 trigger_ids = [ 6 ]
 custom_script = SubResource( 156 )
 
@@ -469,7 +480,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 7
 name = "Close round"
-position = Vector2( 2840, 460 )
+position = Vector2( 2840, 480 )
 trigger_ids = [ 7, 8 ]
 custom_script = SubResource( 166 )
 
@@ -530,7 +541,7 @@ func calculate_line_wins(wins):
 script = ExtResource( 1 )
 vfsm_id = 11
 name = "Wins Check"
-position = Vector2( 1900, 640 )
+position = Vector2( 1940, 640 )
 trigger_ids = [ 14, 15 ]
 custom_script = SubResource( 183 )
 
@@ -609,7 +620,7 @@ func calcute_win_tiles_positions(wins):
 script = ExtResource( 1 )
 vfsm_id = 12
 name = "Show Line Wins"
-position = Vector2( 2180, 500 )
+position = Vector2( 2260, 500 )
 trigger_ids = [ 17 ]
 custom_script = SubResource( 189 )
 
@@ -620,34 +631,40 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### WILD FEATURE HIT STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	#if(data.parsed.wild_data == null):
-	if(true):
+	if(data.parsed.randomwild_data == null):
 		Globals.fsm_data[\"wild_feature_complete\"] = true;
 		return;
+	
+	var split = [[],[],[]];
+	var total = len(data.parsed.randomwild_data);
+	var splitcount = int(len(data.parsed.randomwild_data.tiles)/3.0);
+	var count = 0;
+	for randomwild_data in data.parsed.randomwild_data.tiles:
+		split[count].append(randomwild_data)
+		if(count < 2 && len(split[count]) == splitcount):
+			count += 1;
+			
+	print(split);
+	
+	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
+	yield(Globals.get_tree().create_timer(0.5), \"timeout\");		
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"shoot\");
+	print(split[0]);
+	yield(Globals.get_tree().create_timer(1.25), \"timeout\");
+	print(split[0]);
+	for wild_data in split[0]:
+		print(wild_data);
+		Globals.singletons[\"WildsSystem\"].activate_on(wild_data.x, wild_data.y);
 
-	Globals.singletons[\"Background\"].change_to(\"FreeSpins\");
-	Globals.singletons[\"Overlap\"].maybe_change_to(!Globals.fsm_data[\"in_freespins\"], \"Dark\", \"FreeSpins\")
-	Globals.singletons[\"Audio\"].play(\"Impact\", 0.8);
-	yield(Globals.get_tree().create_timer(0.4), \"timeout\");
+	yield(Globals.get_tree().create_timer(0.25), \"timeout\");
+	for wild_data in split[1]: 
+		Globals.singletons[\"WildsSystem\"].activate_on(wild_data.x, wild_data.y);
 	
-	Globals.singletons[\"SideCharacter\"].spine_play(\"RW_slash2\", null, false);
-	Globals.singletons[\"SideCharacter\"].play(\"Character Slash\", 0.75);
-	Globals.singletons[\"Audio\"].play_after(\"CharacterPass\", 550);
-	yield(Globals.get_tree().create_timer(0.7), \"timeout\");
-
-	Globals.singletons[\"Audio\"].play(\"Electricity\");
-	for pos in data.parsed.wild_data:
-		Globals.singletons[\"WildsSystem\"].activate_on(pos.x, pos.y);
+	yield(Globals.get_tree().create_timer(0.25), \"timeout\");
+	for wild_data in split[2]: 
+		Globals.singletons[\"WildsSystem\"].activate_on(wild_data.x, wild_data.y);
 	
-	yield(Globals.get_tree().create_timer(1.6), \"timeout\");
-	
-	Globals.singletons[\"WildsSystem\"].activate_all();
-	Globals.singletons[\"SideCharacter\"].play(\"RESET\");
-	Globals.singletons[\"SideCharacter\"].lightning_show(\"wild\");
-	Globals.singletons[\"Audio\"].play(\"Blast\", 0.5);
-	yield(Globals.get_tree().create_timer(1), \"timeout\");
-	
-	Globals.singletons[\"Audio\"].loop(\"Electricity1\");
+	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 	Globals.fsm_data[\"wild_feature_complete\"] = true;
 
 func update(_object, _delta: float) -> void:
@@ -672,16 +689,12 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### WILD FEATURE END STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	#if(data.parsed.wild_data == null):
-	if (true):
+	if (data.parsed.randomwild_data == null):
 		Globals.fsm_data[\"wild_feature_complete\"] = true;
 		return;
-
-	for pos in data.parsed.wild_data:
-		Globals.singletons[\"Slot\"].replace_tile(pos.x, pos.y, 10);
-
+		
 	Globals.singletons[\"WildsSystem\"].deactivate_all();
-	Globals.singletons[\"Audio\"].fade_to(\"Electricity1\", 0, 500, 1);
+	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	
 	Globals.fsm_data[\"wild_feature_complete\"] = true;
@@ -697,7 +710,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 20
 name = "Wild Feature"
-position = Vector2( 1500, 780 )
+position = Vector2( 1480, 780 )
 trigger_ids = [ 25 ]
 custom_script = SubResource( 228 )
 
@@ -770,23 +783,21 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### SWAP TILES FEATURE STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	print(data);
-	if(data.parsed.wild_data == null):
+	if(data.parsed.swap_data == null):
 		Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
 		return;
-	
+		
+	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"slash\");
-	yield(Globals.get_tree().create_timer(0.5), \"timeout\");	
-	
-	for pos in data.parsed.wild_data:
-		Globals.singletons[\"SwapTilesSystem\"].activate_on(pos.x, pos.y);
-		Globals.singletons[\"Slot\"].replace_tile(pos.x, pos.y, 10);
-	
-	yield(Globals.get_tree().create_timer(1.0), \"timeout\");	
+	yield(Globals.get_tree().create_timer(0.85), \"timeout\");
+	Globals.singletons[\"SwapTilesSystem\"].activate_slash();
+	yield(Globals.get_tree().create_timer(0.05), \"timeout\");
+	for swap_data in data.parsed.swap_data.tiles:
+		Globals.singletons[\"SwapTilesSystem\"].activate_on(swap_data.x, swap_data.y, data.parsed.swap_data.targetid);
 
-	Globals.singletons[\"Audio\"].fade_to(\"Electricity1\", 0, 500, 1);
+	yield(Globals.get_tree().create_timer(0.25), \"timeout\");
+	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
-	
 	Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
 
 
@@ -802,9 +813,40 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 24
 name = "Swap Tiles Feature"
-position = Vector2( 1500, 920 )
+position = Vector2( 1480, 1060 )
 trigger_ids = [ 28 ]
 custom_script = SubResource( 238 )
+
+[sub_resource type="GDScript" id=242]
+script/source = "# State: Expanding Wild Feature
+extends VFSMStateBase
+
+
+func enter() -> void:
+	print(\"### SWAP TILES FEATURE STATE: ###\");
+	var data = Globals.singletons[\"Networking\"].lastround;
+	if(data.parsed.swap_data == null):
+		Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
+		return;
+	
+	Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
+
+
+func update(_object, _delta: float) -> void:
+	pass
+
+
+func exit() -> void:
+	pass
+"
+
+[sub_resource type="Resource" id=243]
+script = ExtResource( 1 )
+vfsm_id = 25
+name = "Expanding Wild Feature"
+position = Vector2( 1480, 920 )
+trigger_ids = [ 29 ]
+custom_script = SubResource( 242 )
 
 [sub_resource type="GDScript" id=143]
 script/source = "# Trigger: Initialized
@@ -1300,6 +1342,25 @@ vfsm_id = 28
 name = "Swap Tiles Feature End"
 custom_script = SubResource( 240 )
 
+[sub_resource type="GDScript" id=244]
+script/source = "# Trigger: Expanding Wild Feature End
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"expanding_tiles_feature_complete\");
+"
+
+[sub_resource type="Resource" id=245]
+script = ExtResource( 5 )
+vfsm_id = 29
+name = "Expanding Wild Feature End"
+custom_script = SubResource( 244 )
+
 [sub_resource type="Resource" id=147]
 script = ExtResource( 2 )
 start_state_vfsm_id = 0
@@ -1319,7 +1380,8 @@ _states = {
 18: SubResource( 221 ),
 20: SubResource( 229 ),
 23: SubResource( 237 ),
-24: SubResource( 239 )
+24: SubResource( 239 ),
+25: SubResource( 243 )
 }
 _trigger_vfsm_id_map = {
 0: SubResource( 144 ),
@@ -1350,7 +1412,8 @@ _trigger_vfsm_id_map = {
 25: SubResource( 223 ),
 26: SubResource( 227 ),
 27: SubResource( 235 ),
-28: SubResource( 241 )
+28: SubResource( 241 ),
+29: SubResource( 245 )
 }
 _transitions = {
 0: {
@@ -1393,18 +1456,21 @@ _transitions = {
 25: 6
 },
 20: {
-25: 24
+25: 25
 },
 23: {
 27: 5
 },
 24: {
 28: 11
+},
+25: {
+29: 24
 }
 }
-states = [ SubResource( 140 ), SubResource( 142 ), SubResource( 149 ), SubResource( 151 ), SubResource( 153 ), SubResource( 155 ), SubResource( 157 ), SubResource( 167 ), SubResource( 176 ), SubResource( 184 ), SubResource( 190 ), SubResource( 221 ), SubResource( 229 ), SubResource( 237 ), SubResource( 239 ) ]
-triggers = [ SubResource( 144 ), SubResource( 146 ), SubResource( 159 ), SubResource( 161 ), SubResource( 163 ), SubResource( 165 ), SubResource( 169 ), SubResource( 171 ), SubResource( 173 ), SubResource( 174 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 182 ), SubResource( 186 ), SubResource( 188 ), SubResource( 191 ), SubResource( 195 ), SubResource( 197 ), SubResource( 199 ), SubResource( 203 ), SubResource( 209 ), SubResource( 211 ), SubResource( 215 ), SubResource( 219 ), SubResource( 223 ), SubResource( 227 ), SubResource( 235 ), SubResource( 241 ) ]
-transitions = [ 0, 8, 1, 0, 0, 2, 2, 2, 3, 3, 10, 23, 4, 4, 3, 5, 1, 4, 5, 5, 18, 6, 6, 20, 7, 8, 8, 7, 7, 3, 8, 13, 3, 11, 14, 12, 11, 15, 7, 12, 17, 7, 18, 25, 6, 20, 25, 24, 23, 27, 5, 24, 28, 11 ]
+states = [ SubResource( 140 ), SubResource( 142 ), SubResource( 149 ), SubResource( 151 ), SubResource( 153 ), SubResource( 155 ), SubResource( 157 ), SubResource( 167 ), SubResource( 176 ), SubResource( 184 ), SubResource( 190 ), SubResource( 221 ), SubResource( 229 ), SubResource( 237 ), SubResource( 239 ), SubResource( 243 ) ]
+triggers = [ SubResource( 144 ), SubResource( 146 ), SubResource( 159 ), SubResource( 161 ), SubResource( 163 ), SubResource( 165 ), SubResource( 169 ), SubResource( 171 ), SubResource( 173 ), SubResource( 174 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 182 ), SubResource( 186 ), SubResource( 188 ), SubResource( 191 ), SubResource( 195 ), SubResource( 197 ), SubResource( 199 ), SubResource( 203 ), SubResource( 209 ), SubResource( 211 ), SubResource( 215 ), SubResource( 219 ), SubResource( 223 ), SubResource( 227 ), SubResource( 235 ), SubResource( 241 ), SubResource( 245 ) ]
+transitions = [ 0, 8, 1, 0, 0, 2, 2, 2, 3, 3, 10, 23, 4, 4, 3, 5, 1, 4, 5, 5, 18, 6, 6, 20, 7, 8, 8, 7, 7, 3, 8, 13, 3, 11, 14, 12, 11, 15, 7, 12, 17, 7, 18, 25, 6, 20, 25, 25, 23, 27, 5, 24, 28, 11, 25, 29, 24 ]
 
 [node name="Scenario" type="Node"]
 script = ExtResource( 3 )

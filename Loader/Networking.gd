@@ -113,6 +113,10 @@ func request_spin(sig = "spinreceived"):
 		data["action"] = "freespin";
 	if(self.next_action == "cascade"):
 		data["action"] = "cascade";
+	if(self.next_action == "respinall"):
+		data["action"] = "respinall";
+	if(self.next_action == "pushreels"):
+		data["action"] = "pushreels";
 		
 	htmlpost("/v2/rgs/play2", JSON.print(data), sig);
 	data = yield(self, sig);
