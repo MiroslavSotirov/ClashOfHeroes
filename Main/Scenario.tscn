@@ -226,7 +226,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 4
 name = "Spin error"
-position = Vector2( 1360, 340 )
+position = Vector2( 1480, 360 )
 trigger_ids = [ 4 ]
 custom_script = SubResource( 152 )
 
@@ -828,7 +828,29 @@ func enter() -> void:
 	if(data.parsed.swap_data == null):
 		Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
 		return;
+
+	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\");
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\");
+	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomIn\");
+	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
+	Globals.singletons[\"ExpandingWilds\"].animationPlayer.play(\"Show\");
+	yield(Globals.get_tree().create_timer(0.7), \"timeout\");
+	Globals.singletons[\"Game\"].shake += Vector2.ONE * 20.0;
+	Globals.singletons[\"FaderBright\"].tween(0.1,0.0,0.2);
 	
+	for i in 15:
+		Globals.singletons[\"Game\"].shake += Vector2.ONE * 5.0;
+		yield(Globals.get_tree().create_timer(0.1), \"timeout\");
+		
+	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomOut\");
+	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
+	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
+	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
+	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
+	yield(Globals.get_tree().create_timer(1.0), \"timeout\");	
+
 	Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
 
 
@@ -1470,7 +1492,7 @@ _transitions = {
 }
 states = [ SubResource( 140 ), SubResource( 142 ), SubResource( 149 ), SubResource( 151 ), SubResource( 153 ), SubResource( 155 ), SubResource( 157 ), SubResource( 167 ), SubResource( 176 ), SubResource( 184 ), SubResource( 190 ), SubResource( 221 ), SubResource( 229 ), SubResource( 237 ), SubResource( 239 ), SubResource( 243 ) ]
 triggers = [ SubResource( 144 ), SubResource( 146 ), SubResource( 159 ), SubResource( 161 ), SubResource( 163 ), SubResource( 165 ), SubResource( 169 ), SubResource( 171 ), SubResource( 173 ), SubResource( 174 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 182 ), SubResource( 186 ), SubResource( 188 ), SubResource( 191 ), SubResource( 195 ), SubResource( 197 ), SubResource( 199 ), SubResource( 203 ), SubResource( 209 ), SubResource( 211 ), SubResource( 215 ), SubResource( 219 ), SubResource( 223 ), SubResource( 227 ), SubResource( 235 ), SubResource( 241 ), SubResource( 245 ) ]
-transitions = [ 0, 8, 1, 0, 0, 2, 2, 2, 3, 3, 10, 23, 4, 4, 3, 5, 1, 4, 5, 5, 18, 6, 6, 20, 7, 8, 8, 7, 7, 3, 8, 13, 3, 11, 14, 12, 11, 15, 7, 12, 17, 7, 18, 25, 6, 20, 25, 25, 23, 27, 5, 24, 28, 11, 25, 29, 24 ]
+transitions = [ 0, 8, 1, 0, 0, 2, 2, 2, 3, 3, 10, 23, 4, 4, 3, 5, 5, 18, 5, 1, 4, 6, 6, 20, 7, 8, 8, 7, 7, 3, 8, 13, 3, 11, 14, 12, 11, 15, 7, 12, 17, 7, 18, 25, 6, 20, 25, 25, 23, 27, 5, 24, 28, 11, 25, 29, 24 ]
 
 [node name="Scenario" type="Node"]
 script = ExtResource( 3 )
