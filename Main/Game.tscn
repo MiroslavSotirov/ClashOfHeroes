@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=2]
+[gd_scene load_steps=116 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
@@ -36,8 +36,13 @@
 [ext_resource path="res://Main/UI/default_dynfont_big.tres" type="DynamicFont" id=34]
 [ext_resource path="res://Main/ErrorPopup.gd" type="Script" id=35]
 [ext_resource path="res://Main/Slot/Features/Nudger.gd" type="Script" id=36]
+[ext_resource path="res://Main/Slot/Features/Respin/RespinFx.gd" type="Script" id=37]
+[ext_resource path="res://Main/Animations/Respin/Respin.atlas" type="SpineAtlasResource" id=38]
 [ext_resource path="res://Main/Misc/canvasadditive.tres" type="Material" id=39]
+[ext_resource path="res://Main/Animations/Respin/Respin.json" type="SpineSkeletonFileResource" id=40]
+[ext_resource path="res://Main/Animations/Characters/Ground.atlas" type="SpineAtlasResource" id=41]
 [ext_resource path="res://Main/Slot/Features/Stateful.gd" type="Script" id=42]
+[ext_resource path="res://Main/Animations/Characters/Ground.json" type="SpineSkeletonFileResource" id=43]
 [ext_resource path="res://Main/SpineSpriteExtension.gd" type="Script" id=44]
 [ext_resource path="res://Main/Misc/LogoResizer.gd" type="Script" id=46]
 [ext_resource path="res://Main/Slot/Features/Positioner.gd" type="Script" id=49]
@@ -84,111 +89,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 0.321569, 0.0745098, 0, 0 ), Color( 0.176471, 0.223529, 0.176471, 1 ) ]
-}
-
-[sub_resource type="Animation" id=459]
-resource_name = "Idle"
-length = 10.0
-loop = true
-step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Particles1:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.938, 1.3752 ), Vector2( 2.25, 1.5 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Particles2:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 4.99, 5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1.938, 1.375 ), Vector2( 2.5, 1.75 ), Vector2( 1, 1 ), Vector2( 1.938, 1.375 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Particles2:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.392157 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Particles1:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=460]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Particles1:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Particles2:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Particles2:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Particles1:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=461]
@@ -479,6 +379,18 @@ _bundled = {
 "variants": [ 2, ExtResource( 39 ), false, 4, 0.25, true, 1.0, ExtResource( 14 ), 2, Vector2( 100, 1 ), Vector2( 0, 0 ), 360.0, 1.0, 0.5, SubResource( 5 ), Color( 1, 0.419608, 0.180392, 1 ), SubResource( 6 ), ExtResource( 39 ), false, 30, 0.75, true, 1.0, 0.5, ExtResource( 53 ), 2, Vector2( 150, 100 ), Vector2( 0, -1 ), 15.0, Vector2( 0, 3500 ), 750.0, 360.0, 1.0, 0.15, 0.15, Color( 1, 0.403922, 0.0431373, 1 ), SubResource( 7 ), true, true ],
 "version": 2
 }
+
+[sub_resource type="SpineSkeletonDataResource" id=478]
+atlas_res = ExtResource( 41 )
+skeleton_file_res = ExtResource( 43 )
+
+[sub_resource type="SpineSkeletonDataResource" id=477]
+atlas_res = ExtResource( 20 )
+skeleton_file_res = ExtResource( 16 )
+
+[sub_resource type="SpineSkeletonDataResource" id=479]
+atlas_res = ExtResource( 38 )
+skeleton_file_res = ExtResource( 40 )
 
 [sub_resource type="Animation" id=259]
 
@@ -1612,7 +1524,6 @@ node = NodePath("..")
 anims/show = SubResource( 452 )
 
 [node name="SlotContainer" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 512, 512 )
@@ -1636,26 +1547,6 @@ script = ExtResource( 106 )
 
 [node name="Normal" type="Sprite" parent="SlotContainer/Background/Background"]
 texture = ExtResource( 10 )
-
-[node name="Particles1" type="Node2D" parent="SlotContainer/Background/Background/Normal"]
-
-[node name="Particles1" type="Sprite" parent="SlotContainer/Background/Background/Normal/Particles1"]
-material = ExtResource( 39 )
-position = Vector2( 0, -150 )
-texture = ExtResource( 72 )
-
-[node name="Particles2" type="Node2D" parent="SlotContainer/Background/Background/Normal"]
-rotation = 3.14159
-
-[node name="Particles2" type="Sprite" parent="SlotContainer/Background/Background/Normal/Particles2"]
-material = ExtResource( 39 )
-position = Vector2( 0, -150 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 69 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Background/Background/Normal"]
-anims/Idle = SubResource( 459 )
-anims/RESET = SubResource( 460 )
 
 [node name="Special" type="Sprite" parent="SlotContainer/Background/Background"]
 visible = false
@@ -2119,6 +2010,43 @@ center_slash_scene = ExtResource( 13 )
 [node name="RandomWilds" type="Node2D" parent="SlotContainer/Slot/Features"]
 script = ExtResource( 15 )
 
+[node name="Respin" type="Node2D" parent="SlotContainer/Slot/Features"]
+script = ExtResource( 37 )
+
+[node name="Crash" type="SpineSprite" parent="SlotContainer/Slot/Features/Respin"]
+position = Vector2( 0, 514.505 )
+scale = Vector2( 0.75, 0.75 )
+skeleton_data_res = SubResource( 478 )
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+loop = false
+
+[node name="Robot" type="SpineSprite" parent="SlotContainer/Slot/Features/Respin"]
+position = Vector2( 0, 514.505 )
+scale = Vector2( 0.75, 0.75 )
+skeleton_data_res = SubResource( 477 )
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+loop = false
+
+[node name="Respin" type="SpineSprite" parent="SlotContainer/Slot/Features/Respin"]
+skeleton_data_res = SubResource( 479 )
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+loop = false
+
 [node name="WinlinesFadeAnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Slot"]
 anims/To_Normal = SubResource( 259 )
 anims/To_Winline = SubResource( 11 )
@@ -2450,7 +2378,6 @@ default = Color( 0.2, 1, 0.945098, 1 )
 
 [node name="Scenario" parent="." instance=ExtResource( 1 )]
 
-[connection signal="ready" from="SlotContainer/Background/Background/Normal/AnimationPlayer" to="SlotContainer/Background/Background/Normal/AnimationPlayer" method="play" binds= [ "Idle" ]]
 [connection signal="ready" from="SlotContainer/Background/Background/Special/AnimationPlayer" to="SlotContainer/Background/Background/Special/AnimationPlayer" method="play" binds= [ "Idle" ]]
 [connection signal="ready" from="SlotContainer/Slot/Overlap/Light/AnimationPlayer" to="SlotContainer/Slot/Overlap/Light/AnimationPlayer" method="play" binds= [ "Idle" ]]
 [connection signal="pressed" from="UIContainer/ErrorPopup/Button" to="UIContainer/ErrorPopup" method="_on_Button_pressed"]

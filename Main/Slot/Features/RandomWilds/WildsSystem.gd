@@ -35,24 +35,3 @@ func deactivate_all():
 func deactivate(fx):
 	active_fxs.erase(fx);
 	fx.queue_free();
-
-func _process(delta):
-	if(Input.is_action_just_pressed("ui_page_down")):
-		preload_resources();
-		Globals.singletons["Slot"].tint(Color(0.27, 0.27, 0.27), 0.5);
-		Globals.singletons["SideCharacters"].spine_play("Boy", "shoot");
-		yield(Globals.get_tree().create_timer(1.25), "timeout");	
-		Globals.singletons["WildSystem"].activate_on(1, 2);
-#		Globals.singletons["WildsSystem"].activate_on(3, 3);
-#		#Globals.singletons["Slot"].replace_tile(1, 2, 5);
-#		yield(Globals.get_tree().create_timer(0.25), "timeout");
-#		Globals.singletons["WildsSystem"].activate_on(2, 2);
-#		Globals.singletons["WildsSystem"].activate_on(1, 3);
-#
-#		yield(Globals.get_tree().create_timer(0.25), "timeout");
-#		Globals.singletons["WildsSystem"].activate_on(3, 2);
-#		Globals.singletons["WildsSystem"].activate_on(2, 4);
-#
-#		yield(Globals.get_tree().create_timer(1.5), "timeout");
-#		deactivate_all();
-#		Globals.singletons["Slot"].tint(Color.white, 1.0);
