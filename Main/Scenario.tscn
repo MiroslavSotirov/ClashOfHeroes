@@ -726,11 +726,10 @@ func enter() -> void:
 	if (!has_respin):
 		Globals.fsm_data[\"respin_fx_complete\"] = true;
 		return;
-		
 
 	Globals.singletons[\"Slot\"].tint(Color.white, 0.5);
-	
-	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
+	Globals.singletons[\"Respin\"].play_anim();
+	yield(Globals.singletons[\"Respin\"], \"start_spin\");
 
 	Globals.fsm_data[\"respin_fx_complete\"] = true;
 
@@ -800,7 +799,7 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### SWAP TILES FEATURE STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	if(data.parsed.swap_data == null):
+	if(data.parsed.expanding_wild == null):
 		Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
 		return;
 
