@@ -21,6 +21,7 @@ var spinning : bool setget , _get_spinning;
 
 var targetdata : Array = [];
 var reels_spinning : int = 0;
+var reels_should_be_spinning : int = 0;
 
 signal apply_tile_features(spindata, reeldata);
 signal onstartspin;
@@ -72,7 +73,7 @@ func _test_spin_stop_set(val):
 	stop_spin();
 	testSpinStop = false;
 
-func start_spin():
+func start_spin(reels_to_spin = []):
 	if (self.spinning): return;
 	if (sounds.start): Globals.singletons["Audio"].play(self.sounds.start);
 	if (sounds.spin): 
@@ -81,10 +82,12 @@ func start_spin():
 		Globals.singletons["Audio"].fade_to(sounds.spin, 1, 500);
 		reels[len(reels)-1].connect("stopeasingbegin", Globals.singletons["Audio"], "fade_to", [sounds.spin, 0, 500, 1], CONNECT_ONESHOT);
 	
+	if(reels_to_spin.empty()): reels_to_spin = range(len(reels));
+	reels_should_be_spinning = len(reels_to_spin);
 	reels_spinning = 0;
-	for reel in reels:
+	for i in reels_to_spin:
 		if (reelStartDelay > 0): yield(get_tree().create_timer(reelStartDelay), "timeout");
-		reel.start_spin();
+		reels[i].start_spin();
 		reels_spinning += 1;
 
 	emit_signal("onstartspin");
@@ -93,9 +96,12 @@ func stop_spin(data = null):
 	var end_data = parse_spin_data(data);
 	var promises = [];
 	var delay = reelStartDelay + reelStopDelay;
+	var reelsstopping = 0;
 	for i in range(len(reels)):
 #		if (delay > 0): yield(get_tree().create_timer(delay), "timeout");
-		promises.push_back(reels[i].stop_spin(end_data[i], delay * i));
+		if(reels[i].is_spinning):
+			promises.push_back(reels[i].stop_spin(end_data[i], delay * reelsstopping));
+			reelsstopping += 1;
 	
 	yield(Promise.all(promises), "completed");
 
@@ -105,10 +111,10 @@ func _get_spinning():
 	return reels_spinning > 0;
 	
 func _get_allspinning():
-	for reel in reels: 
-		if(!reel.is_spinning): return false
+	#for reel in reels: 
+	#	if(!reel.is_spinning): return false
 
-	return true;
+	return reels_should_be_spinning == reels_spinning;
 	
 #func _get_stopped():
 #	for reel in reels: if(!reel.stopped): return false;

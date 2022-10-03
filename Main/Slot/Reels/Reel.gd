@@ -120,6 +120,12 @@ func start_spin():
 
 func stop_spin(server_data, delay = 0):
 	print("Stop spin is not implemented");
+	
+func get_tile_ids():
+	var ids = [];
+	for tile in _get_visible_tiles():
+		ids.append(tile.id);
+	return ids;
 
 func replace_all_tiles(ids, animation = null, animation_type = Tile.AnimationType.SPINE):
 	if (ids.size() != visibleTilesCount):
