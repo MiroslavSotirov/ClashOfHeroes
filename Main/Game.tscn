@@ -2011,6 +2011,7 @@ center_slash_scene = ExtResource( 13 )
 script = ExtResource( 15 )
 
 [node name="Respin" type="Node2D" parent="SlotContainer/Slot/Features"]
+visible = false
 script = ExtResource( 37 )
 
 [node name="Crash" type="SpineSprite" parent="SlotContainer/Slot/Features/Respin"]

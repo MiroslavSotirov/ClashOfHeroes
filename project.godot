@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Loader/AssetLoader.gd"
 }, {
-"base": "Reference",
+"base": "SpriteChanger",
 "class": "Background",
 "language": "GDScript",
 "path": "res://Main/Slot/Features/Background.gd"
@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Main/Slot/Reels/Reel.gd"
 }, {
-"base": "Reference",
+"base": "Reel",
 "class": "ReelSpinning",
 "language": "GDScript",
 "path": "res://Main/Slot/Reels/ReelSpinning.gd"
@@ -74,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Main/SpineSpriteExtension.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "SpriteChanger",
 "language": "GDScript",
 "path": "res://Main/Slot/Features/SpriteChanger.gd"
@@ -149,7 +149,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/visual_fsm/fsm/vfsm_trigger_timer.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "WinTile",
 "language": "GDScript",
 "path": "res://Main/Slot/Features/WinLines/WinTile.gd"

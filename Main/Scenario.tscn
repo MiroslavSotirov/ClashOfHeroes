@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://addons/visual_fsm/fsm/vfsm_state.gd" type="Script" id=1]
 [ext_resource path="res://addons/visual_fsm/fsm/vfsm.gd" type="Script" id=2]
@@ -245,6 +245,7 @@ func enter() -> void:
 	Globals.fsm_data[\"respin_feature_complete\"] = false;
 	Globals.fsm_data[\"slot_switch_completed\"] = false;
 	Globals.fsm_data[\"respin_fx_complete\"] = false;
+	Globals.fsm_data[\"push_reels_complete\"] = false;
 	
 	print('### SPIN START STATE ###');
 	
@@ -263,7 +264,10 @@ func enter() -> void:
 		Globals.singletons[\"TotalWinBar\"].hide();
 
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = true;
-	Globals.singletons[\"Slot\"].start_spin();
+	if(Globals.fsm_data[\"has_push_reels\"]):
+		pass
+	else:
+		Globals.singletons[\"Slot\"].start_spin();
 	
 	if (!Globals.fsm_data[\"in_freespins\"]): Globals.singletons[\"Audio\"].fade_to(\"Melody\", 1, 2000);
 		
@@ -295,6 +299,7 @@ func _parse_data(data):
 	data.parsed.expanding_wild = _get_feature_data(data, \"ExpandingWild\")
 	#data.parsed.anticipation = Globals.singletons[\"Anticipation\"].parse_data(data.view);
 	data.parsed.respin = _has_respin(data);
+	data.parsed.push_reels = _has_push_reels(data);
 	
 	return data;
 
@@ -336,7 +341,18 @@ func _has_respin(data):
 			return { \"previous\": previous, \"current\": true };
 			
 	return { \"previous\": previous, \"current\": false };
-	
+
+func _has_push_reels(data):
+	var previous_data = Globals.singletons[\"Networking\"].lastround;
+	var previous;
+	if previous_data.has(\"parsed\") && previous_data.parsed.has(\"push_reels\"):
+		previous = previous_data.parsed.push_reels.current;
+	else:
+		previous = false;
+
+	if (!data.next_action != \"pushreels\"): return { \"previous\": previous, \"current\": false };
+	return { \"previous\": previous, \"current\": true };
+
 func update(_object, _delta: float) -> void:
 	pass
 
@@ -643,17 +659,14 @@ func enter() -> void:
 		split[count].append(randomwild_data)
 		if(count < 2 && len(split[count]) == splitcount):
 			count += 1;
-			
-	print(split);
-	
+				
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
 	yield(Globals.get_tree().create_timer(0.5), \"timeout\");		
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"shoot\");
-	print(split[0]);
+
 	yield(Globals.get_tree().create_timer(1.25), \"timeout\");
-	print(split[0]);
+
 	for wild_data in split[0]:
-		print(wild_data);
 		Globals.singletons[\"WildsSystem\"].activate_on(wild_data.x, wild_data.y);
 
 	yield(Globals.get_tree().create_timer(0.25), \"timeout\");
@@ -727,10 +740,13 @@ func enter() -> void:
 		Globals.fsm_data[\"respin_fx_complete\"] = true;
 		return;
 
-	Globals.singletons[\"Slot\"].tint(Color.white, 0.5);
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\");
+	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	
 	Globals.singletons[\"Respin\"].play_anim();
 	yield(Globals.singletons[\"Respin\"], \"start_spin\");
-
+	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
+	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.fsm_data[\"respin_fx_complete\"] = true;
 
 func update(_object, _delta: float) -> void:
@@ -745,7 +761,7 @@ func exit() -> void:
 script = ExtResource( 1 )
 vfsm_id = 23
 name = "Respin effect end"
-position = Vector2( 700, 640 )
+position = Vector2( 700, 820 )
 trigger_ids = [ 27 ]
 custom_script = SubResource( 236 )
 
@@ -843,6 +859,47 @@ name = "Expanding Wild Feature"
 position = Vector2( 1480, 920 )
 trigger_ids = [ 29 ]
 custom_script = SubResource( 242 )
+
+[sub_resource type="GDScript" id=246]
+script/source = "# State: Push reels effect
+extends VFSMStateBase
+
+
+func enter() -> void:
+	print(\"### PUSH REELS STATE ###\");
+	var data = Globals.singletons[\"Networking\"].lastround
+	var has_respin = data.parsed.push_reels.current if data.has(\"parsed\") else false;
+
+	if (!has_respin):
+		Globals.fsm_data[\"push_reels_complete\"] = true;
+		Globals.fsm_data[\"has_push_reels\"] = false;
+		return;
+
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\");
+	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	
+	Globals.singletons[\"Respin\"].play_anim();
+	yield(Globals.singletons[\"Respin\"], \"start_spin\");
+	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
+	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
+	Globals.fsm_data[\"has_push_reels\"] = true;
+	Globals.fsm_data[\"push_reels_complete\"] = true;
+
+func update(_object, _delta: float) -> void:
+	pass
+
+func exit() -> void:
+	Globals.fsm_data[\"respin_fx_complete\"] = false;
+	pass
+"
+
+[sub_resource type="Resource" id=247]
+script = ExtResource( 1 )
+vfsm_id = 26
+name = "Push reels effect"
+position = Vector2( 700, 640 )
+trigger_ids = [ 30 ]
+custom_script = SubResource( 246 )
 
 [sub_resource type="GDScript" id=143]
 script/source = "# Trigger: Initialized
@@ -1357,6 +1414,25 @@ vfsm_id = 29
 name = "Expanding Wild Feature End"
 custom_script = SubResource( 244 )
 
+[sub_resource type="GDScript" id=248]
+script/source = "# Trigger: Push reels end
+extends VFSMTriggerBase
+
+
+func enter() -> void:
+	pass
+
+
+func is_triggered(_object, _delta: float) -> bool:
+	return Globals.get_fsm_data(\"push_reels_complete\");
+"
+
+[sub_resource type="Resource" id=249]
+script = ExtResource( 5 )
+vfsm_id = 30
+name = "Push reels end"
+custom_script = SubResource( 248 )
+
 [sub_resource type="Resource" id=147]
 script = ExtResource( 2 )
 start_state_vfsm_id = 0
@@ -1377,7 +1453,8 @@ _states = {
 20: SubResource( 229 ),
 23: SubResource( 237 ),
 24: SubResource( 239 ),
-25: SubResource( 243 )
+25: SubResource( 243 ),
+26: SubResource( 247 )
 }
 _trigger_vfsm_id_map = {
 0: SubResource( 144 ),
@@ -1409,7 +1486,8 @@ _trigger_vfsm_id_map = {
 26: SubResource( 227 ),
 27: SubResource( 235 ),
 28: SubResource( 241 ),
-29: SubResource( 245 )
+29: SubResource( 245 ),
+30: SubResource( 249 )
 }
 _transitions = {
 0: {
@@ -1422,7 +1500,7 @@ _transitions = {
 2: 3
 },
 3: {
-10: 23
+10: 26
 },
 4: {
 4: 3
@@ -1462,11 +1540,14 @@ _transitions = {
 },
 25: {
 29: 24
+},
+26: {
+30: 23
 }
 }
-states = [ SubResource( 140 ), SubResource( 142 ), SubResource( 149 ), SubResource( 151 ), SubResource( 153 ), SubResource( 155 ), SubResource( 157 ), SubResource( 167 ), SubResource( 176 ), SubResource( 184 ), SubResource( 190 ), SubResource( 221 ), SubResource( 229 ), SubResource( 237 ), SubResource( 239 ), SubResource( 243 ) ]
-triggers = [ SubResource( 144 ), SubResource( 146 ), SubResource( 159 ), SubResource( 161 ), SubResource( 163 ), SubResource( 165 ), SubResource( 169 ), SubResource( 171 ), SubResource( 173 ), SubResource( 174 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 182 ), SubResource( 186 ), SubResource( 188 ), SubResource( 191 ), SubResource( 195 ), SubResource( 197 ), SubResource( 199 ), SubResource( 203 ), SubResource( 209 ), SubResource( 211 ), SubResource( 215 ), SubResource( 219 ), SubResource( 223 ), SubResource( 227 ), SubResource( 235 ), SubResource( 241 ), SubResource( 245 ) ]
-transitions = [ 0, 8, 1, 0, 0, 2, 2, 2, 3, 3, 10, 23, 4, 4, 3, 5, 5, 18, 5, 1, 4, 6, 6, 20, 7, 8, 8, 7, 7, 3, 8, 13, 3, 11, 14, 12, 11, 15, 7, 12, 17, 7, 18, 25, 6, 20, 25, 25, 23, 27, 5, 24, 28, 11, 25, 29, 24 ]
+states = [ SubResource( 140 ), SubResource( 142 ), SubResource( 149 ), SubResource( 151 ), SubResource( 153 ), SubResource( 155 ), SubResource( 157 ), SubResource( 167 ), SubResource( 176 ), SubResource( 184 ), SubResource( 190 ), SubResource( 221 ), SubResource( 229 ), SubResource( 237 ), SubResource( 239 ), SubResource( 243 ), SubResource( 247 ) ]
+triggers = [ SubResource( 144 ), SubResource( 146 ), SubResource( 159 ), SubResource( 161 ), SubResource( 163 ), SubResource( 165 ), SubResource( 169 ), SubResource( 171 ), SubResource( 173 ), SubResource( 174 ), SubResource( 178 ), SubResource( 179 ), SubResource( 180 ), SubResource( 182 ), SubResource( 186 ), SubResource( 188 ), SubResource( 191 ), SubResource( 195 ), SubResource( 197 ), SubResource( 199 ), SubResource( 203 ), SubResource( 209 ), SubResource( 211 ), SubResource( 215 ), SubResource( 219 ), SubResource( 223 ), SubResource( 227 ), SubResource( 235 ), SubResource( 241 ), SubResource( 245 ), SubResource( 249 ) ]
+transitions = [ 0, 8, 1, 0, 0, 2, 2, 2, 3, 3, 10, 26, 4, 4, 3, 5, 5, 18, 5, 1, 4, 6, 6, 20, 7, 8, 8, 7, 7, 3, 8, 13, 3, 11, 14, 12, 11, 15, 7, 12, 17, 7, 18, 25, 6, 20, 25, 25, 23, 27, 5, 24, 28, 11, 25, 29, 24, 26, 30, 23 ]
 
 [node name="Scenario" type="Node"]
 script = ExtResource( 3 )
