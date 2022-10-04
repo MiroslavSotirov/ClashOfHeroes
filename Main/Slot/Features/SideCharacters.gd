@@ -21,6 +21,7 @@ func electrify():
 func show_chr(chr):
 	get_node(chr).visible = true;
 	get_node(chr).play_anim("disappear", true);
+	get_node(chr).reset_pose();
 	get_node(chr).get_animation_state().get_current(0).set_reverse(true);
 	yield(get_node(chr), "animation_completed")
 	get_node(chr).reset_pose();

@@ -6,6 +6,7 @@ export (Curve) var start_easing_curve;
 export (float) var start_easing_duration = 0;
 #export (int) var ordering;
 export (float) var turbo_factor = 6;
+export (float) var speed_multiplier = 1.0;
 
 var easing_progress = 0;
 var _last_position = 0;
@@ -49,6 +50,7 @@ func _process(delta):
 	
 	var extraFactor = turbo_factor if _turbo else 1;
 	_speed = min(maxSpeed, _speed + delta * acceleration) * extraFactor; # tiles per second TODO add universal speed unit
+	_speed *= abs(speed_multiplier);
 	var max_position = _buffer.size() - topTileCount - 1;
 	var is_over = _stopping && !_in_easing && _position >= _target;
 	
@@ -74,12 +76,18 @@ func _moveTo(reel_position):
 		var id = _buffer[pos + id_index];
 		var tile = tiles[i];
 		var y;
-		tile.set_tile(id); 
-		if (i == tiles.size() - 1):
-			y = baseY + extra * tile.get_bounds().y; 
-		else:
-			y = tiles[i + 1].position.y - tiles[i + 1].get_bounds().y / 2 - tile.get_bounds().y / 2;
-
+		tile.set_tile(id);
+		if(speed_multiplier > 0.0):
+			if (i == tiles.size() - 1):
+				y = baseY + extra * tile.get_bounds().y; 
+			else:
+				y = tiles[i + 1].position.y - tiles[i + 1].get_bounds().y / 2 - tile.get_bounds().y / 2;
+		elif(speed_multiplier < 0.0):
+			if (i == tiles.size() - 1):
+				y = baseY - extra * tile.get_bounds().y; 
+			else:
+				y = tiles[i + 1].position.y - tiles[i + 1].get_bounds().y / 2 - tile.get_bounds().y / 2;
+		
 		tile.position = Vector2(tile.get_bounds().x / 2, y); 
 		tile.show_image();
 		tile.visible = tile.position.y > -tile.get_bounds().y / 2 && tile.position.y < baseY;
@@ -130,7 +138,7 @@ func _ease(delta):
 	var interpolated = curve.interpolate_baked(interpolator)
 	var distance = interpolated - last;
 	_speed = abs((interpolated - last) / delta) if distance != 0 else _speed;
-
+	_speed *= abs(speed_multiplier);
 	_moveTo(_position + interpolated);
 
 	if(interpolator >= 1): self.call(on_end);

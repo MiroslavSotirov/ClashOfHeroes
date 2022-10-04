@@ -264,3 +264,7 @@ func get_all_tiles():
 func toggle_turbo(value):
 	for reel in reels:
 		reel.toggle_turbo(value);
+
+func set_reels_speed_multiplier(n):
+	for reel in reels:
+		reel.speed_multiplier = n;

@@ -264,8 +264,7 @@ func enter() -> void:
 		Globals.singletons[\"TotalWinBar\"].hide();
 
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = true;
-	#if(Globals.fsm_data[\"has_push_reels\"]):
-	if(true):
+	if(Globals.fsm_data[\"has_push_reels\"]):
 		Globals.singletons[\"Slot\"].start_spin([0]);
 	else:
 		Globals.singletons[\"Slot\"].start_spin();
@@ -871,15 +870,19 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### PUSH REELS STATE ###\");
 	var data = Globals.singletons[\"Networking\"].lastround
-	#var has_respin = data.parsed.push_reels.current if data.has(\"parsed\") else false;
-	var has_respin = true;
+	var has_respin = data.parsed.push_reels.current if data.has(\"parsed\") else false;
+	#var has_respin = true;
 	if (!has_respin):
 		Globals.fsm_data[\"push_reels_complete\"] = true;
 		Globals.fsm_data[\"has_push_reels\"] = false;
 		return;
 
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\");
+	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
 	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	Globals.singletons[\"PushReels\"].play_anim();
+	
+	yield(Globals.singletons[\"PushReels\"], \"start_push\");
 	
 	var tween = Tween.new();
 	Globals.add_child(tween);
@@ -888,15 +891,16 @@ func enter() -> void:
 	for reel in Globals.singletons[\"Slot\"].reels:
 		orgpos.append(reel.position);
 		tween.interpolate_property(reel, \"position\",
-				reel.position, reel.position+Vector2(diff, 0), 1,
-				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+				reel.position, reel.position+Vector2(diff, 0), 0.5,
+				Tween.TRANS_QUART, Tween.EASE_OUT)
 	tween.start()
+	
 	yield(tween,\"tween_all_completed\");
+	
 	var i = len(Globals.singletons[\"Slot\"].reels)-1;
 	for n in len(Globals.singletons[\"Slot\"].reels):
 		var reel = Globals.singletons[\"Slot\"].reels[i];
 		reel.position = orgpos[i];
-		prints(orgpos[i], i);
 		if(i > 0):
 			reel.replace_all_tiles(Globals.singletons[\"Slot\"].reels[i-1].get_tile_ids());
 		else:
@@ -905,12 +909,14 @@ func enter() -> void:
 
 	tween.queue_free();
 	#Globals.singletons[\"Respin\"].play_anim();
-	#yield(Globals.singletons[\"Respin\"], \"start_spin\");
-	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
-	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
+	yield(Globals.singletons[\"PushReels\"], \"start_spin\");
+
 	Globals.fsm_data[\"has_push_reels\"] = true;
 	Globals.fsm_data[\"push_reels_complete\"] = true;
-
+	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
+	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
+	Globals.singletons[\"Background\"].change_to(\"Normal\");
+	
 func update(_object, _delta: float) -> void:
 	pass
 

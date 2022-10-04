@@ -27,9 +27,8 @@ func set_new_state_data(data, newskin = null, playanim = false):
 	pass;
 		
 func set_skin(skin):
-	if (skeleton_data_res == null): return;
-
 	var skeleton = get_skeleton();
+	if (skeleton == null || skeleton_data_res == null): return;
 	if (skeleton_data_res.find_skin(skin) != null):
 		skeleton.set_skin_by_name(skin);
 	else:
