@@ -573,15 +573,17 @@ func enter() -> void:
 	print(\"### SHOW LINE WINS STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
 	var slot = Globals.singletons.Slot;
-	var win_tiles_positions = calcute_win_tiles_positions(data.wins);
-
+	var win_tiles_positions = calculate_win_tiles_positions(data.wins);
+	var win_lines = get_win_lines(data.wins);
+	
 	JS.output(\"linewin\", \"elysiumgamefeature\");
 
 	if (data[\"wins_lines_total\"] > 0.0):
 		Globals.singletons[\"Audio\"].play(\"WinLine\");
 		slot.win_popup_tiles(win_tiles_positions);
-		yield(Globals.singletons[\"WinLines\"].show_lines(win_tiles_positions), \"completed\");
-		Globals.singletons[\"WinLines\"].loop_lines();
+		Globals.singletons[\"WinLines\"].show_lines(win_lines, win_tiles_positions);
+		yield(Globals.singletons[\"WinLines\"], \"show_end\");
+		#Globals.singletons[\"WinLines\"].loop_lines();
 		if(data[\"wins_lines_total\"] > Globals.singletons[\"BigWin\"].big_win_limit):
 			JS.output(\"bigwin\", \"elysiumgamefeature\");
 			Globals.singletons[\"BigWin\"].show_win(data[\"wins_lines_total\"]);
@@ -618,7 +620,7 @@ func bangup_wins(n, multiplier):
 	Globals.singletons[\"Audio\"].play(\"CoinsEndlessHit\")
 	emit_signal(\"bangup_end\");
 	
-func calcute_win_tiles_positions(wins):
+func calculate_win_tiles_positions(wins):
 	if (wins == null): return {};
 
 	var positions = [];
@@ -632,6 +634,13 @@ func calcute_win_tiles_positions(wins):
 				positions.append(symbol);
 
 	return Globals.singletons.Slot.get_tiles_addresses(positions, true);
+
+func get_win_lines(wins):
+	var lines = [];
+	for win in wins:
+		if (!win.has(\"winline\")): continue;
+		lines.append(win.winline);
+	return lines;
 "
 
 [sub_resource type="Resource" id=190]

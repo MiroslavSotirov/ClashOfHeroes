@@ -10,7 +10,7 @@ skeleton_file_res = ExtResource( 2 )
 
 [node name="BigWinAnimation" type="SpineSprite"]
 skeleton_data_res = SubResource( 1 )
-preview_skin = "Default"
+preview_skin = "default"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0

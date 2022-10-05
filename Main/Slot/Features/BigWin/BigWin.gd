@@ -55,7 +55,7 @@ func show_win(target, is_total = false):
 	$BigWinAnimation.reset_pose();
 	if(is_total): $BigWinAnimation.play_anim("start_totalwin", false, 0.8);
 	else: $BigWinAnimation.play_anim_then_loop("start_bigwin", "loop_bigwin");
-	yield($BigWinAnimation, "animation_complete");
+	yield($BigWinAnimation, "animation_completed");
 	if(is_total): $BigWinAnimation.play_anim("loop_totalwin", true);
 	
 	Globals.singletons["Audio"].loop("CoinsEndless");
@@ -94,10 +94,10 @@ func set_text(v):
 
 func switch_to_superwin():
 	transition = true;
-	yield($BigWinAnimation, "animation_complete");
+	yield($BigWinAnimation, "animation_completed");
 	Globals.singletons["Audio"].change_track("background", "SuperWin", 500, 1, 1);
 	$BigWinAnimation.play_anim_then_loop("start_superwin", "loop_superwin");
-	yield($BigWinAnimation, "animation_complete");
+	yield($BigWinAnimation, "animation_completed");
 	in_big_win = false;
 	in_super_win = true;
 	transition = false;
@@ -105,10 +105,10 @@ func switch_to_superwin():
 func switch_to_megawin():
 	print("switch to megawin");
 	transition = true;
-	yield($BigWinAnimation, "animation_complete");
+	yield($BigWinAnimation, "animation_completed");
 	Globals.singletons["Audio"].change_track("background", "MegaWin", 500, 1, 1);
 	$BigWinAnimation.play_anim_then_loop("start_megawin", "loop_megawin");
-	yield($BigWinAnimation, "animation_complete");
+	yield($BigWinAnimation, "animation_completed");
 	in_super_win = false;
 	in_mega_win = true;
 	transition = false;
@@ -119,8 +119,8 @@ func hide():
 #	$MoneyParticles.emitting = false;
 	tween.queue_free();
 	shown = false;
-	yield($BigWinAnimation, "animation_complete");
-	if(transition): yield($BigWinAnimation, "animation_complete");
+	yield($BigWinAnimation, "animation_completed");
+	if(transition): yield($BigWinAnimation, "animation_completed");
 	if(in_big_win): $BigWinAnimation.play_anim("end_bigwin", false);
 	elif(in_super_win): $BigWinAnimation.play_anim("end_superwin", false);
 	elif(in_mega_win): $BigWinAnimation.play_anim("end_megawin", false);
@@ -128,7 +128,7 @@ func hide():
 	var main_theme = "MainTheme" if !Globals.fsm_data["in_freespins"] else "BonusTheme";
 	Globals.singletons["Audio"].change_track("background", main_theme, 1500, 1, 1);
 	
-	yield($BigWinAnimation, "animation_complete");
+	yield($BigWinAnimation, "animation_completed");
 	$BigWinAnimationPlayer.play("Hide");
 	
 	yield($BigWinAnimationPlayer, "animation_finished");

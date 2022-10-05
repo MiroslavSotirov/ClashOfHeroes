@@ -1,12 +1,17 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=6 format=2]
 
 [ext_resource path="res://Main/Slot/Tiles/TileDescription.gd" type="Script" id=1]
 [ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.atlas" type="SpineAtlasResource" id=2]
 [ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.json" type="SpineSkeletonFileResource" id=3]
 
+[sub_resource type="SpineAnimationMix" id=2]
+from = "popup"
+to = "popup"
+
 [sub_resource type="SpineSkeletonDataResource" id=1]
 atlas_res = ExtResource( 2 )
 skeleton_file_res = ExtResource( 3 )
+animation_mixes = [ SubResource( 2 ) ]
 
 [resource]
 script = ExtResource( 1 )

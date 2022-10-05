@@ -65,6 +65,7 @@ func hide(animationType = AnimationType.SPINE, animation = "hide", timescale = 1
 	
 func win_popup():
 	# TODO fix the mess with the description
+	modulate = Color.white;
 	return popup(AnimationType.SPINE, description.spine_win_anim, description.spine_win_anim_animation_repeat, 1);
 
 func stop_popup():
@@ -135,7 +136,7 @@ func loop_animaiton(type = AnimationType.SPINE, name = null, timescale_override 
 		#print("I am playing spine animation.... ", name);
 		show_spine_sprite();
 		$SpineSprite.set_skin(description.skin);
-		$SpineSprite.play_anim(name, true, timescale_override, has_delay);
+		$SpineSprite.play_anim(name, true, timescale_override);
 		return;
 	else:
 		pass; # TODO
