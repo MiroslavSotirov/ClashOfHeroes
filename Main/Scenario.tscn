@@ -157,6 +157,7 @@ func enter() -> void:
 
 	Globals.fsm_data[\"spin_start_command\"] = false;
 	Globals.fsm_data[\"wins_shown\"] = false;
+	Globals.fsm_data[\"reverse_spin\"] = false;
 	
 #	var has_respin = has_respin(Globals.singletons[\"Networking\"].lastround);
 	
@@ -264,6 +265,11 @@ func enter() -> void:
 		Globals.singletons[\"TotalWinBar\"].hide();
 
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = true;
+	if(Globals.fsm_data[\"reverse_spin\"]):
+		Globals.singletons[\"Slot\"].set_reels_speed_multiplier(-1.0);
+	else:
+		Globals.singletons[\"Slot\"].set_reels_speed_multiplier(1.0);
+	
 	if(Globals.fsm_data[\"has_push_reels\"]):
 		Globals.singletons[\"Slot\"].start_spin([0]);
 	else:
@@ -758,7 +764,9 @@ func enter() -> void:
 	yield(Globals.singletons[\"Respin\"], \"start_spin\");
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
+	Globals.fsm_data[\"reverse_spin\"] = true;
 	Globals.fsm_data[\"respin_fx_complete\"] = true;
+
 
 func update(_object, _delta: float) -> void:
 	pass
@@ -922,6 +930,7 @@ func enter() -> void:
 
 	Globals.fsm_data[\"has_push_reels\"] = true;
 	Globals.fsm_data[\"push_reels_complete\"] = true;
+	Globals.fsm_data[\"reverse_spin\"] = true;
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 	Globals.singletons[\"Background\"].change_to(\"Normal\");
