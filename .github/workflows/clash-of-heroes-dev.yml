@@ -36,9 +36,9 @@ jobs:
       - name: Get Godot
         uses: wei/wget@v1
         with:
-          args: https://downloads.tuxfamily.org/godotengine/3.4.2/Godot_v3.4.2-stable_linux_headless.64.zip
+          args: https://downloads.tuxfamily.org/godotengine/3.4.5/Godot_v3.4.5-stable_linux_headless.64.zip
       - run: | 
-          unzip Godot_v3.4.2-stable_linux_headless.64.zip
+          unzip Godot_v3.4.5-stable_linux_headless.64.zip
       - name: Build ClashOfHeroes
         continue-on-error: true
         run: | 
