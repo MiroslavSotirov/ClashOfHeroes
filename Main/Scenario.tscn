@@ -158,7 +158,6 @@ func enter() -> void:
 	Globals.fsm_data[\"spin_start_command\"] = false;
 	Globals.fsm_data[\"wins_shown\"] = false;
 	Globals.fsm_data[\"reverse_spin\"] = false;
-	
 #	var has_respin = has_respin(Globals.singletons[\"Networking\"].lastround);
 	
 	if(JS.enabled):
@@ -269,7 +268,7 @@ func enter() -> void:
 		Globals.singletons[\"Slot\"].set_reels_speed_multiplier(-1.0);
 	else:
 		Globals.singletons[\"Slot\"].set_reels_speed_multiplier(1.0);
-	
+		
 	if(Globals.fsm_data[\"has_push_reels\"]):
 		Globals.singletons[\"Slot\"].start_spin([0]);
 	else:
@@ -579,17 +578,17 @@ func enter() -> void:
 	print(\"### SHOW LINE WINS STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
 	var slot = Globals.singletons.Slot;
-	var win_tiles_positions = calculate_win_tiles_positions(data.wins);
-	var win_lines = get_win_lines(data.wins);
-	
+	var win_tiles_positions = calcute_win_tiles_positions(data.wins);
+
 	JS.output(\"linewin\", \"elysiumgamefeature\");
 
 	if (data[\"wins_lines_total\"] > 0.0):
 		Globals.singletons[\"Audio\"].play(\"WinLine\");
 		slot.win_popup_tiles(win_tiles_positions);
-		Globals.singletons[\"WinLines\"].show_lines(win_lines, win_tiles_positions);
+		var win_lines = get_win_lines(data.wins);
+		Globals.singletons[\"WinLines\"].show_lines(win_lines, win_tiles_positions)
 		yield(Globals.singletons[\"WinLines\"], \"show_end\");
-		#Globals.singletons[\"WinLines\"].loop_lines();
+		Globals.singletons[\"WinLines\"].loop_lines();
 		if(data[\"wins_lines_total\"] > Globals.singletons[\"BigWin\"].big_win_limit):
 			JS.output(\"bigwin\", \"elysiumgamefeature\");
 			Globals.singletons[\"BigWin\"].show_win(data[\"wins_lines_total\"]);
@@ -626,7 +625,7 @@ func bangup_wins(n, multiplier):
 	Globals.singletons[\"Audio\"].play(\"CoinsEndlessHit\")
 	emit_signal(\"bangup_end\");
 	
-func calculate_win_tiles_positions(wins):
+func calcute_win_tiles_positions(wins):
 	if (wins == null): return {};
 
 	var positions = [];
@@ -640,12 +639,14 @@ func calculate_win_tiles_positions(wins):
 				positions.append(symbol);
 
 	return Globals.singletons.Slot.get_tiles_addresses(positions, true);
-
+	
 func get_win_lines(wins):
+	if (wins == null): return [];
 	var lines = [];
 	for win in wins:
 		if (!win.has(\"winline\")): continue;
-		lines.append(win.winline);
+		lines.append(win.winline)
+
 	return lines;
 "
 
@@ -756,7 +757,8 @@ func enter() -> void:
 	if (!has_respin):
 		Globals.fsm_data[\"respin_fx_complete\"] = true;
 		return;
-
+		
+	Globals.singletons[\"WinLines\"].hide_lines();
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\");
 	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 	
@@ -766,7 +768,6 @@ func enter() -> void:
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.fsm_data[\"reverse_spin\"] = true;
 	Globals.fsm_data[\"respin_fx_complete\"] = true;
-
 
 func update(_object, _delta: float) -> void:
 	pass
@@ -893,6 +894,7 @@ func enter() -> void:
 		Globals.fsm_data[\"push_reels_complete\"] = true;
 		Globals.fsm_data[\"has_push_reels\"] = false;
 		return;
+	Globals.singletons[\"WinLines\"].hide_lines();
 
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\");
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
@@ -927,10 +929,10 @@ func enter() -> void:
 	tween.queue_free();
 	#Globals.singletons[\"Respin\"].play_anim();
 	yield(Globals.singletons[\"PushReels\"], \"start_spin\");
-
+	
+	Globals.fsm_data[\"reverse_spin\"] = true;
 	Globals.fsm_data[\"has_push_reels\"] = true;
 	Globals.fsm_data[\"push_reels_complete\"] = true;
-	Globals.fsm_data[\"reverse_spin\"] = true;
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 	Globals.singletons[\"Background\"].change_to(\"Normal\");

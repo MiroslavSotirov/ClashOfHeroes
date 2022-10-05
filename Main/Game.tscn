@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=2]
+[gd_scene load_steps=120 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Main/Slot/Features/SwapTiles/Swing.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/prah1.png" type="Texture" id=14]
 [ext_resource path="res://Main/Slot/Features/RandomWilds/WildsSystem.gd" type="Script" id=15]
+[ext_resource path="res://Main/Slot/Features/PushReels.gd" type="Script" id=16]
 [ext_resource path="res://Main/Animations/Characters/Robot2.json" type="SpineSkeletonFileResource" id=17]
 [ext_resource path="res://Main/Slot/Features/SideCharacters.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Main/Animations/Characters/Robot2.atlas" type="SpineAtlasResource" id=19]
@@ -2061,6 +2062,7 @@ loop = false
 
 [node name="PushReels" type="Node2D" parent="SlotContainer/Slot/Features"]
 visible = false
+script = ExtResource( 16 )
 
 [node name="Crash" type="SpineSprite" parent="SlotContainer/Slot/Features/PushReels"]
 position = Vector2( -778.5, 552.61 )
