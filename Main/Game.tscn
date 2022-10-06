@@ -639,6 +639,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("Wild:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=474]
 resource_name = "Show"
@@ -820,6 +832,18 @@ tracks/13/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Wild:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( -30, 0 ) ]
 }
 
 [sub_resource type="Gradient" id=423]

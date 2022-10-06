@@ -1,23 +1,18 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://Main/Slot/Tiles/TileDescription.gd" type="Script" id=1]
-[ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.atlas" type="SpineAtlasResource" id=2]
-[ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.json" type="SpineSkeletonFileResource" id=3]
-
-[sub_resource type="SpineAnimationMix" id=2]
-from = "popup"
-to = "popup"
+[ext_resource path="res://Main/Animations/Symbols/symbol_big_Wild.atlas" type="SpineAtlasResource" id=2]
+[ext_resource path="res://Main/Animations/Symbols/symbol_big_Wild.json" type="SpineSkeletonFileResource" id=3]
 
 [sub_resource type="SpineSkeletonDataResource" id=1]
 atlas_res = ExtResource( 2 )
 skeleton_file_res = ExtResource( 3 )
-animation_mixes = [ SubResource( 2 ) ]
 
 [resource]
 script = ExtResource( 1 )
 id = 11
-size_x = 1
-size_y = 1
+size_x = 3
+size_y = 3
 spine_data = SubResource( 1 )
 popup = false
 popup_z_change = 5
@@ -31,8 +26,8 @@ win_popup_sfx = ""
 spine_idle_anim = ""
 spine_win_anim = "popup"
 spine_win_anim_animation_repeat = 1
-image_offset = Vector2( 0, 0 )
-image_size = Vector2( 244, 245 )
+image_offset = Vector2( 569, 490 )
+image_size = Vector2( 976, 735 )
 bounds = Vector2( 0, 0 )
 tile_scale = Vector2( 1, 1 )
 posible_reels = [  ]
