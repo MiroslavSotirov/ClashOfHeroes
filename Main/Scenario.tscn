@@ -838,13 +838,16 @@ func enter() -> void:
 	if(data.parsed.expanding_wild == null):
 		Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
 		return;
-
+	var fatdata = data.parsed.expanding_wild.data;
+	
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\");
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\");
 	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomIn\");
 	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
+	
+	var pos = Globals.singletons[\"Slot\"].get_tile_address(fatdata.from);
 	Globals.singletons[\"ExpandingWilds\"].animationPlayer.play(\"Show\");
 	yield(Globals.get_tree().create_timer(0.7), \"timeout\");
 	Globals.singletons[\"Game\"].shake += Vector2.ONE * 20.0;
@@ -902,7 +905,7 @@ func enter() -> void:
 	Globals.singletons[\"PushReels\"].play_anim();
 	
 	yield(Globals.singletons[\"PushReels\"], \"start_push\");
-	
+	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = true;
 	var tween = Tween.new();
 	Globals.add_child(tween);
 	var orgpos = [];
@@ -913,8 +916,9 @@ func enter() -> void:
 				reel.position, reel.position+Vector2(diff, 0), 0.5,
 				Tween.TRANS_QUART, Tween.EASE_OUT)
 	tween.start()
-	
+
 	yield(tween,\"tween_all_completed\");
+	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 	
 	var i = len(Globals.singletons[\"Slot\"].reels)-1;
 	for n in len(Globals.singletons[\"Slot\"].reels):

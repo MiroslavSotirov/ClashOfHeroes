@@ -8,7 +8,7 @@
 [ext_resource path="res://Main/Textures/particles/lightningray5.webp" type="Texture" id=6]
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.01, 0.99, 1 )
+offsets = PoolRealArray( 0, 0.0248756, 0.975, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="Animation" id=1]
@@ -49,7 +49,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 0.25, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
@@ -61,17 +61,29 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 0.25, 1 ),
 "update": 0,
 "values": [ 400.0, 100.0 ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "clear_points"
+} ]
+}
 
 [node name="WinLine" type="Line2D"]
-position = Vector2( 33, 52 )
 width = 256.0
 default_color = Color( 1, 1, 1, 1 )
 gradient = SubResource( 3 )
-texture = ExtResource( 1 )
 texture_mode = 2
 joint_mode = 2
 sharp_limit = 6.283

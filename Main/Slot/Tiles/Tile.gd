@@ -115,12 +115,12 @@ func play_animation(type = AnimationType.SPINE, name = null, times = 1, timescal
 	if (times < 0): return loop_animaiton(type, name, timescale_override, has_delay);
 	if (description.id == _invisible_tile || times == 0):
 		return call_deferred("_on_animation_finished", name);
-
+	
 	if (type == AnimationType.SPINE ):
 		#print("I am playing spine animation.... ", name);
 		show_spine_sprite();
-		$SpineSprite.play_anim(name, false, timescale_override, has_delay);
-		yield($SpineSprite, "animation_complete");
+		$SpineSprite.play_anim(name, false, timescale_override);
+		yield($SpineSprite, "animation_completed");
 		return play_animation(type, name, times - 1, timescale_override, has_delay);
 		
 	if (type == AnimationType.TIMELINE && $AnimationPlayer.has_animation(name)):

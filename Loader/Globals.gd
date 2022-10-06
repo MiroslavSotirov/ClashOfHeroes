@@ -156,8 +156,8 @@ func set_currency(currency):
 	
 func set_stake(stake):
 	current_stake = float(stake);
-	var bar = Globals.singletons["Stateful"].set_stake(stake, "counter");
-	Globals.singletons["SegmentBar"].reset(bar if bar != null else 0);
+	#var bar = Globals.singletons["Stateful"].set_stake(stake, "counter");
+	#Globals.singletons["SegmentBar"].reset(bar if bar != null else 0);
 
 	update_win_configs(stake);
 	

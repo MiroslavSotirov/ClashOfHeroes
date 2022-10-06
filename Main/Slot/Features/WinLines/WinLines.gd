@@ -45,29 +45,40 @@ func show_lines(winline_data, win_data):
 	var slot =  Globals.singletons["Slot"];
 	slot.tint(Color(0.27, 0.27, 0.27, 1), 0.5, win_data);
 	#Globals.singletons["WinlinesFadeAnimationPlayer"].play("To_Winline");
-	for x in win_data:
-		for y in win_data[x]:
-			Globals.singletons["Slot"].get_tile_at(x,y).set_layer(3);
 			
 	_shown = true;
 	_win_data = win_data
 	var win_line_scene = preload("res://Main/Slot/Features/WinLines/WinLineFx.tscn");
 	var promises = [];
 	var i = 0;
-	for line in winline_data:
+	for line in winline_data:		
 		var winline = win_line_scene.instance();
 		$TilesContainer.add_child(winline);
-		winline.init(winlines[line], i);
-		_effects.append(winline);
-		i+= 1;
-		yield(get_tree().create_timer(0.06), "timeout"); 
 		
-	yield(get_tree().create_timer(0.06), "timeout"); 
+		_effects.append(winline);
+		var tiles = [];
+		for x in win_data:
+			for y in win_data[x]:
+				if(winlines[line][x] == y):
+					tiles.append(Vector2(x,y))
+			
+		winline.init(winlines[line], tiles, i);
+		i+= 1;
+		
+	yield(get_tree().create_timer(1.0), "timeout"); 
 	emit_signal("show_end");
 
 func loop_lines():
-	pass;
-
+	for c in $TilesContainer.get_children(): c.visible = false;
+	var i = 0;
+	while _shown:
+		$TilesContainer.get_child(i).popup();
+		yield(get_tree().create_timer(1.0), "timeout")
+		if(!_shown): break;
+		$TilesContainer.get_child(i).visible = false;
+		i+=1;
+		if(i >= $TilesContainer.get_child_count()): i=0;
+		
 func hide_lines():
 	if (!_shown): return;
 	Globals.singletons["Slot"].tint(Color.white, 0.2, _win_data);
