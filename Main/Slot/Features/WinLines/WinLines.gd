@@ -38,7 +38,9 @@ func _ready():
 	
 func show_lines(winline_data, win_data):
 	print(winline_data, win_data)
-	if (_shown): return;
+	if (_shown): 
+		emit_signal("show_end");
+		return;
 	
 	var slot =  Globals.singletons["Slot"];
 	slot.tint(Color(0.27, 0.27, 0.27, 1), 0.5, win_data);
@@ -60,6 +62,7 @@ func show_lines(winline_data, win_data):
 		i+= 1;
 		yield(get_tree().create_timer(0.06), "timeout"); 
 		
+	yield(get_tree().create_timer(0.06), "timeout"); 
 	emit_signal("show_end");
 
 func loop_lines():
