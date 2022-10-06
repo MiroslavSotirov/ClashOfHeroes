@@ -645,6 +645,7 @@ func get_win_lines(wins):
 	var lines = [];
 	for win in wins:
 		if (!win.has(\"winline\")): continue;
+		if(win.winline < 0): continue;
 		lines.append(win.winline)
 
 	return lines;
