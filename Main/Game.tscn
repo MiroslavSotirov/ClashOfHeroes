@@ -2205,8 +2205,7 @@ margin_bottom = -1024.0
 script = ExtResource( 98 )
 
 [node name="Background" type="Sprite" parent="SlotContainer/BigWin"]
-visible = false
-modulate = Color( 0.0470588, 0.0392157, 0.239216, 0.886275 )
+modulate = Color( 0, 0, 0, 0.886275 )
 scale = Vector2( 4096, 4096 )
 texture = SubResource( 424 )
 
