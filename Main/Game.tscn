@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=2]
+[gd_scene load_steps=118 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
@@ -477,13 +477,9 @@ tracks/0/keys = {
 "values": [ Vector2( 0.85, 0.85 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="SpineAtlasResource" id=481]
-
-[sub_resource type="SpineSkeletonFileResource" id=482]
-
 [sub_resource type="SpineSkeletonDataResource" id=471]
-atlas_res = SubResource( 481 )
-skeleton_file_res = SubResource( 482 )
+atlas_res = ExtResource( 20 )
+skeleton_file_res = ExtResource( 45 )
 
 [sub_resource type="SpineSkeletonDataResource" id=472]
 atlas_res = ExtResource( 19 )
@@ -2051,6 +2047,7 @@ skin = "default"
 loop = false
 
 [node name="Respin" type="SpineSprite" parent="SlotContainer/Slot/Features/Respin"]
+visible = false
 skeleton_data_res = SubResource( 479 )
 preview_skin = "Default"
 preview_animation = "-- Empty --"
@@ -2135,6 +2132,10 @@ visible = false
 position = Vector2( 721, 266 )
 scale = Vector2( 0.6, 0.6 )
 skeleton_data_res = SubResource( 471 )
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
 script = ExtResource( 44 )
 skin = "default"
 startanimation = "fight"

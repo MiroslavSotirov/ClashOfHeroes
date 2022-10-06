@@ -7,6 +7,7 @@ func _ready():
 func play_anim():
 	visible = true;
 	$Crash.visible = false;
+	$Respin.visible = false;
 	$Robot.play_anim("fall", false);
 	$Robot.reset_pose();
 	yield(Globals.get_tree().create_timer(0.05), "timeout");
