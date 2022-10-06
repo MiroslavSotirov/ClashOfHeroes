@@ -1,7 +1,7 @@
 {
 "skeleton": {
-	"hash": "AMRN5404cTQ",
-	"spine": "4.1.09",
+	"hash": "KG54a2PgpYI",
+	"spine": "4.1.13",
 	"x": -936.84,
 	"y": -239.33,
 	"width": 1907.68,
@@ -529,7 +529,7 @@
 	{ "name": "Lleg", "bone": "Lleg", "attachment": "robot1/Lleg" },
 	{ "name": "Neck", "bone": "Neck", "attachment": "robot1/Neck" },
 	{ "name": "Head", "bone": "Head", "attachment": "robot1/Head" },
-	{ "name": "horn", "bone": "Head", "color": "ffffff00", "attachment": "robot1/horn", "blend": "screen" },
+	{ "name": "horn", "bone": "Head", "color": "ffffff00", "attachment": "robot1/horn" },
 	{ "name": "fly-Lfist", "bone": "fly-Lfist3" },
 	{ "name": "fly-Lthumb2", "bone": "fly-Lthumb3" },
 	{ "name": "fly-Lthumb1", "bone": "fly-Lthumb1" },

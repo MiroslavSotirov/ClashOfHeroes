@@ -13,7 +13,7 @@
 [ext_resource path="res://Main/Textures/slotcoh/Frame1p2-16.webp" type="Texture" id=12]
 [ext_resource path="res://Main/Textures/slotcoh/FrameFill.webp" type="Texture" id=13]
 [ext_resource path="res://Main/Misc/canvasadditive.tres" type="Material" id=14]
-[ext_resource path="res://Main/Textures/slot/Divider.webp" type="Texture" id=15]
+[ext_resource path="res://Main/Textures/slotcoh/Divider.webp" type="Texture" id=15]
 
 [sub_resource type="Animation" id=9]
 resource_name = "RESET"
@@ -590,6 +590,7 @@ tracks/9/keys = {
 [node name="Normal" type="Node2D"]
 
 [node name="Backlight" type="Node2D" parent="."]
+z_index = -1
 
 [node name="FrameBacklight1White" type="Sprite" parent="Backlight"]
 material = ExtResource( 14 )
@@ -632,7 +633,7 @@ margin_bottom = 355.0
 color = Color( 0.407843, 1, 1, 1 )
 
 [node name="FrameFill" type="Sprite" parent="."]
-z_index = -1
+z_index = -2
 texture = ExtResource( 13 )
 
 [node name="Deviders" type="Node2D" parent="FrameFill"]
