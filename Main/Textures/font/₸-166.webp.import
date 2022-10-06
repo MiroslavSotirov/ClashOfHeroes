@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/8.webp-281509fb283b94fdca9375014da8a2ee.stex"
+path="res://.import/₸-166.webp-f992dc9727c99f5290e01e1b54d39440.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main/Textures/font-fs/8.webp"
-dest_files=[ "res://.import/8.webp-281509fb283b94fdca9375014da8a2ee.stex" ]
+source_file="res://Main/Textures/font/₸-166.webp"
+dest_files=[ "res://.import/₸-166.webp-f992dc9727c99f5290e01e1b54d39440.stex" ]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
