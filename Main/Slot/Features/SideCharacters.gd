@@ -21,6 +21,7 @@ func electrify():
 func show_chr(chr):
 	get_node(chr).visible = true;
 	get_node(chr).play_anim("disappear", true);
+	get_node(chr).set_timescale(2.0, false);
 	get_node(chr).reset_pose();
 	get_node(chr).get_animation_state().get_current(0).set_reverse(true);
 	yield(get_node(chr), "animation_completed")
@@ -35,12 +36,14 @@ func play(anim, delay = 0.0):
 		 yield(get_tree().create_timer(delay), "timeout");
 	$AnimationPlayer.play(anim);
 
-func spine_play(character, anim, idle = "idle", loop = false):
+func spine_play(character, anim, idle = "idle", loop = false, speed = 1.0):
 	get_node(character).reset_pose();
 	if (idle == null):
 		get_node(character).play_anim(anim, loop);
 	else:
 		get_node(character).play_anim_then_loop(anim, idle);
+		
+	if(speed != 1.0): get_node(character).set_timescale(speed, false);
 	
 func get_char(character):
 	return get_node(character);

@@ -681,7 +681,7 @@ position = Vector2( -649, -15 )
 texture = ExtResource( 7 )
 
 [node name="Frame1P2-16" type="Sprite" parent="LeftSide/Side"]
-position = Vector2( 41, 387 )
+position = Vector2( 42, 387 )
 texture = ExtResource( 12 )
 offset = Vector2( 300, 0 )
 

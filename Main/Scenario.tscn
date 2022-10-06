@@ -759,7 +759,7 @@ func enter() -> void:
 		return;
 		
 	Globals.singletons[\"WinLines\"].hide_lines();
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\");
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 2.0);
 	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 	
 	Globals.singletons[\"Respin\"].play_anim();
@@ -899,7 +899,7 @@ func enter() -> void:
 		return;
 	Globals.singletons[\"WinLines\"].hide_lines();
 
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\");
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 2.0);
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
 	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 	Globals.singletons[\"PushReels\"].play_anim();
