@@ -48,8 +48,8 @@ func set_tile(_id, initial_position = null):
 	var x = tile_width / 2 * (description.size_x - 1) if description.size_x > 1 else 0;
 	var y = tile_height / 2 * (description.size_y - 1) if description.size_y > 1 else 0;
 
-	$Image.offset.x = -direction * x + description.image_offset.x;
-	$Image.offset.y = -direction * y + description.image_offset.y;
+	$Image.position.x = -direction * x + description.image_offset.x;
+	$Image.position.y = -direction * y + description.image_offset.y;
 	$SpineSprite.position.x = (-direction * x) * description.tile_scale.x + description.image_offset.x;
 	$SpineSprite.position.y = (-direction * y) * description.tile_scale.y + description.image_offset.y;
 	set_layer(0);

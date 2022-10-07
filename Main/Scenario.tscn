@@ -846,7 +846,7 @@ func enter() -> void:
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 2.0);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 2.0);
-	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
 	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomIn\");
 	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
 	
