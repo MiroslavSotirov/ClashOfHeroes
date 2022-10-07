@@ -108,7 +108,7 @@ skeleton_file_res = ExtResource( 1 )
 z_index = 1
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_horizontal_guides_": [ -222.0 ]
+"_edit_horizontal_guides_": [ -222.0, 532.0 ]
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -121,9 +121,8 @@ anims/RESET = SubResource( 426 )
 anims/Show = SubResource( 427 )
 
 [node name="Boy" type="SpineSprite" parent="."]
-visible = false
 position = Vector2( -818, 467 )
-scale = Vector2( 0.89, 0.89 )
+scale = Vector2( 0.95, 0.95 )
 skeleton_data_res = SubResource( 428 )
 preview_skin = "Default"
 preview_animation = "idle"
@@ -134,7 +133,6 @@ skin = "default"
 startanimation = "idle"
 
 [node name="Girl" type="SpineSprite" parent="."]
-visible = false
 position = Vector2( 753, 507 )
 skeleton_data_res = SubResource( 429 )
 preview_skin = "Default"

@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Main/Textures/slotcoh/FrameTopP2.webp" type="Texture" id=1]
+[ext_resource path="res://Main/Textures/slotcoh/FrameGlow.webp" type="Texture" id=2]
 [ext_resource path="res://Main/Textures/slotcoh/FrameWing1.webp" type="Texture" id=3]
 [ext_resource path="res://Main/Textures/slotcoh/Frame1p2.webp" type="Texture" id=4]
 [ext_resource path="res://Main/Textures/slotcoh/FrameBacklight1White.webp" type="Texture" id=5]
@@ -14,6 +15,110 @@
 [ext_resource path="res://Main/Textures/slotcoh/FrameFill.webp" type="Texture" id=13]
 [ext_resource path="res://Main/Misc/canvasadditive.tres" type="Material" id=14]
 [ext_resource path="res://Main/Textures/slotcoh/Divider.webp" type="Texture" id=15]
+[ext_resource path="res://Main/Textures/slotcoh/FrameGlow2.png" type="Texture" id=16]
+
+[sub_resource type="Animation" id=16]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("FrameBurst1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.498039 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.498039 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FrameBurst1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.49, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.5, 2 ), Vector2( -2, 3 ), Vector2( -1, 1 ), Vector2( -1.5, 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FrameBurst2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FrameBurst2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 3 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("FrameBurst1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FrameBurst1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FrameBurst2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FrameBurst2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "RESET"
@@ -189,6 +294,109 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 350, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("FrameBurst1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.498039 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.498039 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FrameBurst1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.49, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.5, 2 ), Vector2( -2, 3 ), Vector2( -1, 1 ), Vector2( -1.5, 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FrameBurst2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FrameBurst2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 3 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("FrameBurst1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FrameBurst1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FrameBurst2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FrameBurst2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -465,6 +673,42 @@ tracks/7/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("FrameGlow2:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.435294, 0.435294, 0.435294, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("FrameGlow2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("FrameGlow:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Show"
@@ -586,6 +830,115 @@ tracks/9/keys = {
 "update": 1,
 "values": [ false, true, false ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("FrameGlow2:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 1.05, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("FrameGlow2:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 1.05, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("FrameGlow:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 1.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/13/type = "method"
+tracks/13/path = NodePath("FrameGlow3/AnimationPlayer")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Idle", -1, 1.0, false ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=18]
+light_mode = 2
+
+[sub_resource type="Animation" id=19]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.560784 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [node name="Normal" type="Node2D"]
 
@@ -686,11 +1039,6 @@ position = Vector2( 42, 387 )
 texture = ExtResource( 12 )
 offset = Vector2( 300, 0 )
 
-[node name="FrameBurst1" type="Sprite" parent="LeftSide/Side"]
-visible = false
-position = Vector2( 27, 438 )
-texture = ExtResource( 10 )
-
 [node name="FrameWing1" type="Sprite" parent="LeftSide/Side"]
 show_behind_parent = true
 position = Vector2( -54, 21 )
@@ -701,6 +1049,23 @@ show_behind_parent = true
 position = Vector2( -8, 91 )
 rotation = -0.349066
 texture = ExtResource( 6 )
+
+[node name="Burstfx" type="Node2D" parent="LeftSide/Side"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftSide/Side/Burstfx"]
+anims/Idle = SubResource( 16 )
+anims/RESET = SubResource( 17 )
+
+[node name="FrameBurst1" type="Sprite" parent="LeftSide/Side/Burstfx"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 437 )
+texture = ExtResource( 10 )
+offset = Vector2( 25, 0 )
+
+[node name="FrameBurst2" type="Sprite" parent="LeftSide/Side/Burstfx"]
+position = Vector2( 0, 438 )
+texture = ExtResource( 10 )
+offset = Vector2( 30, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LeftSide"]
 anims/RESET = SubResource( 9 )
@@ -738,11 +1103,6 @@ position = Vector2( 41, 387 )
 texture = ExtResource( 12 )
 offset = Vector2( 300, 0 )
 
-[node name="FrameBurst1" type="Sprite" parent="RightSide/Side"]
-visible = false
-position = Vector2( 27, 438 )
-texture = ExtResource( 10 )
-
 [node name="FrameWing1" type="Sprite" parent="RightSide/Side"]
 show_behind_parent = true
 position = Vector2( -54, 21 )
@@ -754,6 +1114,23 @@ position = Vector2( -8, 91 )
 rotation = -0.349066
 texture = ExtResource( 6 )
 
+[node name="Burstfx" type="Node2D" parent="RightSide/Side"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RightSide/Side/Burstfx"]
+anims/Idle = SubResource( 14 )
+anims/RESET = SubResource( 15 )
+
+[node name="FrameBurst1" type="Sprite" parent="RightSide/Side/Burstfx"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 437 )
+texture = ExtResource( 10 )
+offset = Vector2( 25, 0 )
+
+[node name="FrameBurst2" type="Sprite" parent="RightSide/Side/Burstfx"]
+position = Vector2( 0, 438 )
+texture = ExtResource( 10 )
+offset = Vector2( 30, 0 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="RightSide"]
 anims/RESET = SubResource( 10 )
 anims/Show = SubResource( 11 )
@@ -761,3 +1138,33 @@ anims/Show = SubResource( 11 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 8 )
 anims/Show = SubResource( 5 )
+
+[node name="FrameGlow" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.180392, 0.180392, 0.180392, 1 )
+light_mask = 2
+material = SubResource( 18 )
+position = Vector2( 0, -82 )
+scale = Vector2( 4.03, 4 )
+texture = ExtResource( 2 )
+
+[node name="FrameGlow2" type="Sprite" parent="."]
+modulate = Color( 0.435294, 0.435294, 0.435294, 1 )
+material = ExtResource( 14 )
+position = Vector2( 0, -82 )
+scale = Vector2( 4.03, 4 )
+texture = ExtResource( 2 )
+
+[node name="FrameGlow3" type="Sprite" parent="."]
+visible = false
+material = ExtResource( 14 )
+position = Vector2( 5, -84 )
+scale = Vector2( 4.03, 4 )
+texture = ExtResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FrameGlow3"]
+anims/Idle = SubResource( 19 )
+anims/RESET = SubResource( 20 )
+
+[connection signal="ready" from="LeftSide/Side/Burstfx/AnimationPlayer" to="LeftSide/Side/Burstfx/AnimationPlayer" method="play" binds= [ "Idle" ]]
+[connection signal="ready" from="RightSide/Side/Burstfx/AnimationPlayer" to="RightSide/Side/Burstfx/AnimationPlayer" method="play" binds= [ "Idle" ]]

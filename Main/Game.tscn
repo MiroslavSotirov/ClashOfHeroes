@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://Main/Textures/slotcoh/SpecialSceneBG.webp" type="Texture" id=5]
 [ext_resource path="res://Main/Game.gd" type="Script" id=6]
 [ext_resource path="res://Main/Misc/Fader.gd" type="Script" id=7]
-[ext_resource path="res://Main/Textures/slot/PASBacklight.webp" type="Texture" id=8]
+[ext_resource path="res://Main/Textures/slot/winGlow.webp" type="Texture" id=8]
 [ext_resource path="res://Main/Slot/Scenes/NormalSlotOverlap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Main/Textures/slotcoh/SlotSceneBG.webp" type="Texture" id=10]
 [ext_resource path="res://Main/Animations/Logo/logo.json" type="SpineSkeletonFileResource" id=11]
@@ -30,7 +30,6 @@
 [ext_resource path="res://Main/Slot/Features/ExpandingWilds/ExpandingWilds.gd" type="Script" id=28]
 [ext_resource path="res://Main/Slot/Reels/easings/spin_end.tres" type="Curve" id=29]
 [ext_resource path="res://Main/Slot/Reels/easings/spin_start.tres" type="Curve" id=30]
-[ext_resource path="res://Main/Textures/slot/winGlow.png" type="Texture" id=31]
 [ext_resource path="res://Main/Misc/SlotContainerZoom.gd" type="Script" id=32]
 [ext_resource path="res://Main/UI/UI.gd" type="Script" id=33]
 [ext_resource path="res://Main/UI/default_dynfont_big.tres" type="DynamicFont" id=34]
@@ -89,7 +88,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.321569, 0.0745098, 0, 0 ), Color( 0.176471, 0.223529, 0.176471, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=461]
@@ -211,7 +210,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 3, 7 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -1001, 650 ), Vector2( 1028, -650 ), Vector2( 1028, -650 ) ]
+"values": [ Vector2( 0, 650 ), Vector2( 0, -750 ), Vector2( 0, -750 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Light2D:scale")
@@ -1499,16 +1498,14 @@ __meta__ = {
 }
 
 [node name="Logo" type="Node2D" parent="Intro/Elements"]
-position = Vector2( 0, -159 )
-scale = Vector2( 0.5, 0.5 )
 
 [node name="Positioner" type="Node2D" parent="Intro/Elements/Logo"]
 script = ExtResource( 49 )
 config = {
 "default": {
 "easing": 1.0,
-"position": Vector2( 0, -160 ),
-"scale": Vector2( 0.75, 0.75 ),
+"position": Vector2( 0, 0 ),
+"scale": Vector2( 1, 1 ),
 "scaleX": Vector2( 1, 1 ),
 "scaleXY": Vector2( 1, 1 ),
 "scaleY": Vector2( 1, 1 ),
@@ -1516,12 +1513,13 @@ config = {
 "y": Vector2( 0, 0 )
 },
 "portrait": {
-"position": Vector2( 0, -520 ),
-"scale": Vector2( 0.68, 0.68 )
+"position": Vector2( 0, 0 ),
+"scale": Vector2( 1, 1 )
 }
 }
 
 [node name="SpineSpriteExtension" type="SpineSprite" parent="Intro/Elements/Logo"]
+scale = Vector2( 0.5, 0.5 )
 skeleton_data_res = SubResource( 466 )
 preview_skin = "Default"
 preview_animation = "-- Empty --"
@@ -1534,18 +1532,13 @@ timescale = 0.5
 
 [node name="Message" type="Node2D" parent="Intro/Elements"]
 
-[node name="PasBacklight" type="Sprite" parent="Intro/Elements/Message"]
-position = Vector2( 0, 380 )
-scale = Vector2( 3, 1 )
-texture = ExtResource( 8 )
-
 [node name="Press-Anywhere-To-Continue" type="Sprite" parent="Intro/Elements/Message"]
 modulate = Color( 0.321569, 0.0745098, 0, 0 )
-position = Vector2( 0, 380 )
+position = Vector2( 0, 275 )
 
 [node name="SpriteLangSwap" type="Node" parent="Intro/Elements/Message/Press-Anywhere-To-Continue"]
 script = ExtResource( 87 )
-assetname = "PAC.png"
+assetname = "POS.png"
 propertyname = "texture"
 node = NodePath("..")
 
@@ -1805,7 +1798,7 @@ script = ExtResource( 107 )
 [node name="Normal" parent="SlotContainer/Slot/Overlap/Normal" instance=ExtResource( 9 )]
 
 [node name="FrameDropShadow" type="Sprite" parent="SlotContainer/Slot/Overlap/Normal"]
-position = Vector2( 0, 518 )
+position = Vector2( 0, 454 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 12 )
 
@@ -1813,7 +1806,6 @@ texture = ExtResource( 12 )
 
 [node name="Light2D" type="Light2D" parent="SlotContainer/Slot/Overlap/Light"]
 position = Vector2( -942, 625 )
-rotation = 0.523599
 scale = Vector2( 30, 3 )
 texture = ExtResource( 60 )
 energy = 2.0
@@ -2251,7 +2243,7 @@ modulate = Color( 1, 1, 1, 0.588235 )
 show_behind_parent = true
 position = Vector2( 360, 115 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 31 )
+texture = ExtResource( 8 )
 
 [node name="BigWinAnimationPlayer" type="AnimationPlayer" parent="SlotContainer/BigWin"]
 anims/Hide = SubResource( 98 )
@@ -2286,7 +2278,7 @@ modulate = Color( 1, 1, 1, 0 )
 show_behind_parent = true
 position = Vector2( 0, 115 )
 scale = Vector2( 3, 3 )
-texture = ExtResource( 31 )
+texture = ExtResource( 8 )
 
 [node name="TotalWinbarContainer" type="Control" parent="SlotContainer"]
 anchor_left = 0.5
@@ -2323,7 +2315,7 @@ anims/ShowBottom = SubResource( 375 )
 show_behind_parent = true
 position = Vector2( 0, 115 )
 scale = Vector2( 3, 3 )
-texture = ExtResource( 31 )
+texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer"]
 anims/RESET = SubResource( 408 )

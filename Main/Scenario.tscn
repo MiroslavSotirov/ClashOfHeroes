@@ -836,7 +836,7 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### SWAP TILES FEATURE STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	data.parsed.expanding_wild = {\"data\":{\"from\":4, \"positions\":[0, 1, 2, 3, 4, 5, 6, 7, 8], \"tileid\":10}, \"id\":0, \"type\":\"ExpandingWild\"}
+	#data.parsed.expanding_wild = {\"data\":{\"from\":4, \"positions\":[0, 1, 2, 3, 4, 5, 6, 7, 8], \"tileid\":10}, \"id\":0, \"type\":\"ExpandingWild\"}
 
 	if(data.parsed.expanding_wild == null):
 		Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
