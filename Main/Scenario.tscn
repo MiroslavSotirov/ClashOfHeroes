@@ -299,7 +299,7 @@ func spin_data_received(data):
 func _parse_data(data):
 	#var special_tiles = [11, 12];
 	data.parsed = {};
-	if !(\"features\" in data): data.features = [{\"data\":{\"positions\":[12], \"replacewithid\":8, \"tileid\":1}, \"id\":2, \"type\":\"ReplaceTile\"}];
+	if !(\"features\" in data): data.features = [];#[{\"data\":{\"positions\":[12], \"replacewithid\":8, \"tileid\":1}, \"id\":2, \"type\":\"ReplaceTile\"}];
 
 	data.parsed.randomwild_data = _get_replace_tile_addresses(data, 1);
 	data.parsed.swap_data = _get_replace_tile_addresses(data, 2);
@@ -802,7 +802,6 @@ func enter() -> void:
 	for tile in data.parsed.swap_data.tiles:
 		if(!skip.has(int(tile.x))): skip[int(tile.x)] = [];
 		skip[int(tile.x)].append(int(tile.y));
-	print(skip);
 	
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5, skip);
 	yield(Globals.get_tree().create_timer(0.55), \"timeout\");
