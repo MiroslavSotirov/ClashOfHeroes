@@ -387,7 +387,6 @@ func enter() -> void:
 	
 	Globals.fsm_data[\"reels_stopped\"] = false;
 	Globals.fsm_data[\"wild_feature_complete\"] = false;
-	Globals.fsm_data[\"sword_feature_complete\"] = false;
 
 	#var anticipation_data = data.parsed.anticipation;
 	#if (anticipation_data.value):
@@ -422,6 +421,7 @@ func enter() -> void:
 		#Globals.singletons[\"SegmentBar\"].update(bar);
 
 	#yield(Globals.singletons[\"SegmentBar\"].wait_to_update(), \"completed\");
+	Globals.singletons[\"Background\"].change_to(\"Normal\");
 	Globals.fsm_data[\"reels_stopped\"] = true;
 
 func _anticipation_on():
@@ -814,7 +814,7 @@ func enter() -> void:
 	for swap_data in data.parsed.swap_data.tiles:
 		Globals.singletons[\"SwapTilesSystem\"].activate_on(swap_data.x, swap_data.y, data.parsed.swap_data.targetid);
 
-	yield(Globals.get_tree().create_timer(0.25), \"timeout\");
+	yield(Globals.get_tree().create_timer(0.6), \"timeout\");
 	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
@@ -853,6 +853,7 @@ func enter() -> void:
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 2.0);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 2.0);
+	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
 	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
 	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomIn\");
 	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
@@ -882,7 +883,7 @@ func enter() -> void:
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
-	
+	Globals.singletons[\"Background\"].change_to(\"Normal\", 1.0);
 	Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
 
 
@@ -950,15 +951,15 @@ func enter() -> void:
 		i -= 1;
 
 	tween.queue_free();
+	Globals.singletons[\"Slot\"].reels[0].add_extra_duration(1.0);
 	#Globals.singletons[\"Respin\"].play_anim();
 	yield(Globals.singletons[\"PushReels\"], \"start_spin\");
-	
+
 	Globals.fsm_data[\"reverse_spin\"] = true;
 	Globals.fsm_data[\"has_push_reels\"] = true;
 	Globals.fsm_data[\"push_reels_complete\"] = true;
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
-	Globals.singletons[\"Background\"].change_to(\"Normal\");
 	
 func update(_object, _delta: float) -> void:
 	pass
