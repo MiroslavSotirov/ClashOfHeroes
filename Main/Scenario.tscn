@@ -299,7 +299,7 @@ func spin_data_received(data):
 func _parse_data(data):
 	#var special_tiles = [11, 12];
 	data.parsed = {};
-	if !(\"features\" in data): data.features = [];
+	if !(\"features\" in data): data.features = [{\"data\":{\"positions\":[12], \"replacewithid\":8, \"tileid\":1}, \"id\":2, \"type\":\"ReplaceTile\"}];
 
 	data.parsed.randomwild_data = _get_replace_tile_addresses(data, 1);
 	data.parsed.swap_data = _get_replace_tile_addresses(data, 2);
@@ -797,9 +797,18 @@ func enter() -> void:
 	if(data.parsed.swap_data == null):
 		Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
 		return;
-		
-	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
+	
+	var skip = {};
+	for tile in data.parsed.swap_data.tiles:
+		if(!skip.has(int(tile.x))): skip[int(tile.x)] = [];
+		skip[int(tile.x)].append(int(tile.y));
+	print(skip);
+	
+	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5, skip);
+	yield(Globals.get_tree().create_timer(0.55), \"timeout\");
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"slash\");
+	for swap_data in data.parsed.swap_data.tiles:
+		Globals.singletons[\"SwapTilesSystem\"].highlight(swap_data.x, swap_data.y);
 	yield(Globals.get_tree().create_timer(0.85), \"timeout\");
 	Globals.singletons[\"SwapTilesSystem\"].activate_slash();
 	yield(Globals.get_tree().create_timer(0.05), \"timeout\");
@@ -810,7 +819,6 @@ func enter() -> void:
 	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
-
 
 func update(_object, _delta: float) -> void:
 	pass
@@ -834,7 +842,7 @@ extends VFSMStateBase
 
 
 func enter() -> void:
-	print(\"### SWAP TILES FEATURE STATE: ###\");
+	print(\"### EXPANDING WILD FEATURE STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
 	#data.parsed.expanding_wild = {\"data\":{\"from\":4, \"positions\":[0, 1, 2, 3, 4, 5, 6, 7, 8], \"tileid\":10}, \"id\":0, \"type\":\"ExpandingWild\"}
 

@@ -211,12 +211,15 @@ func remove_tiles(data):
 # example: {1: [0, 2 ], 4: [1,2,3]} - tiles 0 and 2 on reel 1 and 1,2,3 on reel 4 will be skipped
 # of an array of tile ids, example: [10, 11] - all tiles/if any/ with ids of 10 or 11 will be skipped
 func tint(color: Color, duration = 0.0, skip = {}, easing = Tween.EASE_IN_OUT):
+	var skip_is_array = typeof(skip) == TYPE_ARRAY;
 	for i in range(reels.size()):
-		for j in range(reels[i].visibleTilesCount):
+		for j in range(-reels[i].topTileCount, reels[i].visibleTilesCount+reels[i].bottomTileCount):
 			var tile = reels[i].get_tile_at(j);
-			var skip_is_array = typeof(skip) == 19;
-			var skip_tile = skip.has(int(tile.id)) if skip_is_array else skip.has(i) && skip[i].has(j);
-			if (!skip_tile): tile.tint(color, duration);
+			if(skip_is_array):
+				if(!skip.has(int(tile.id))): continue;
+			else:
+				if(skip.has(i) && skip[i].has(j)): continue;
+			tile.tint(color, duration)
 				
 # some backend data reference tiles by their overall index in the slot /not in their reel/ 
 # so this metod converts this index into the tile addres, "address" being the index of the reel 

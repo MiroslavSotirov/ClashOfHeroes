@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ppp.webp-d653ea9da1ef376bdfb016cb68ecd65a.stex"
+path="res://.import/highlightfx.webp-a995dbe801ae1a53669992ed2832b595.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main/Textures/font/ppp.webp"
-dest_files=[ "res://.import/ppp.webp-d653ea9da1ef376bdfb016cb68ecd65a.stex" ]
+source_file="res://Main/Textures/particles/highlightfx.webp"
+dest_files=[ "res://.import/highlightfx.webp-a995dbe801ae1a53669992ed2832b595.stex" ]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

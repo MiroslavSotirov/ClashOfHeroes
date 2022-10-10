@@ -1,7 +1,6 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Main/Textures/slotcoh/FrameTopP2.webp" type="Texture" id=1]
-[ext_resource path="res://Main/Textures/slotcoh/FrameGlow.webp" type="Texture" id=2]
 [ext_resource path="res://Main/Textures/slotcoh/FrameWing1.webp" type="Texture" id=3]
 [ext_resource path="res://Main/Textures/slotcoh/Frame1p2.webp" type="Texture" id=4]
 [ext_resource path="res://Main/Textures/slotcoh/FrameBacklight1White.webp" type="Texture" id=5]
@@ -15,7 +14,6 @@
 [ext_resource path="res://Main/Textures/slotcoh/FrameFill.webp" type="Texture" id=13]
 [ext_resource path="res://Main/Misc/canvasadditive.tres" type="Material" id=14]
 [ext_resource path="res://Main/Textures/slotcoh/Divider.webp" type="Texture" id=15]
-[ext_resource path="res://Main/Textures/slotcoh/FrameGlow2.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=16]
 resource_name = "Idle"
@@ -1146,21 +1144,18 @@ light_mask = 2
 material = SubResource( 18 )
 position = Vector2( 0, -82 )
 scale = Vector2( 4.03, 4 )
-texture = ExtResource( 2 )
 
 [node name="FrameGlow2" type="Sprite" parent="."]
 modulate = Color( 0.435294, 0.435294, 0.435294, 1 )
 material = ExtResource( 14 )
 position = Vector2( 0, -82 )
 scale = Vector2( 4.03, 4 )
-texture = ExtResource( 2 )
 
 [node name="FrameGlow3" type="Sprite" parent="."]
 visible = false
 material = ExtResource( 14 )
 position = Vector2( 5, -84 )
 scale = Vector2( 4.03, 4 )
-texture = ExtResource( 16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FrameGlow3"]
 anims/Idle = SubResource( 19 )
