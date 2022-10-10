@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Main/Textures/slotcoh/FrameTopP2.webp" type="Texture" id=1]
 [ext_resource path="res://Main/Misc/Singleton.gd" type="Script" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://Main/Textures/slotcoh/FrameFill.webp" type="Texture" id=13]
 [ext_resource path="res://Main/Misc/canvasadditive.tres" type="Material" id=14]
 [ext_resource path="res://Main/Textures/slotcoh/Divider.webp" type="Texture" id=15]
+[ext_resource path="res://Main/Textures/particles/FrameFullGlow.webp" type="Texture" id=16]
+[ext_resource path="res://Main/Textures/particles/FrameFullGlow2Normal.webp" type="Texture" id=17]
+[ext_resource path="res://Main/Textures/particles/FrameFullGlow2.webp" type="Texture" id=18]
 
 [sub_resource type="Animation" id=21]
 resource_name = "Hide"
@@ -942,7 +945,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.560784 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.768627 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visible")
@@ -1191,23 +1194,26 @@ anims/Show = SubResource( 5 )
 
 [node name="FrameGlow" type="Sprite" parent="."]
 visible = false
-modulate = Color( 0.180392, 0.180392, 0.180392, 1 )
 light_mask = 2
 material = SubResource( 18 )
 position = Vector2( 0, -82 )
-scale = Vector2( 4.03, 4 )
+scale = Vector2( 3.367, 3.294 )
+texture = ExtResource( 18 )
+normal_map = ExtResource( 17 )
 
 [node name="FrameGlow2" type="Sprite" parent="."]
 modulate = Color( 0.435294, 0.435294, 0.435294, 1 )
 material = ExtResource( 14 )
-position = Vector2( 0, -82 )
-scale = Vector2( 4.03, 4 )
+position = Vector2( 3, -83 )
+scale = Vector2( 3.36702, 3.29373 )
+texture = ExtResource( 18 )
 
 [node name="FrameGlow3" type="Sprite" parent="."]
 visible = false
 material = ExtResource( 14 )
-position = Vector2( 5, -84 )
-scale = Vector2( 4.03, 4 )
+position = Vector2( 1.78186, -84.2182 )
+scale = Vector2( 3.361, 3.257 )
+texture = ExtResource( 16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FrameGlow3"]
 anims/Idle = SubResource( 19 )
