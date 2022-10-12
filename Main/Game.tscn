@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=2]
+[gd_scene load_steps=173 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://Main/Slot/Features/ExpandingWilds/ExpandingWilds.gd" type="Script" id=28]
 [ext_resource path="res://Main/Slot/Reels/easings/spin_end.tres" type="Curve" id=29]
 [ext_resource path="res://Main/Slot/Reels/easings/spin_start.tres" type="Curve" id=30]
+[ext_resource path="res://Main/Textures/animated/fire/frame_34_delay-0.04s.webp" type="Texture" id=31]
 [ext_resource path="res://Main/Misc/SlotContainerZoom.gd" type="Script" id=32]
 [ext_resource path="res://Main/UI/UI.gd" type="Script" id=33]
 [ext_resource path="res://Main/UI/default_dynfont_big.tres" type="DynamicFont" id=34]
@@ -45,24 +46,75 @@
 [ext_resource path="res://Main/SpineSpriteExtension.gd" type="Script" id=44]
 [ext_resource path="res://Main/Animations/Characters/Robot1.json" type="SpineSkeletonFileResource" id=45]
 [ext_resource path="res://Main/Misc/LogoResizer.gd" type="Script" id=46]
+[ext_resource path="res://Main/Textures/animated/fire/frame_08_delay-0.03s.webp" type="Texture" id=47]
+[ext_resource path="res://Main/Textures/animated/fire/frame_17_delay-0.03s.webp" type="Texture" id=48]
 [ext_resource path="res://Main/Slot/Features/Positioner.gd" type="Script" id=49]
+[ext_resource path="res://Main/Textures/animated/fire/frame_29_delay-0.03s.webp" type="Texture" id=50]
+[ext_resource path="res://Main/Textures/animated/fire/frame_30_delay-0.03s.webp" type="Texture" id=51]
+[ext_resource path="res://Main/Textures/animated/fire/frame_51_delay-0.03s.webp" type="Texture" id=52]
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/flare_01.png" type="Texture" id=53]
+[ext_resource path="res://Main/Textures/animated/fire/frame_22_delay-0.04s.webp" type="Texture" id=54]
+[ext_resource path="res://Main/Textures/animated/fire/frame_00_delay-0.03s.webp" type="Texture" id=55]
+[ext_resource path="res://Main/Textures/animated/fire/frame_04_delay-0.04s.webp" type="Texture" id=56]
+[ext_resource path="res://Main/Textures/animated/fire/frame_07_delay-0.04s.webp" type="Texture" id=57]
+[ext_resource path="res://Main/Textures/animated/fire/frame_37_delay-0.04s.webp" type="Texture" id=58]
+[ext_resource path="res://Main/Textures/animated/fire/frame_05_delay-0.03s.webp" type="Texture" id=59]
 [ext_resource path="res://Main/Textures/particles/line.png" type="Texture" id=60]
+[ext_resource path="res://Main/Textures/animated/fire/frame_09_delay-0.03s.webp" type="Texture" id=61]
+[ext_resource path="res://Main/Textures/animated/fire/frame_11_delay-0.03s.webp" type="Texture" id=62]
+[ext_resource path="res://Main/Textures/animated/fire/frame_03_delay-0.03s.webp" type="Texture" id=63]
 [ext_resource path="res://Main/Textures/slot/FrameDropShadow.png" type="Texture" id=64]
+[ext_resource path="res://Main/Textures/animated/fire/frame_15_delay-0.03s.webp" type="Texture" id=65]
+[ext_resource path="res://Main/Textures/animated/fire/frame_21_delay-0.03s.webp" type="Texture" id=66]
 [ext_resource path="res://Main/Misc/ClickWaiter.gd" type="Script" id=67]
+[ext_resource path="res://Main/Textures/animated/fire/frame_32_delay-0.03s.webp" type="Texture" id=68]
 [ext_resource path="res://Main/Textures/slot/Particles2.png" type="Texture" id=69]
 [ext_resource path="res://Main/Slot/Tiles/TileScene.tscn" type="PackedScene" id=70]
+[ext_resource path="res://Main/Textures/animated/fire/frame_10_delay-0.04s.webp" type="Texture" id=71]
 [ext_resource path="res://Main/Textures/slot/Particles1.png" type="Texture" id=72]
+[ext_resource path="res://Main/Textures/animated/fire/frame_36_delay-0.03s.webp" type="Texture" id=73]
+[ext_resource path="res://Main/Textures/animated/fire/frame_27_delay-0.03s.webp" type="Texture" id=74]
+[ext_resource path="res://Main/Textures/animated/fire/frame_28_delay-0.04s.webp" type="Texture" id=75]
+[ext_resource path="res://Main/Textures/animated/fire/frame_19_delay-0.04s.webp" type="Texture" id=76]
+[ext_resource path="res://Main/Textures/animated/fire/frame_12_delay-0.03s.webp" type="Texture" id=77]
+[ext_resource path="res://Main/Textures/animated/fire/frame_02_delay-0.03s.webp" type="Texture" id=78]
+[ext_resource path="res://Main/Textures/animated/fire/frame_20_delay-0.03s.webp" type="Texture" id=79]
+[ext_resource path="res://Main/Textures/animated/fire/frame_24_delay-0.03s.webp" type="Texture" id=80]
+[ext_resource path="res://Main/Textures/animated/fire/frame_35_delay-0.03s.webp" type="Texture" id=81]
+[ext_resource path="res://Main/Textures/animated/fire/frame_13_delay-0.04s.webp" type="Texture" id=82]
+[ext_resource path="res://Main/Textures/animated/fire/frame_14_delay-0.03s.webp" type="Texture" id=83]
+[ext_resource path="res://Main/Textures/animated/fire/frame_45_delay-0.03s.webp" type="Texture" id=84]
+[ext_resource path="res://Main/Textures/animated/fire/frame_46_delay-0.04s.webp" type="Texture" id=85]
+[ext_resource path="res://Main/Textures/animated/fire/frame_33_delay-0.03s.webp" type="Texture" id=86]
 [ext_resource path="res://Main/Misc/LanguageAssetSwapper.gd" type="Script" id=87]
+[ext_resource path="res://Main/Textures/animated/fire/frame_01_delay-0.04s.webp" type="Texture" id=88]
 [ext_resource path="res://Main/UI/base_big_font.tres" type="BitmapFont" id=89]
+[ext_resource path="res://Main/Textures/animated/fire/frame_23_delay-0.03s.webp" type="Texture" id=90]
+[ext_resource path="res://Main/Textures/animated/fire/frame_25_delay-0.04s.webp" type="Texture" id=91]
+[ext_resource path="res://Main/Textures/animated/fire/frame_40_delay-0.04s.webp" type="Texture" id=92]
+[ext_resource path="res://Main/Textures/animated/fire/frame_41_delay-0.03s.webp" type="Texture" id=93]
+[ext_resource path="res://Main/Textures/animated/fire/frame_47_delay-0.03s.webp" type="Texture" id=94]
+[ext_resource path="res://Main/Textures/animated/fire/frame_06_delay-0.03s.webp" type="Texture" id=95]
+[ext_resource path="res://Main/Textures/animated/fire/frame_18_delay-0.03s.webp" type="Texture" id=96]
+[ext_resource path="res://Main/Textures/animated/fire/frame_31_delay-0.04s.webp" type="Texture" id=97]
 [ext_resource path="res://Main/Slot/Features/BigWin/BigWin.gd" type="Script" id=98]
 [ext_resource path="res://Main/Slot/Features/WinLines/WinBar.gd" type="Script" id=99]
 [ext_resource path="res://Main/Slot/Features/WinLines/WinLines.gd" type="Script" id=100]
+[ext_resource path="res://Main/Textures/animated/fire/frame_26_delay-0.03s.webp" type="Texture" id=101]
+[ext_resource path="res://Main/Textures/animated/fire/frame_43_delay-0.04s.webp" type="Texture" id=102]
+[ext_resource path="res://Main/Textures/animated/fire/frame_44_delay-0.03s.webp" type="Texture" id=103]
+[ext_resource path="res://Main/Textures/animated/fire/frame_48_delay-0.03s.webp" type="Texture" id=104]
 [ext_resource path="res://Main/Textures/slot/slot-grid.png" type="Texture" id=105]
 [ext_resource path="res://Main/Slot/Features/Background.gd" type="Script" id=106]
 [ext_resource path="res://Main/Slot/Features/SpriteChanger.gd" type="Script" id=107]
 [ext_resource path="res://Main/AudioSystem.gd" type="Script" id=108]
+[ext_resource path="res://Main/Textures/animated/fire/frame_49_delay-0.04s.webp" type="Texture" id=109]
+[ext_resource path="res://Main/Textures/animated/fire/frame_38_delay-0.03s.webp" type="Texture" id=110]
+[ext_resource path="res://Main/Textures/animated/fire/frame_42_delay-0.03s.webp" type="Texture" id=111]
+[ext_resource path="res://Main/Textures/animated/fire/frame_50_delay-0.03s.webp" type="Texture" id=112]
+[ext_resource path="res://Main/Textures/animated/fire/frame_16_delay-0.04s.webp" type="Texture" id=113]
 [ext_resource path="res://Main/Misc/Singleton.gd" type="Script" id=114]
+[ext_resource path="res://Main/Textures/animated/fire/frame_39_delay-0.03s.webp" type="Texture" id=115]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 0 )
@@ -195,6 +247,336 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+
+[sub_resource type="Animation" id=481]
+resource_name = "Hide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flames:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flames/FlameSprite:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flames/FlameSprite2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Flames/FlameSprite3:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Flames/FlameSprite4:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Flames:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=482]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flames:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flames/FlameSprite:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flames/FlameSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Flames/FlameSprite2:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Flames/FlameSprite2:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Flames/FlameSprite3:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Flames/FlameSprite3:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Flames/FlameSprite4:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Flames/FlameSprite4:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Flames:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=483]
+resource_name = "Show"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flames:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Flames/FlameSprite:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Flames/FlameSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Flames/FlameSprite2:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Flames/FlameSprite2:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Flames/FlameSprite3:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Flames/FlameSprite3:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Flames/FlameSprite4:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Flames/FlameSprite4:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Flames:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=484]
+animations = [ {
+"frames": [ ExtResource( 55 ), ExtResource( 88 ), ExtResource( 78 ), ExtResource( 63 ), ExtResource( 56 ), ExtResource( 59 ), ExtResource( 95 ), ExtResource( 57 ), ExtResource( 47 ), ExtResource( 61 ), ExtResource( 71 ), ExtResource( 62 ), ExtResource( 77 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 65 ), ExtResource( 113 ), ExtResource( 48 ), ExtResource( 96 ), ExtResource( 76 ), ExtResource( 79 ), ExtResource( 66 ), ExtResource( 54 ), ExtResource( 90 ), ExtResource( 80 ), ExtResource( 91 ), ExtResource( 101 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 97 ), ExtResource( 68 ), ExtResource( 86 ), ExtResource( 31 ), ExtResource( 81 ), ExtResource( 73 ), ExtResource( 58 ), ExtResource( 110 ), ExtResource( 115 ), ExtResource( 92 ), ExtResource( 93 ), ExtResource( 111 ), ExtResource( 102 ), ExtResource( 103 ), ExtResource( 84 ), ExtResource( 85 ), ExtResource( 94 ), ExtResource( 104 ), ExtResource( 109 ), ExtResource( 112 ), ExtResource( 52 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
 
 [sub_resource type="Animation" id=134]
 resource_name = "Idle"
@@ -1546,7 +1928,6 @@ node = NodePath("..")
 anims/show = SubResource( 452 )
 
 [node name="SlotContainer" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 512, 512 )
@@ -1792,6 +2173,42 @@ start_easing_curve = ExtResource( 30 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 107 )
+
+[node name="FlameAnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Slot/Overlap"]
+anims/Hide = SubResource( 481 )
+anims/RESET = SubResource( 482 )
+anims/Show = SubResource( 483 )
+script = ExtResource( 114 )
+
+[node name="Flames" type="Node2D" parent="SlotContainer/Slot/Overlap"]
+
+[node name="FlameSprite" type="AnimatedSprite" parent="SlotContainer/Slot/Overlap/Flames"]
+material = ExtResource( 39 )
+position = Vector2( 834, -74 )
+rotation = 1.83259
+scale = Vector2( 3.5, 3.5 )
+frames = SubResource( 484 )
+
+[node name="FlameSprite2" type="AnimatedSprite" parent="SlotContainer/Slot/Overlap/Flames"]
+material = ExtResource( 39 )
+position = Vector2( 834, -74 )
+rotation = 1.83259
+scale = Vector2( -3.5, 3.5 )
+frames = SubResource( 484 )
+
+[node name="FlameSprite3" type="AnimatedSprite" parent="SlotContainer/Slot/Overlap/Flames"]
+material = ExtResource( 39 )
+position = Vector2( -834, -74 )
+rotation = 1.309
+scale = Vector2( 3.5, -3.5 )
+frames = SubResource( 484 )
+
+[node name="FlameSprite4" type="AnimatedSprite" parent="SlotContainer/Slot/Overlap/Flames"]
+material = ExtResource( 39 )
+position = Vector2( -834, -74 )
+rotation = 1.5708
+scale = Vector2( -3.5, -3.5 )
+frames = SubResource( 484 )
 
 [node name="Normal" type="Node2D" parent="SlotContainer/Slot/Overlap"]
 

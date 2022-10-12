@@ -25,6 +25,7 @@ func play_anim():
 		yield(Globals.get_tree().create_timer(0.1), "timeout");
 	Globals.singletons["Game"].shake.y -= 50.0;
 	Globals.singletons["Background"].change_to("Special", 0.5);
+	Globals.singletons["FlameAnimationPlayer"].play("Show");
 	emit_signal("start_spin");
 	$Respin.visible = true;
 	$Respin.play_anim("popup", false);
@@ -32,4 +33,4 @@ func play_anim():
 	$Respin.play_anim("close", false);
 	yield($Respin, "animation_completed")
 	$Respin.visible = false;
-	Globals.singletons["Background"].change_to("Normal");
+

@@ -421,7 +421,10 @@ func enter() -> void:
 		#Globals.singletons[\"SegmentBar\"].update(bar);
 
 	#yield(Globals.singletons[\"SegmentBar\"].wait_to_update(), \"completed\");
-	Globals.singletons[\"Background\"].change_to(\"Normal\");
+	if(Globals.singletons[\"Background\"].current == \"Special\"):
+		Globals.singletons[\"Background\"].change_to(\"Normal\");
+		Globals.singletons[\"FlameAnimationPlayer\"].play(\"Hide\");
+		print(\"HIDE FLAME\");
 	Globals.fsm_data[\"reels_stopped\"] = true;
 
 func _anticipation_on():
@@ -921,6 +924,7 @@ func enter() -> void:
 
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 2.0);
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
+	Globals.singletons[\"FlameAnimationPlayer\"].play(\"Show\");
 	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 	Globals.singletons[\"PushReels\"].play_anim();
 	
