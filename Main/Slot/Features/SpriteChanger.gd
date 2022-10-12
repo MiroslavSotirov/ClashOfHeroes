@@ -20,8 +20,11 @@ func maybe_change_to(condition, state, otherwise, duration = 1.0, easing = Tween
 	change_to(next, duration, easing);
 		
 func change_to(state, duration = 1.0, easing = Tween.EASE_IN_OUT):
+	prints("BG TO", state)
 	if (state == _current): return;
-
+	_previous = _current;
+	_current = state;
+	
 	if (_tween == null):
 		_tween = Tween.new();
 		add_child(_tween);
@@ -37,12 +40,9 @@ func change_to(state, duration = 1.0, easing = Tween.EASE_IN_OUT):
 	_tween.start();
 	yield(_tween, "tween_all_completed");
 	move_child(sprite, 0);
-	if (_current != null):
-		var old_sprite = get_node(_current);
+	if (_previous != null):
+		var old_sprite = get_node(_previous);
 		old_sprite.visible = false;
-
-	_previous = _current;
-	_current = state;
 	
 	emit_signal("transition_finished");
 	
