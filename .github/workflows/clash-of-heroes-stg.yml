@@ -53,6 +53,7 @@ jobs:
         id: tag
         run: |
           packageVersion=$(cat ClashOfHeroes/package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[[:space:]]') && ((packageVersion++))
+          sed -i -e "s/stg_version\":.*/stg_version\": \"${packageVersion}\"/g" ClashOfHeroes/package.json
           echo "::set-output name=new_tag::$packageVersion"
       - name: Build docker image and push to docker repo
         run: |
