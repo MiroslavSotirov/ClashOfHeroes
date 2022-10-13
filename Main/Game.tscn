@@ -1,4 +1,4 @@
-[gd_scene load_steps=230 format=2]
+[gd_scene load_steps=234 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
@@ -168,6 +168,10 @@
 [ext_resource path="res://Main/Textures/animated/creaping2/12.webp" type="Texture" id=166]
 [ext_resource path="res://Main/Textures/animated/creaping2/5.webp" type="Texture" id=167]
 [ext_resource path="res://Main/Textures/animated/creaping2/9.webp" type="Texture" id=168]
+[ext_resource path="res://Main/Textures/slotcoh/SlotSceneBGWindows.webp" type="Texture" id=169]
+
+[sub_resource type="CanvasItemMaterial" id=489]
+light_mode = 2
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 0 )
@@ -194,6 +198,62 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=490]
+resource_name = "Idle"
+length = 7.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 650 ), Vector2( 0, -750 ), Vector2( 0, -750 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 3, 7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 30, 3 ), Vector2( 30, 10 ), Vector2( 30, 3 ), Vector2( 30, 3 ) ]
+}
+
+[sub_resource type="Animation" id=491]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -942, 625 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 30, 3 ) ]
 }
 
 [sub_resource type="Animation" id=461]
@@ -2134,6 +2194,14 @@ mouse_filter = 2
 scale = Vector2( 0.65, 0.65 )
 texture = ExtResource( 10 )
 
+[node name="SlotSceneBgWindows" type="Sprite" parent="Intro/Elements/Backround/normal"]
+modulate = Color( 0.478431, 0.478431, 0.478431, 1 )
+light_mask = 2
+material = SubResource( 489 )
+position = Vector2( -27.5555, -161.778 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 169 )
+
 [node name="CornerFades" type="Node2D" parent="Intro/Elements/Backround"]
 scale = Vector2( 0.65, 0.65 )
 
@@ -2228,6 +2296,21 @@ node = NodePath("..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Intro/Elements/Message"]
 anims/show = SubResource( 452 )
 
+[node name="Light" type="Node2D" parent="Intro/Elements"]
+
+[node name="Light2D" type="Light2D" parent="Intro/Elements/Light"]
+position = Vector2( -942, 625 )
+scale = Vector2( 30, 3 )
+texture = ExtResource( 60 )
+energy = 2.0
+range_height = 10.0
+range_z_min = -1121
+range_item_cull_mask = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Intro/Elements/Light"]
+anims/Idle = SubResource( 490 )
+anims/RESET = SubResource( 491 )
+
 [node name="SlotContainer" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -2253,6 +2336,14 @@ script = ExtResource( 106 )
 
 [node name="Normal" type="Sprite" parent="SlotContainer/Background/Background"]
 texture = ExtResource( 10 )
+
+[node name="SlotSceneBgWindows" type="Sprite" parent="SlotContainer/Background/Background/Normal"]
+modulate = Color( 0.478431, 0.478431, 0.478431, 1 )
+light_mask = 2
+material = SubResource( 489 )
+position = Vector2( -27.5555, -161.778 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 169 )
 
 [node name="Special" type="Sprite" parent="SlotContainer/Background/Background"]
 visible = false
@@ -3185,6 +3276,7 @@ default = Color( 0.2, 1, 0.945098, 1 )
 
 [node name="Scenario" parent="." instance=ExtResource( 1 )]
 
+[connection signal="ready" from="Intro/Elements/Light/AnimationPlayer" to="Intro/Elements/Light/AnimationPlayer" method="play" binds= [ "Idle" ]]
 [connection signal="ready" from="SlotContainer/Background/Background/Special/AnimationPlayer" to="SlotContainer/Background/Background/Special/AnimationPlayer" method="play" binds= [ "Idle" ]]
 [connection signal="ready" from="SlotContainer/Slot/Overlap/Light/AnimationPlayer" to="SlotContainer/Slot/Overlap/Light/AnimationPlayer" method="play" binds= [ "Idle" ]]
 [connection signal="pressed" from="UIContainer/ErrorPopup/Button" to="UIContainer/ErrorPopup" method="_on_Button_pressed"]
