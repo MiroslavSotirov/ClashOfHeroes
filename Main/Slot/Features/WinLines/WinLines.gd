@@ -69,20 +69,22 @@ func show_lines(winline_data, win_data):
 	emit_signal("show_end");
 
 func loop_lines():
-	for c in $TilesContainer.get_children(): c.visible = false;
+	for c in $TilesContainer.get_children(): c.hide();
 	var i = 0;
 	while _shown:
-		$TilesContainer.get_child(i).popup();
+		if(!_shown): break;
+		if($TilesContainer.get_child(i) != null):
+			$TilesContainer.get_child(i).popup();
 		yield(get_tree().create_timer(1.0), "timeout")
 		if(!_shown): break;
-		$TilesContainer.get_child(i).visible = false;
+		$TilesContainer.get_child(i).hide();
 		i+=1;
 		if(i >= $TilesContainer.get_child_count()): i=0;
 		
 func hide_lines():
 	if (!_shown): return;
 	Globals.singletons["DividerAnimationPlayer"].play("Show");
-	Globals.singletons["Slot"].tint(Color.white, 0.2, _win_data);
+	Globals.singletons["Slot"].tint(Color.white, 0.2);
 	#Globals.singletons["WinlinesFadeAnimationPlayer"].play("To_Normal");
 	for c in $TilesContainer.get_children():
 		$TilesContainer.remove_child(c);

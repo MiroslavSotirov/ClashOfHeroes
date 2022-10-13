@@ -1,12 +1,42 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Main/Misc/canvasadditive.tres" type="Material" id=1]
-[ext_resource path="res://Main/Textures/particles/highlightfx.webp" type="Texture" id=2]
+[ext_resource path="res://Main/Textures/animated/circle/frame_20_delay-0.03s_1.webp" type="Texture" id=2]
+[ext_resource path="res://Main/Textures/animated/circle/frame_21_delay-0.03s_1.webp" type="Texture" id=3]
+[ext_resource path="res://Main/Textures/animated/circle/frame_29_delay-0.03s_1.webp" type="Texture" id=4]
+[ext_resource path="res://Main/Textures/animated/circle/frame_08_delay-0.03s_1.webp" type="Texture" id=5]
+[ext_resource path="res://Main/Textures/animated/circle/frame_19_delay-0.04s_1.webp" type="Texture" id=6]
+[ext_resource path="res://Main/Textures/animated/circle/frame_07_delay-0.04s_1.webp" type="Texture" id=7]
+[ext_resource path="res://Main/Textures/animated/circle/frame_18_delay-0.03s_1.webp" type="Texture" id=8]
+[ext_resource path="res://Main/Textures/animated/circle/frame_23_delay-0.03s_1.webp" type="Texture" id=9]
+[ext_resource path="res://Main/Textures/animated/circle/frame_26_delay-0.03s_1.webp" type="Texture" id=10]
+[ext_resource path="res://Main/Textures/animated/circle/frame_13_delay-0.04s_1.webp" type="Texture" id=11]
+[ext_resource path="res://Main/Textures/animated/circle/frame_14_delay-0.03s_1.webp" type="Texture" id=12]
+[ext_resource path="res://Main/Textures/animated/circle/frame_04_delay-0.04s_1.webp" type="Texture" id=13]
+[ext_resource path="res://Main/Textures/animated/circle/frame_12_delay-0.03s_1.webp" type="Texture" id=14]
+[ext_resource path="res://Main/Textures/animated/circle/frame_15_delay-0.03s_1.webp" type="Texture" id=15]
+[ext_resource path="res://Main/Textures/animated/circle/frame_24_delay-0.03s_1.webp" type="Texture" id=16]
+[ext_resource path="res://Main/Textures/animated/circle/frame_02_delay-0.03s_1.webp" type="Texture" id=17]
+[ext_resource path="res://Main/Textures/animated/circle/frame_06_delay-0.03s_1.webp" type="Texture" id=18]
+[ext_resource path="res://Main/Textures/animated/circle/frame_17_delay-0.03s_1.webp" type="Texture" id=19]
+[ext_resource path="res://Main/Textures/animated/circle/frame_10_delay-0.04s_1.webp" type="Texture" id=20]
+[ext_resource path="res://Main/Textures/animated/circle/frame_16_delay-0.04s_1.webp" type="Texture" id=21]
+[ext_resource path="res://Main/Textures/animated/circle/frame_30_delay-0.03s_1.webp" type="Texture" id=22]
+[ext_resource path="res://Main/Textures/animated/circle/frame_05_delay-0.03s_1.webp" type="Texture" id=23]
+[ext_resource path="res://Main/Textures/animated/circle/frame_03_delay-0.03s_1.webp" type="Texture" id=24]
+[ext_resource path="res://Main/Textures/animated/circle/frame_11_delay-0.03s_1.webp" type="Texture" id=25]
+[ext_resource path="res://Main/Textures/animated/circle/frame_22_delay-0.04s_1.webp" type="Texture" id=26]
+[ext_resource path="res://Main/Textures/animated/circle/frame_25_delay-0.04s_1.webp" type="Texture" id=27]
+[ext_resource path="res://Main/Textures/animated/circle/frame_01_delay-0.04s_1.webp" type="Texture" id=28]
+[ext_resource path="res://Main/Textures/animated/circle/frame_09_delay-0.03s_1.webp" type="Texture" id=29]
+[ext_resource path="res://Main/Textures/animated/circle/frame_27_delay-0.03s_1.webp" type="Texture" id=30]
+[ext_resource path="res://Main/Textures/animated/circle/frame_28_delay-0.04s_1.webp" type="Texture" id=31]
+[ext_resource path="res://Main/Textures/animated/circle/frame_00_delay-0.03s_1.webp" type="Texture" id=32]
 
 [sub_resource type="Animation" id=3]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Spin:modulate")
+tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -15,55 +45,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Spin:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Spin:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Spin/Highlightfx:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -45.9998, 46.0002 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Spin/Highlightfx2:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 45, -46 ) ]
+"values": [ 30 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -83,74 +65,36 @@ tracks/0/keys = {
 } ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Spin:modulate")
+tracks/1/path = NodePath("AnimatedSprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("Spin:rotation_degrees")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 0.9, 1 ),
-"update": 0,
-"values": [ 0.0, -480.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Spin/Highlightfx:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( -45.9998, 46.0002 ), Vector2( -10, 10 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Spin/Highlightfx2:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 45, -46 ), Vector2( 10, -10 ) ]
-}
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 32 ), ExtResource( 28 ), ExtResource( 17 ), ExtResource( 24 ), ExtResource( 13 ), ExtResource( 23 ), ExtResource( 18 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 29 ), ExtResource( 20 ), ExtResource( 25 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 26 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 27 ), ExtResource( 10 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 4 ), ExtResource( 22 ) ],
+"loop": false,
+"name": "default",
+"speed": 24.0
+} ]
 
 [node name="SwapTilesHighlightFx" type="Node2D"]
 rotation = 1.5708
 
-[node name="Spin" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-
-[node name="Highlightfx" type="Sprite" parent="Spin"]
-modulate = Color( 0, 1, 1, 1 )
-material = ExtResource( 1 )
-position = Vector2( -45.9998, 46.0002 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 2 )
-
-[node name="Highlightfx2" type="Sprite" parent="Spin"]
-modulate = Color( 0, 1, 1, 1 )
-material = ExtResource( 1 )
-position = Vector2( 45, -46 )
-scale = Vector2( -1.5, -1.5 )
-texture = ExtResource( 2 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
 anims/Show = SubResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = ExtResource( 1 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 5 )
+frame = 30
+playing = true

@@ -29,6 +29,14 @@ func popup():
 		var tile = Globals.singletons["Slot"].get_tile_at(pos.x, pos.y);
 		tile.set_layer(3);
 		tile.win_popup();
+		
+func hide():
+	visible = false;
+	for pos in tilepositions:
+		var tile = Globals.singletons["Slot"].get_tile_at(pos.x, pos.y);
+		tile.modulate = Color(0.2, 0.2, 0.2, 1);
+		
+	
 
 func _process(delta):
 	if(!visible): return;

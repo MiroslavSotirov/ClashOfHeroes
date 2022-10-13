@@ -260,7 +260,7 @@ func enter() -> void:
 	Globals.singletons[\"WinBar\"].hide();
 
 	var data = Globals.singletons[\"Networking\"].lastround;
-	if(!(\"freespin\" in data.nextAction)):
+	if(!(\"freespin\" in data.nextAction) && !Globals.fsm_data[\"has_respin\"] && !Globals.fsm_data[\"has_push_reels\"]):
 		Globals.singletons[\"TotalWinBar\"].hide();
 
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = true;
@@ -398,6 +398,12 @@ func enter() -> void:
 	#	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 
 	yield(Globals.singletons[\"Slot\"].stop_spin(data), \"completed\");
+	
+	if(Globals.fsm_data[\"has_respin\"]):
+		Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
+		
+	if(Globals.fsm_data[\"has_push_reels\"]):
+		Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 	
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 
@@ -757,19 +763,20 @@ func enter() -> void:
 	print(\"### RESPIN STATE ###\");
 	var data = Globals.singletons[\"Networking\"].lastround
 	var has_respin = data.parsed.respin.current if data.has(\"parsed\") else false;
-
+	Globals.fsm_data[\"has_respin\"] = has_respin;
 	if (!has_respin):
 		Globals.fsm_data[\"respin_fx_complete\"] = true;
 		return;
 		
 	Globals.singletons[\"WinLines\"].hide_lines();
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 2.0);
-	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
+	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
 	
 	Globals.singletons[\"Respin\"].play_anim();
 	yield(Globals.singletons[\"Respin\"], \"start_spin\");
-	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
-	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
+	for reel in Globals.singletons[\"Slot\"].reels:
+		reel.add_extra_duration(1.5);
+		
 	Globals.fsm_data[\"reverse_spin\"] = true;
 	Globals.fsm_data[\"respin_fx_complete\"] = true;
 
@@ -914,18 +921,18 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### PUSH REELS STATE ###\");
 	var data = Globals.singletons[\"Networking\"].lastround
-	var has_respin = data.parsed.push_reels.current if data.has(\"parsed\") else false;
-	#var has_respin = true;
-	if (!has_respin):
+	var has_push_reels = data.parsed.push_reels.current if data.has(\"parsed\") else false;
+	Globals.fsm_data[\"has_push_reels\"] = has_push_reels;
+	if (!has_push_reels):
 		Globals.fsm_data[\"push_reels_complete\"] = true;
 		Globals.fsm_data[\"has_push_reels\"] = false;
 		return;
 	Globals.singletons[\"WinLines\"].hide_lines();
 
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 2.0);
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
 	Globals.singletons[\"FlameAnimationPlayer\"].play(\"Show\");
-	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
 	Globals.singletons[\"PushReels\"].play_anim();
 	
 	yield(Globals.singletons[\"PushReels\"], \"start_push\");
@@ -940,7 +947,7 @@ func enter() -> void:
 				reel.position, reel.position+Vector2(diff, 0), 0.5,
 				Tween.TRANS_QUART, Tween.EASE_OUT)
 	tween.start()
-
+	Globals.singletons[\"LightningAnimationPlayer\"].play(\"Show\");
 	yield(tween,\"tween_all_completed\");
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 	
@@ -958,12 +965,8 @@ func enter() -> void:
 	Globals.singletons[\"Slot\"].reels[0].add_extra_duration(1.0);
 	#Globals.singletons[\"Respin\"].play_anim();
 	yield(Globals.singletons[\"PushReels\"], \"start_spin\");
-
 	Globals.fsm_data[\"reverse_spin\"] = true;
-	Globals.fsm_data[\"has_push_reels\"] = true;
 	Globals.fsm_data[\"push_reels_complete\"] = true;
-	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
-	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 	
 func update(_object, _delta: float) -> void:
 	pass
