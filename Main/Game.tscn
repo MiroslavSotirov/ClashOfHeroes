@@ -1,4 +1,4 @@
-[gd_scene load_steps=234 format=2]
+[gd_scene load_steps=242 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
@@ -20,9 +20,9 @@
 [ext_resource path="res://Main/Slot/Features/SideCharacters.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Main/Animations/Characters/Robot2.atlas" type="SpineAtlasResource" id=19]
 [ext_resource path="res://Main/Animations/Characters/Robot1.atlas" type="SpineAtlasResource" id=20]
-[ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.json" type="SpineSkeletonFileResource" id=21]
+[ext_resource path="res://Main/Animations/Symbols/symbol_big_Wild.atlas" type="SpineAtlasResource" id=21]
 [ext_resource path="res://Main/Slot/Features/Intro.gd" type="Script" id=22]
-[ext_resource path="res://Main/Animations/Symbols/Symbol_Wild.atlas" type="SpineAtlasResource" id=23]
+[ext_resource path="res://Main/Animations/Symbols/symbol_big_Wild.json" type="SpineSkeletonFileResource" id=23]
 [ext_resource path="res://Main/Animations/Characters/fx.json" type="SpineSkeletonFileResource" id=24]
 [ext_resource path="res://Main/Slot/Reels/ReelSpinning.gd" type="Script" id=25]
 [ext_resource path="res://Main/Animations/Characters/fx.atlas" type="SpineAtlasResource" id=26]
@@ -169,6 +169,10 @@
 [ext_resource path="res://Main/Textures/animated/creaping2/5.webp" type="Texture" id=167]
 [ext_resource path="res://Main/Textures/animated/creaping2/9.webp" type="Texture" id=168]
 [ext_resource path="res://Main/Textures/slotcoh/SlotSceneBGWindows.webp" type="Texture" id=169]
+[ext_resource path="res://Main/Animations/Characters/GIRL.atlas" type="SpineAtlasResource" id=170]
+[ext_resource path="res://Main/Animations/Characters/BOY.atlas" type="SpineAtlasResource" id=171]
+[ext_resource path="res://Main/Animations/Characters/GIRL.json" type="SpineSkeletonFileResource" id=172]
+[ext_resource path="res://Main/Animations/Characters/BOY.json" type="SpineSkeletonFileResource" id=173]
 
 [sub_resource type="CanvasItemMaterial" id=489]
 light_mode = 2
@@ -180,25 +184,23 @@ colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 0 )
 gradient = SubResource( 1 )
 width = 128
 
+[sub_resource type="SpineSkeletonDataResource" id=471]
+atlas_res = ExtResource( 20 )
+skeleton_file_res = ExtResource( 45 )
+
+[sub_resource type="CanvasItemMaterial" id=492]
+
+[sub_resource type="SpineSkeletonDataResource" id=472]
+atlas_res = ExtResource( 19 )
+skeleton_file_res = ExtResource( 17 )
+
+[sub_resource type="SpineSkeletonDataResource" id=478]
+atlas_res = ExtResource( 41 )
+skeleton_file_res = ExtResource( 43 )
+
 [sub_resource type="SpineSkeletonDataResource" id=466]
 atlas_res = ExtResource( 3 )
 skeleton_file_res = ExtResource( 11 )
-
-[sub_resource type="Animation" id=452]
-resource_name = "show"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Press-Anywhere-To-Continue:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
 
 [sub_resource type="Animation" id=490]
 resource_name = "Idle"
@@ -254,6 +256,32 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 30, 3 ) ]
+}
+
+[sub_resource type="SpineSkeletonDataResource" id=493]
+atlas_res = ExtResource( 171 )
+skeleton_file_res = ExtResource( 173 )
+
+[sub_resource type="CanvasItemMaterial" id=494]
+
+[sub_resource type="SpineSkeletonDataResource" id=495]
+atlas_res = ExtResource( 170 )
+skeleton_file_res = ExtResource( 172 )
+
+[sub_resource type="Animation" id=452]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Press-Anywhere-To-Continue:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=461]
@@ -1123,10 +1151,6 @@ _bundled = {
 "version": 2
 }
 
-[sub_resource type="SpineSkeletonDataResource" id=478]
-atlas_res = ExtResource( 41 )
-skeleton_file_res = ExtResource( 43 )
-
 [sub_resource type="SpineSkeletonDataResource" id=477]
 atlas_res = ExtResource( 20 )
 skeleton_file_res = ExtResource( 45 )
@@ -1219,17 +1243,9 @@ tracks/0/keys = {
 "values": [ Vector2( 0.85, 0.85 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="SpineSkeletonDataResource" id=471]
-atlas_res = ExtResource( 20 )
-skeleton_file_res = ExtResource( 45 )
-
-[sub_resource type="SpineSkeletonDataResource" id=472]
-atlas_res = ExtResource( 19 )
-skeleton_file_res = ExtResource( 17 )
-
 [sub_resource type="SpineSkeletonDataResource" id=473]
-atlas_res = ExtResource( 23 )
-skeleton_file_res = ExtResource( 21 )
+atlas_res = ExtResource( 21 )
+skeleton_file_res = ExtResource( 23 )
 
 [sub_resource type="SpineSkeletonDataResource" id=476]
 atlas_res = ExtResource( 26 )
@@ -1393,6 +1409,18 @@ tracks/12/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/13/type = "value"
+tracks/13/path = NodePath("Wild:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.329, 0.329 ) ]
+}
 
 [sub_resource type="Animation" id=474]
 resource_name = "Show"
@@ -1461,7 +1489,7 @@ tracks/4/keys = {
 "args": [  ],
 "method": "reset_pose"
 }, {
-"args": [ "transform", false, null ],
+"args": [ "popup2", false, null ],
 "method": "play_anim"
 } ]
 }
@@ -1586,6 +1614,18 @@ tracks/14/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( -30, 0 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Wild:scale")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 0.329, 0.329 ), Vector2( 0.329, 0.329 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Gradient" id=423]
@@ -2166,7 +2206,7 @@ anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 512, 512 )
 script = ExtResource( 6 )
 __meta__ = {
-"_edit_horizontal_guides_": [  ]
+"_edit_horizontal_guides_": [ 892.0 ]
 }
 shakefalloff = 7.0
 
@@ -2248,28 +2288,1977 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RobotRight" type="SpineSprite" parent="Intro/Elements"]
+position = Vector2( 451, 305 )
+scale = Vector2( 0.45, 0.45 )
+skeleton_data_res = SubResource( 471 )
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+startanimation = "front-idle"
+
+[node name="MeshInstance2D110" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D111" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D112" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D113" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D114" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D115" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D116" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D117" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D118" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D119" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D120" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D121" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D122" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D123" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D124" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D125" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D126" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D127" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D128" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D129" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D130" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D131" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D132" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D133" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D134" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D135" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D136" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D137" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D138" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D139" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D140" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D141" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D142" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D143" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D144" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D145" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D146" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D147" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D148" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D149" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D150" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D151" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D152" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D153" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D154" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D155" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D156" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D157" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D158" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D159" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D160" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D161" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D162" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D163" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D164" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D165" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D166" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D167" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D168" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D169" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D170" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D171" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D172" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D173" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D174" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D175" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D176" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D177" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D178" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D179" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D180" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D181" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D182" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D183" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D184" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D185" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D186" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D187" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D188" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D189" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D190" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D191" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D192" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D193" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D194" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D195" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D196" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D197" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D198" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D199" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D200" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D201" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D202" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D203" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D204" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D205" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D206" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D207" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D208" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D209" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D210" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D211" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D212" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D213" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D214" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D215" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D216" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D217" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D218" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D219" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D220" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D221" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D222" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D223" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D224" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D225" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D226" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D227" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D228" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D229" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D230" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D231" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D232" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D233" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D234" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D235" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D236" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D237" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D238" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D239" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D240" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D241" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D242" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D243" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D244" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D245" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D246" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D247" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D248" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D249" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D250" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D251" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D252" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D253" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D254" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D255" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D256" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D257" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D258" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D259" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D260" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D261" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D262" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D263" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D264" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D265" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D266" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D267" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D268" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D269" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D270" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D271" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D272" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D273" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D274" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D275" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D276" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D277" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D278" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D279" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D280" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D281" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D282" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D283" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D284" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D285" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D286" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D287" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D288" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D289" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D290" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D291" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D292" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D293" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D294" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D295" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D296" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D297" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D298" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D299" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D300" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D301" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D302" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D303" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D304" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D305" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D306" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D307" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D308" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D309" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D310" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D311" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D312" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D313" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D314" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D315" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D316" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D317" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D318" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D319" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D320" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D321" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D322" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D323" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D324" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D325" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D326" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D327" type="MeshInstance2D" parent="Intro/Elements/RobotRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="RobotLeft" type="SpineSprite" parent="Intro/Elements"]
+position = Vector2( -432, 308 )
+scale = Vector2( 0.45, 0.45 )
+skeleton_data_res = SubResource( 472 )
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+startanimation = "front_idle"
+
+[node name="MeshInstance2D95" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D96" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D97" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D98" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D99" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D100" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D101" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D102" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D103" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D104" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D105" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D106" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D107" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D108" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D109" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D110" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D111" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D112" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D113" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D114" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D115" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D116" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D117" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D118" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D119" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D120" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D121" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D122" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D123" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D124" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D125" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D126" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D127" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D128" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D129" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D130" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D131" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D132" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D133" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D134" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D135" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D136" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D137" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D138" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D139" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D140" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D141" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D142" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D143" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D144" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D145" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D146" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D147" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D148" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D149" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D150" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D151" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D152" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D153" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D154" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D155" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D156" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D157" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D158" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D159" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D160" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D161" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D162" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D163" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D164" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D165" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D166" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D167" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D168" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D169" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D170" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D171" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D172" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D173" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D174" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D175" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D176" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D177" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D178" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D179" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D180" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D181" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D182" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D183" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D184" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D185" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D186" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D187" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D188" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D189" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D190" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D191" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D192" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D193" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D194" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D195" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D196" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D197" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D198" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D199" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D200" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D201" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D202" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D203" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D204" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D205" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D206" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D207" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D208" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D209" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D210" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D211" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D212" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D213" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D214" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D215" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D216" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D217" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D218" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D219" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D220" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D221" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D222" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D223" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D224" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D225" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D226" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D227" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D228" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D229" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D230" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D231" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D232" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D233" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D234" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D235" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D236" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D237" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D238" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D239" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D240" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D241" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D242" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D243" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D244" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D245" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D246" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D247" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D248" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D249" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D250" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D251" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D252" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D253" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D254" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D255" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D256" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D257" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D258" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D259" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D260" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D261" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D262" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D263" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D264" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D265" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D266" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D267" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D268" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D269" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D270" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D271" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D272" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D273" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D274" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D275" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D276" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D277" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D278" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D279" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D280" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D281" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D282" type="MeshInstance2D" parent="Intro/Elements/RobotLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="CrashLeft" type="SpineSprite" parent="Intro/Elements"]
+visible = false
+show_behind_parent = true
+position = Vector2( -432.025, 303.287 )
+scale = Vector2( 0.3375, 0.3375 )
+z_index = 1
+skeleton_data_res = SubResource( 478 )
+preview_skin = "default"
+preview_animation = "animation"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+loop = false
+
+[node name="MeshInstance2D19" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D20" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D21" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D22" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D23" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D24" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D25" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D26" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D27" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D28" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D29" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D30" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D31" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D32" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D33" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D34" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D35" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D36" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D37" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D38" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D39" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D40" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D41" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D42" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D43" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D44" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D45" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D46" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D47" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D48" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D49" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D50" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D51" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D52" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D53" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D54" type="MeshInstance2D" parent="Intro/Elements/CrashLeft"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="CrashRight" type="SpineSprite" parent="Intro/Elements"]
+visible = false
+show_behind_parent = true
+position = Vector2( 450.975, 300.287 )
+scale = Vector2( -0.337, 0.337 )
+z_index = 1
+skeleton_data_res = SubResource( 478 )
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+loop = false
+
+[node name="MeshInstance2D19" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D20" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D21" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D22" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D23" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D24" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D25" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D26" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D27" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D28" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D29" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D30" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D31" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D32" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D33" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D34" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D35" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D36" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D37" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D38" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D39" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D40" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D41" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D42" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D43" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D44" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D45" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D46" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D47" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D48" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D49" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D50" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D51" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D52" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D53" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
+[node name="MeshInstance2D54" type="MeshInstance2D" parent="Intro/Elements/CrashRight"]
+show_behind_parent = true
+material = SubResource( 492 )
+
 [node name="Logo" type="Node2D" parent="Intro/Elements"]
+position = Vector2( 0, -180 )
+scale = Vector2( 0.8, 0.8 )
 
-[node name="Positioner" type="Node2D" parent="Intro/Elements/Logo"]
-script = ExtResource( 49 )
-config = {
-"default": {
-"easing": 1.0,
-"position": Vector2( 0, 0 ),
-"scale": Vector2( 1, 1 ),
-"scaleX": Vector2( 1, 1 ),
-"scaleXY": Vector2( 1, 1 ),
-"scaleY": Vector2( 1, 1 ),
-"x": Vector2( 0, 0 ),
-"y": Vector2( 0, 0 )
-},
-"portrait": {
-"position": Vector2( 0, 0 ),
-"scale": Vector2( 1, 1 )
-}
-}
-
-[node name="SpineSpriteExtension" type="SpineSprite" parent="Intro/Elements/Logo"]
+[node name="SpineSprite" type="SpineSprite" parent="Intro/Elements/Logo"]
 scale = Vector2( 0.5, 0.5 )
 skeleton_data_res = SubResource( 466 )
 preview_skin = "Default"
@@ -2280,21 +4269,6 @@ script = ExtResource( 44 )
 skin = "default"
 startanimation = "idle"
 timescale = 0.5
-
-[node name="Message" type="Node2D" parent="Intro/Elements"]
-
-[node name="Press-Anywhere-To-Continue" type="Sprite" parent="Intro/Elements/Message"]
-modulate = Color( 0.321569, 0.0745098, 0, 0 )
-position = Vector2( 0, 275 )
-
-[node name="SpriteLangSwap" type="Node" parent="Intro/Elements/Message/Press-Anywhere-To-Continue"]
-script = ExtResource( 87 )
-assetname = "POS.png"
-propertyname = "texture"
-node = NodePath("..")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Intro/Elements/Message"]
-anims/show = SubResource( 452 )
 
 [node name="Light" type="Node2D" parent="Intro/Elements"]
 
@@ -2310,6 +4284,655 @@ range_item_cull_mask = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Intro/Elements/Light"]
 anims/Idle = SubResource( 490 )
 anims/RESET = SubResource( 491 )
+
+[node name="Boy" type="SpineSprite" parent="Intro/Elements"]
+visible = false
+position = Vector2( -175, 431 )
+scale = Vector2( 0.65, 0.65 )
+skeleton_data_res = SubResource( 493 )
+preview_skin = "Default"
+preview_animation = "idle"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+startanimation = "idle"
+
+[node name="MeshInstance2D25" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D26" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D27" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D28" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D29" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D30" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D31" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D32" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D33" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D34" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D35" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D36" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D37" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D38" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D39" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D40" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D41" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D42" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D43" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D44" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D45" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D46" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D47" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D48" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D49" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D50" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D51" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D52" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D53" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D54" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D55" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D56" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D57" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D58" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D59" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D60" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D61" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D62" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D63" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D64" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D65" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D66" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D67" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D68" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D69" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D70" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D71" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D72" type="MeshInstance2D" parent="Intro/Elements/Boy"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="Girl" type="SpineSprite" parent="Intro/Elements"]
+visible = false
+position = Vector2( 159, 435 )
+scale = Vector2( 0.7, 0.7 )
+skeleton_data_res = SubResource( 495 )
+preview_skin = "default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+script = ExtResource( 44 )
+skin = "default"
+startanimation = "idle"
+
+[node name="MeshInstance2D53" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D54" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D55" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D56" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D57" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D58" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D59" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D60" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D61" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D62" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D63" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D64" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D65" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D66" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D67" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D68" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D69" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D70" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D71" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D72" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D73" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D74" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D75" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D76" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D77" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D78" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D79" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D80" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D81" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D82" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D83" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D84" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D85" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D86" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D87" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D88" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D89" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D90" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D91" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D92" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D93" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D94" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D95" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D96" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D97" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D98" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D99" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D100" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D101" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D102" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D103" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D104" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D105" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D106" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D107" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D108" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D109" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D110" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D111" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D112" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D113" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D114" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D115" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D116" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D117" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D118" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D119" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D120" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D121" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D122" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D123" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D124" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D125" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D126" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D127" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D128" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D129" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D130" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D131" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D132" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D133" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D134" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D135" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D136" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D137" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D138" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D139" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D140" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D141" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D142" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D143" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D144" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D145" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D146" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D147" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D148" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D149" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D150" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D151" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D152" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D153" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D154" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D155" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="MeshInstance2D156" type="MeshInstance2D" parent="Intro/Elements/Girl"]
+show_behind_parent = true
+material = SubResource( 494 )
+
+[node name="Message" type="Node2D" parent="Intro/Elements"]
+
+[node name="Press-Anywhere-To-Continue" type="Sprite" parent="Intro/Elements/Message"]
+modulate = Color( 0.321569, 0.0745098, 0, 0 )
+position = Vector2( 0, 275 )
+
+[node name="SpriteLangSwap" type="Node" parent="Intro/Elements/Message/Press-Anywhere-To-Continue"]
+script = ExtResource( 87 )
+assetname = "POS.png"
+propertyname = "texture"
+node = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Intro/Elements/Message"]
+anims/show = SubResource( 452 )
 
 [node name="SlotContainer" type="Control" parent="."]
 visible = false
@@ -3014,8 +5637,9 @@ skin = "default"
 startanimation = "fight"
 
 [node name="Wild" type="SpineSprite" parent="SlotContainer/ExpandingWilds/RobotFightFx"]
+scale = Vector2( 0.329, 0.329 )
 skeleton_data_res = SubResource( 473 )
-preview_skin = "Default"
+preview_skin = "default"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0

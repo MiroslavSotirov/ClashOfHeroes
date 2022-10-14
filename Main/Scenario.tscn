@@ -861,8 +861,8 @@ func enter() -> void:
 	var fatdata = data.parsed.expanding_wild.data;
 	
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 2.0);
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 2.0);
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 3.0);
+	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
 	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
 	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomIn\");
@@ -873,8 +873,9 @@ func enter() -> void:
 	
 	Globals.singletons[\"ExpandingWilds\"].animationPlayer.play(\"Show\");
 	yield(Globals.get_tree().create_timer(0.7), \"timeout\");
-	Globals.singletons[\"Game\"].shake += Vector2.ONE * 20.0;
-	Globals.singletons[\"FaderBright\"].tween(0.1,0.0,0.2);
+	Globals.singletons[\"Game\"].shake += Vector2.ONE * 40.0;
+	Globals.singletons[\"FaderBright\"].tween(0.2,0.0,0.4);
+	Globals.singletons[\"LightningAnimationPlayer\"].play(\"Show\")
 	
 	for i in 15:
 		Globals.singletons[\"Game\"].shake += Vector2.ONE * 5.0;
