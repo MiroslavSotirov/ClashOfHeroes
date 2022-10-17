@@ -51,18 +51,22 @@ func show_lines(winline_data, win_data):
 	var win_line_scene = preload("res://Main/Slot/Features/WinLines/WinLineFx.tscn");
 	var promises = [];
 	var i = 0;
-	for line in winline_data:		
+	for data in winline_data:		
 		var winline = win_line_scene.instance();
 		$TilesContainer.add_child(winline);
 		
 		_effects.append(winline);
 		var tiles = [];
-		for x in win_data:
-			for y in win_data[x]:
-				if(winlines[line][x] == y):
-					tiles.append(Vector2(x,y))
+		var lineid = data[0];
+		var count = data[1];
+		
+		var x = 0;
+		for y in winlines[lineid]:
+			tiles.append(Vector2(x,y))
+			x+=1;
+			if(x >= count): break
 			
-		winline.init(winlines[line], tiles, i);
+		winline.init(winlines[lineid], tiles, i);
 		i+= 1;
 		
 	yield(get_tree().create_timer(1.0), "timeout"); 

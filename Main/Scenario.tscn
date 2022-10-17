@@ -653,9 +653,9 @@ func get_win_lines(wins):
 	if (wins == null): return [];
 	var lines = [];
 	for win in wins:
-		if (!win.has(\"winline\")): continue;
+		if (!win.has(\"winline\")): win.winline = 0;
 		if(win.winline < 0): continue;
-		lines.append(win.winline)
+		lines.append([win.winline, win.payout.count])
 
 	return lines;
 "
