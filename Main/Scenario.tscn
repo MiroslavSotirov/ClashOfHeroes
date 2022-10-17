@@ -862,7 +862,7 @@ func enter() -> void:
 	var pos = Globals.singletons[\"Slot\"].get_tile_address(fatdata.from);
 	var notint = {};
 	notint[int(pos.x)] = [int(pos.y)];
-	print(notint);
+
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5, notint);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
