@@ -853,14 +853,17 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### EXPANDING WILD FEATURE STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	#data.parsed.expanding_wild = {\"data\":{\"from\":4, \"positions\":[0, 1, 2, 3, 4, 5, 6, 7, 8], \"tileid\":10}, \"id\":0, \"type\":\"ExpandingWild\"}
+	data.parsed.expanding_wild = {\"data\":{\"from\":4, \"positions\":[0, 1, 2, 3, 4, 5, 6, 7, 8], \"tileid\":10}, \"id\":0, \"type\":\"ExpandingWild\"}
 
 	if(data.parsed.expanding_wild == null):
 		Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
 		return;
 	var fatdata = data.parsed.expanding_wild.data;
-	
-	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
+	var pos = Globals.singletons[\"Slot\"].get_tile_address(fatdata.from);
+	var notint = {};
+	notint[int(pos.x)] = [int(pos.y)];
+	print(notint);
+	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5, notint);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
@@ -868,7 +871,6 @@ func enter() -> void:
 	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomIn\");
 	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
 	
-	var pos = Globals.singletons[\"Slot\"].get_tile_address(fatdata.from);
 	Globals.singletons[\"ExpandingWilds\"].set_pos(pos.x, pos.y);
 	
 	Globals.singletons[\"ExpandingWilds\"].animationPlayer.play(\"Show\");
@@ -878,25 +880,27 @@ func enter() -> void:
 	Globals.singletons[\"LightningAnimationPlayer\"].play(\"Show\")
 	
 	for i in 15:
-		Globals.singletons[\"Game\"].shake += Vector2.ONE * 5.0;
+		Globals.singletons[\"Game\"].shake += Vector2.ONE * 20.0;
 		yield(Globals.get_tree().create_timer(0.1), \"timeout\");
 		
 	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomOut\");
 	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
 	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
+	Globals.singletons[\"FaderBright\"].tween(0.1,0.0,0.4);
+	Globals.singletons[\"Game\"].shake += Vector2.ONE * 100.0;
 	for tilepos in Globals.singletons[\"Slot\"].get_tiles_addresses(fatdata.positions):
 		Globals.singletons[\"Slot\"].replace_tile(tilepos.x, tilepos.y, 0);
 	
 	var topleft = Globals.singletons[\"Slot\"].get_tile_address(fatdata.positions[0]);
 	Globals.singletons[\"Slot\"].replace_tile(topleft.x, topleft.y, 11);
-	Globals.singletons[\"ExpandingWilds\"].fightfx.visible = false;
+
 	
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.singletons[\"Background\"].change_to(\"Normal\", 1.0);
 	Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
-
+	Globals.singletons[\"ExpandingWilds\"].fightfx.visible = false;
 
 func update(_object, _delta: float) -> void:
 	pass
