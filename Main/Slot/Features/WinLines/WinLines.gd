@@ -62,9 +62,9 @@ func show_lines(winline_data, win_data):
 		
 		var x = 0;
 		for y in winlines[lineid]:
+			if(x >= count): break
 			tiles.append(Vector2(x,y))
 			x+=1;
-			if(x >= count): break
 			
 		winline.init(winlines[lineid], tiles, i);
 		i+= 1;
