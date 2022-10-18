@@ -401,6 +401,7 @@ func enter() -> void:
 	
 	if(Globals.fsm_data[\"has_respin\"]):
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
+		Globals.singletons[\"Audio\"].play(\"GirlAppear\");
 		
 	if(Globals.fsm_data[\"has_push_reels\"]):
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
@@ -689,8 +690,10 @@ func enter() -> void:
 			count += 1;
 				
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5);
-	yield(Globals.get_tree().create_timer(0.5), \"timeout\");		
+	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"shoot\");
+	Globals.singletons[\"Audio\"].play(\"PistolSwing\");
+	Globals.singletons[\"Audio\"].play_after(\"PistopShoot\", 1300);
 
 	yield(Globals.get_tree().create_timer(1.25), \"timeout\");
 
@@ -770,6 +773,7 @@ func enter() -> void:
 		
 	Globals.singletons[\"WinLines\"].hide_lines();
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
+	Globals.singletons[\"Audio\"].play(\"GirlDisappear\");
 	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
 	
 	Globals.singletons[\"Respin\"].play_anim();
@@ -815,18 +819,25 @@ func enter() -> void:
 	
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5, skip);
 	yield(Globals.get_tree().create_timer(0.55), \"timeout\");
+	
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"slash\");
+	Globals.singletons[\"Audio\"].play(\"SwapSelect\");
 	for swap_data in data.parsed.swap_data.tiles:
 		Globals.singletons[\"SwapTilesSystem\"].highlight(swap_data.x, swap_data.y);
 	yield(Globals.get_tree().create_timer(0.85), \"timeout\");
+	
+	Globals.singletons[\"Audio\"].play(\"GirlSlash\");
 	Globals.singletons[\"SwapTilesSystem\"].activate_slash();
 	yield(Globals.get_tree().create_timer(0.05), \"timeout\");
+	
 	for swap_data in data.parsed.swap_data.tiles:
 		Globals.singletons[\"SwapTilesSystem\"].activate_on(swap_data.x, swap_data.y, data.parsed.swap_data.targetid);
 
 	yield(Globals.get_tree().create_timer(0.6), \"timeout\");
+	
 	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
+	
 	Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
 
 func update(_object, _delta: float) -> void:
@@ -866,18 +877,26 @@ func enter() -> void:
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5, notint);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
+	Globals.singletons[\"Audio\"].play(\"BoyDisappear\");
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
 	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
+
 	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomIn\");
+	Globals.singletons[\"Audio\"].play(\"Robot1Flight\");
+	Globals.singletons[\"Audio\"].play_after(\"FX1\", 100);
 	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
 	
 	Globals.singletons[\"ExpandingWilds\"].set_pos(pos.x, pos.y);
-	
 	Globals.singletons[\"ExpandingWilds\"].animationPlayer.play(\"Show\");
 	yield(Globals.get_tree().create_timer(0.7), \"timeout\");
+
 	Globals.singletons[\"Game\"].shake += Vector2.ONE * 40.0;
 	Globals.singletons[\"FaderBright\"].tween(0.2,0.0,0.4);
 	Globals.singletons[\"LightningAnimationPlayer\"].play(\"Show\")
+
+	Globals.singletons[\"Audio\"].fade_to(\"FX1\", 0, 1000);
+	Globals.singletons[\"Audio\"].play_after(\"Wild3\", 300); #OK
+	Globals.singletons[\"Audio\"].play_after(\"FX2\", 1200); #OK
 	
 	for i in 15:
 		Globals.singletons[\"Game\"].shake += Vector2.ONE * 20.0;
