@@ -42,8 +42,9 @@ func show_lines(winline_data, win_data):
 		emit_signal("show_end");
 		return;
 	Globals.singletons["DividerAnimationPlayer"].play("Hide");
+	Globals.singletons["WinlineFrameAnimationPlayer"].play("Show");
 	var slot =  Globals.singletons["Slot"];
-	slot.tint(Color(0.2, 0.2, 0.2, 1), 0.5, win_data);
+	slot.tint(Color(0.8, 0.8, 0.8, 1), 0.5, win_data);
 	#Globals.singletons["WinlinesFadeAnimationPlayer"].play("To_Winline");
 			
 	_shown = true;
@@ -88,6 +89,7 @@ func loop_lines():
 func hide_lines():
 	if (!_shown): return;
 	Globals.singletons["DividerAnimationPlayer"].play("Show");
+	Globals.singletons["WinlineFrameAnimationPlayer"].play("Hide");
 	Globals.singletons["Slot"].tint(Color.white, 0.2);
 	#Globals.singletons["WinlinesFadeAnimationPlayer"].play("To_Normal");
 	for c in $TilesContainer.get_children():

@@ -34,7 +34,7 @@ func hide():
 	visible = false;
 	for pos in tilepositions:
 		var tile = Globals.singletons["Slot"].get_tile_at(pos.x, pos.y);
-		tile.modulate = Color(0.2, 0.2, 0.2, 1);
+		tile.modulate = Color(0.8, 0.8, 0.8, 1);
 		
 	
 
