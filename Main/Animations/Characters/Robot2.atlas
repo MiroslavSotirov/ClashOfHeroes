@@ -1,351 +1,366 @@
 Robot2.webp
-size:3321,1754
+size:3283,1754
 filter:Linear,Linear
 scale:0.8
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00000
-bounds:2943,18,89,93
+bounds:2855,74,89,93
+rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00001
-bounds:1788,62,146,159
+bounds:2855,430,146,159
+rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00002
-bounds:3082,1543,228,209
+bounds:2625,4,228,209
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00004
-bounds:897,834,306,218
+bounds:2680,1446,306,218
+rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00006
-bounds:856,445,309,222
+bounds:2616,1126,309,222
+rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00008
-bounds:1055,1127,315,220
+bounds:2458,1437,315,220
 rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00010
-bounds:1501,1199,314,220
+bounds:2315,200,314,220
 rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00012
-bounds:652,18,312,215
+bounds:2464,807,312,215
 rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00014
-bounds:869,126,306,205
+bounds:2537,215,306,205
+rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00016
-bounds:1277,998,274,196
+bounds:2349,2,274,196
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00018
-bounds:1987,503,191,194
+bounds:3087,80,191,194
+rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00020
-bounds:2210,313,154,189
+bounds:1476,1119,154,189
+rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00022
-bounds:2366,347,126,177
+bounds:880,2,126,177
+rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00024
-bounds:2540,126,93,143
+bounds:2855,165,93,143
 rotate:90
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00026
-bounds:3166,51,66,63
-rotate:90
+bounds:576,3,66,63
 fx/Electricity 022/Electricity-022-Impact-Explosion-Right_00027
-bounds:3166,51,66,63
-rotate:90
+bounds:576,3,66,63
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00000
-bounds:652,2,69,14
+bounds:705,558,69,14
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00001
-bounds:3219,288,131,30
+bounds:1174,3,131,30
 rotate:90
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00002
-bounds:1730,7,176,56
-rotate:90
+bounds:702,10,176,56
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00003
-bounds:1046,1056,218,69
+bounds:312,479,218,69
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00004
-bounds:1945,221,251,76
-rotate:90
+bounds:3029,1492,251,76
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00005
-bounds:2284,150,254,79
+bounds:3026,1052,254,79
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00006
-bounds:2284,231,258,80
+bounds:3005,13,258,80
+rotate:90
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00007
-bounds:2023,221,259,82
+bounds:2744,260,259,82
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00008
-bounds:2677,449,262,82
+bounds:3012,273,262,82
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00009
-bounds:1936,137,264,82
+bounds:3017,568,264,82
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00010
-bounds:2680,609,266,84
+bounds:2744,344,266,84
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00011
-bounds:2033,893,269,85
+bounds:2769,855,269,85
+rotate:90
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00012
-bounds:1709,658,270,86
+bounds:2638,535,270,86
+rotate:90
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00013
-bounds:1682,185,270,86
+bounds:2681,854,270,86
 rotate:90
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00014
-bounds:2698,695,269,75
+bounds:2726,538,269,75
+rotate:90
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00015
-bounds:2680,533,269,74
+bounds:532,479,269,74
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00016
-bounds:1936,61,265,74
+bounds:3016,492,265,74
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00017
-bounds:2677,382,266,65
+bounds:3012,357,266,65
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00018
-bounds:2660,314,264,66
+bounds:3016,424,264,66
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00019
-bounds:2660,252,260,60
+bounds:314,4,260,60
 fx/Smoke 009/Smoke-009-Impact-Explosion-Up_00020
-bounds:723,2,14,58
-rotate:90
+bounds:644,8,14,58
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00000
-bounds:2698,787,93,28
-rotate:90
+bounds:705,574,93,28
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00001
-bounds:3077,1264,239,107
+bounds:1976,1321,239,107
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00002
-bounds:1201,321,294,128
+bounds:992,1274,294,128
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00003
-bounds:2,4,318,142
+bounds:2215,1434,318,142
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00004
-bounds:704,332,326,150
-rotate:90
+bounds:1805,2,326,150
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00005
-bounds:1723,1125,330,156
+bounds:944,1114,330,156
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00006
-bounds:490,2,332,160
-rotate:90
+bounds:1146,606,332,160
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00007
-bounds:2055,980,334,161
+bounds:1896,156,334,161
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00008
-bounds:2731,772,336,162
+bounds:1536,781,336,162
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00009
-bounds:2391,1387,338,163
+bounds:1339,1414,338,163
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00010
-bounds:2391,1223,338,162
+bounds:1504,1414,338,162
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00011
-bounds:2391,1058,340,163
+bounds:1177,140,340,163
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00012
-bounds:832,669,343,163
+bounds:1062,1409,343,163
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00013
-bounds:2731,1287,344,113
+bounds:1070,768,344,113
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00014
-bounds:856,333,343,110
+bounds:1227,1409,343,110
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00015
-bounds:2019,2,50,57
+bounds:388,552,50,57
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00016
-bounds:3164,119,46,54
+bounds:544,556,46,54
+rotate:90
 fx/Smoke 029/Smoke-029-Impact-Explosion-Up_00017
-bounds:1167,657,8,10
+bounds:776,562,8,10
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00000
-bounds:1715,965,316,158
+bounds:626,1112,316,158
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00001
-bounds:1177,156,318,163
+bounds:2050,1434,318,163
+rotate:90
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00002
-bounds:1205,830,330,166
+bounds:1668,1422,330,166
+rotate:90
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00003
-bounds:2733,936,337,173
+bounds:1361,779,337,173
+rotate:90
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00004
-bounds:2047,1319,342,177
+bounds:998,136,342,177
+rotate:90
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00005
-bounds:2733,1111,340,174
+bounds:1185,772,340,174
+rotate:90
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00006
-bounds:2391,882,338,174
+bounds:1544,148,338,174
+rotate:90
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00007
-bounds:2055,1143,334,174
+bounds:1720,154,334,174
+rotate:90
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00008
-bounds:1177,653,330,175
+bounds:1700,787,330,175
+rotate:90
 fx/Smoke 040/Smoke-040-Ray-Up-Loop_00009
-bounds:1189,8,323,146
+bounds:1877,794,323,146
+rotate:90
 robot2/Body
-bounds:644,1130,312,409
-rotate:90
+bounds:508,68,312,409
 robot2/LWing
-bounds:869,27,97,318
-rotate:90
+bounds:2359,1434,97,318
 robot2/Langkle
-bounds:2939,113,137,113
+bounds:1438,1275,137,113
 rotate:90
 robot2/Larm
-bounds:2180,504,170,173
+bounds:1667,609,170,173
 rotate:90
 robot2/Lback
-bounds:3069,291,128,148
+bounds:1288,1279,128,148
 rotate:90
 robot2/Lfingers
-bounds:3034,16,95,47
-rotate:90
+bounds:447,555,95,47
 robot2/Lfoot
-bounds:2531,11,131,113
+bounds:1059,3,131,113
+rotate:90
 robot2/Lforearm
-bounds:3082,1373,168,234
-rotate:90
+bounds:2856,941,168,234
 robot2/Lhand
-bounds:3233,568,104,84
-rotate:90
+bounds:2900,1668,104,84
 robot2/Lhandshadow
-bounds:3233,464,102,81
-rotate:90
+bounds:2900,1585,102,81
 robot2/Llwleg
-bounds:2391,1552,200,339
-rotate:90
+bounds:1342,144,200,339
 robot2/Lshoulder
-bounds:1277,1196,222,317
+bounds:2240,802,222,317
 robot2/Lthumb
-bounds:3251,330,38,90
+bounds:2303,1126,38,90
 robot2/Lupleg
-bounds:2334,695,170,185
+bounds:1480,607,170,185
+rotate:90
 robot2/Neck
-bounds:2511,445,164,124
+bounds:936,480,164,124
 robot2/RWing
-bounds:2732,1578,174,348
-rotate:90
+bounds:822,130,174,348
 robot2/Rankle
-bounds:2831,108,142,106
-rotate:90
+bounds:2217,1326,142,106
 robot2/Rarm
-bounds:2506,716,164,190
+bounds:1667,1119,164,190
 rotate:90
 robot2/Rarm2
-bounds:2355,526,167,154
-rotate:90
+bounds:2856,785,167,154
 robot2/Rback
-bounds:2494,313,130,164
+bounds:710,1272,130,164
 rotate:90
 robot2/Rfingers
-bounds:3054,118,108,55
+bounds:1862,1320,108,55
+rotate:90
 robot2/Rfingers2
-bounds:2544,221,114,90
+bounds:1770,1306,114,90
+rotate:90
 robot2/Rfoot
-bounds:2203,2,122,103
+bounds:1102,482,122,103
 rotate:90
 robot2/Rforearm
-bounds:1734,474,182,251
+bounds:3029,1570,182,251
 rotate:90
 robot2/Rforearm2
-bounds:1770,223,173,249
+bounds:3029,1133,173,249
+rotate:90
 robot2/Rhand
-bounds:2427,33,115,102
+bounds:1721,492,115,102
 rotate:90
 robot2/Rhand2
-bounds:3063,175,114,130
-rotate:90
+bounds:876,1272,114,130
 robot2/Rhandshadow
-bounds:2664,8,115,102
+bounds:1825,492,115,102
+rotate:90
 robot2/Rlowleg
-bounds:490,336,212,322
+bounds:1836,1430,212,322
 robot2/Rshoulder
-bounds:2078,1499,253,311
-rotate:90
+bounds:2361,1121,253,311
 robot2/Rshoulder2
-bounds:1715,746,217,277
-rotate:90
+bounds:2234,516,217,277
 robot2/Rthumb
-bounds:2898,3,43,103
+bounds:2681,809,43,103
+rotate:90
 robot2/Rthumb2
-bounds:1205,998,55,56
+bounds:822,73,55,56
+rotate:90
 robot2/Rthumb3
-bounds:1911,5,54,106
-rotate:90
+bounds:2303,1218,54,106
 robot2/Rupleg
-bounds:2023,305,185,196
+bounds:1859,1119,185,196
+rotate:90
 robot2/Shadow
-bounds:484,1054,560,74
+bounds:312,550,560,74
+rotate:90
 robot2/dust
-bounds:2,622,480,506
+bounds:388,604,480,506
 robot2/eyeglow
-bounds:1788,5,121,55
+bounds:1207,483,121,55
+rotate:90
 robot2/flyLfoot
-bounds:2969,688,82,98
-rotate:90
+bounds:2744,438,82,98
 robot2/flyLknee
-bounds:2308,2,117,108
+bounds:1343,487,117,108
+rotate:90
 robot2/flyLleg
-bounds:1509,646,198,154
+bounds:1276,1118,198,154
 robot2/head-1
-bounds:1465,457,187,267
-rotate:90
+bounds:2840,1177,187,267
 robot2/hip
-bounds:484,860,411,192
+bounds:314,66,411,192
+rotate:90
 robot2/horn
-bounds:3069,538,162,134
+bounds:1326,4,162,134
 robot2/jet-flame1
-bounds:484,660,198,346
-rotate:90
+bounds:870,764,198,346
 robot2/jetflame2
-bounds:644,1444,308,631
-rotate:90
+bounds:2,479,308,631
 robot2/side-Body
-bounds:2,148,310,472
+bounds:2,5,310,472
 robot2/side-Larm
-bounds:2685,112,138,144
+bounds:1490,4,138,144
 rotate:90
 robot2/side-Larm2
-bounds:2948,609,119,77
-robot2/side-Lfingers
-bounds:3083,17,99,81
+bounds:1264,485,119,77
 rotate:90
+robot2/side-Lfingers
+bounds:2900,1502,99,81
 robot2/side-Lfoot
-bounds:322,6,156,106
+bounds:1038,606,156,106
+rotate:90
 robot2/side-Lforearm
-bounds:3072,858,204,226
+bounds:3026,846,204,226
 rotate:90
 robot2/side-Lhand
-bounds:2945,372,122,131
+bounds:803,480,122,131
+rotate:90
 robot2/side-Lhip
-bounds:1553,992,205,160
+bounds:2855,578,205,160
 rotate:90
 robot2/side-Lleg
-bounds:1167,451,200,296
-rotate:90
+bounds:2032,497,200,296
 robot2/side-Lshoulder
-bounds:3075,1064,198,244
+bounds:2057,1121,198,244
 rotate:90
 robot2/side-Lthumb1
-bounds:3233,422,40,57
-rotate:90
+bounds:660,9,40,57
 robot2/side-Lthumb2
-bounds:2304,902,78,76
+bounds:3087,2,78,76
 robot2/side-Lupleg
-bounds:1537,802,188,176
-rotate:90
+bounds:1842,609,188,176
 robot2/side-Lwing
-bounds:314,272,174,348
+bounds:710,1404,174,348
 robot2/side-Rarm
-bounds:322,114,156,166
+bounds:870,606,156,166
 rotate:90
 robot2/side-Rback
-bounds:2511,571,167,143
+bounds:1636,3,167,143
 robot2/side-Rfingers
-bounds:3195,178,108,55
+bounds:1919,1320,108,55
 rotate:90
 robot2/side-Rfoot
-bounds:3069,421,162,115
+bounds:1557,490,162,115
 robot2/side-Rforearm
-bounds:3069,674,182,250
+bounds:3029,1308,182,250
 rotate:90
 robot2/side-Rhand
-bounds:2951,505,116,102
+bounds:1453,488,116,102
+rotate:90
 robot2/side-Rhandshadow
-bounds:2781,5,115,101
+bounds:1929,492,115,101
+rotate:90
 robot2/side-Rhip
-bounds:1514,2,214,174
+bounds:2133,2,214,174
 robot2/side-Rleg
-bounds:1723,1283,213,322
-rotate:90
+bounds:2025,795,213,322
 robot2/side-Rshoulder
-bounds:1759,1498,254,317
-rotate:90
+bounds:2059,178,254,317
 robot2/side-Rthumb
-bounds:2071,15,44,103
+bounds:600,558,44,103
 rotate:90
 robot2/side-Rupleg
-bounds:1994,699,209,192
+bounds:3025,652,209,192
 robot2/side-head
-bounds:1497,178,183,277
+bounds:2453,523,183,277
 robot2/side-shadow
-bounds:1277,1515,480,82
+bounds:626,1272,480,82
+rotate:90
 robot2/sided-Rwing
-bounds:2732,1402,174,348
-rotate:90
+bounds:886,1404,174,348
 robot2/smoke
-bounds:2,1130,640,622
+bounds:2,1112,640,622
+rotate:90
 robot2/squadRleg
-bounds:2205,676,215,127
-rotate:90
+bounds:1553,1285,215,127
 robot2/squatRfoot
-bounds:2202,150,79,69
+bounds:3167,9,79,69
 robot2/squatRknee
-bounds:2926,252,118,135
-rotate:90
-robot2/squat_shadow
-bounds:1277,1599,480,153
+bounds:1206,3,118,135
