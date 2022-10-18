@@ -16,6 +16,7 @@
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/prah1.png" type="Texture" id=14]
 [ext_resource path="res://Main/Slot/Features/RandomWilds/WildsSystem.gd" type="Script" id=15]
 [ext_resource path="res://Main/Slot/Features/PushReels.gd" type="Script" id=16]
+[ext_resource path="res://Main/Textures/particles/fog.webp" type="Texture" id=17]
 [ext_resource path="res://Main/Slot/Features/SideCharacters.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Main/Animations/Characters/Robot2.atlas" type="SpineAtlasResource" id=19]
 [ext_resource path="res://Main/Animations/Characters/Robot1.atlas" type="SpineAtlasResource" id=20]
@@ -67,10 +68,8 @@
 [ext_resource path="res://Main/Textures/animated/fire/frame_21_delay-0.03s.webp" type="Texture" id=66]
 [ext_resource path="res://Main/Misc/ClickWaiter.gd" type="Script" id=67]
 [ext_resource path="res://Main/Textures/animated/fire/frame_32_delay-0.03s.webp" type="Texture" id=68]
-[ext_resource path="res://Main/Textures/slot/Particles2.png" type="Texture" id=69]
 [ext_resource path="res://Main/Slot/Tiles/TileScene.tscn" type="PackedScene" id=70]
 [ext_resource path="res://Main/Textures/animated/fire/frame_10_delay-0.04s.webp" type="Texture" id=71]
-[ext_resource path="res://Main/Textures/slot/Particles1.png" type="Texture" id=72]
 [ext_resource path="res://Main/Textures/animated/fire/frame_36_delay-0.03s.webp" type="Texture" id=73]
 [ext_resource path="res://Main/Textures/animated/fire/frame_27_delay-0.03s.webp" type="Texture" id=74]
 [ext_resource path="res://Main/Textures/animated/fire/frame_28_delay-0.04s.webp" type="Texture" id=75]
@@ -173,6 +172,10 @@
 [ext_resource path="res://Main/Animations/Characters/GIRL.json" type="SpineSkeletonFileResource" id=172]
 [ext_resource path="res://Main/Animations/Characters/BOY.json" type="SpineSkeletonFileResource" id=173]
 [ext_resource path="res://Main/Animations/Characters/Robot2.spine-json" type="SpineSkeletonFileResource" id=174]
+
+[sub_resource type="Gradient" id=498]
+offsets = PoolRealArray( 0, 0.396648, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="CanvasItemMaterial" id=489]
 light_mode = 2
@@ -289,105 +292,9 @@ resource_name = "Idle"
 length = 10.0
 loop = true
 step = 1.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Particles1:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.938, 1.3752 ), Vector2( 2.25, 1.5 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Particles2:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 4.99, 5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1.938, 1.375 ), Vector2( 2.5, 1.75 ), Vector2( 1, 1 ), Vector2( 1.938, 1.375 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Particles2:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.392157 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Particles1:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 5, 10 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
 
 [sub_resource type="Animation" id=462]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Particles1:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Particles2:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Particles2:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Particles1:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
 
 [sub_resource type="Animation" id=481]
 resource_name = "Hide"
@@ -2283,6 +2190,25 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 mouse_filter = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Intro/Elements"]
+material = ExtResource( 39 )
+amount = 20
+lifetime = 10.0
+texture = ExtResource( 17 )
+emission_shape = 1
+emission_sphere_radius = 450.0
+direction = Vector2( 0, 1 )
+spread = 20.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 3.0
+initial_velocity_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale_amount = 3.0
+scale_amount_random = 0.5
+color = Color( 1, 1, 1, 0.168627 )
+color_ramp = SubResource( 498 )
 
 [node name="Backround" type="Node2D" parent="Intro/Elements"]
 
@@ -5024,6 +4950,25 @@ position = Vector2( -27.5555, -161.778 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 169 )
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="SlotContainer/Background/Background/Normal"]
+material = ExtResource( 39 )
+amount = 20
+lifetime = 10.0
+texture = ExtResource( 17 )
+emission_shape = 1
+emission_sphere_radius = 450.0
+direction = Vector2( 0, 1 )
+spread = 20.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 3.0
+initial_velocity_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale_amount = 3.0
+scale_amount_random = 0.5
+color = Color( 1, 1, 1, 0.168627 )
+color_ramp = SubResource( 498 )
+
 [node name="Special" type="Sprite" parent="SlotContainer/Background/Background"]
 visible = false
 texture = ExtResource( 5 )
@@ -5031,22 +4976,6 @@ texture = ExtResource( 5 )
 [node name="FrameDropShadow" type="Sprite" parent="SlotContainer/Background/Background/Special"]
 position = Vector2( -40, 471.111 )
 texture = ExtResource( 64 )
-
-[node name="Particles1" type="Node2D" parent="SlotContainer/Background/Background/Special"]
-
-[node name="Particles1" type="Sprite" parent="SlotContainer/Background/Background/Special/Particles1"]
-material = ExtResource( 39 )
-position = Vector2( 0, -150 )
-texture = ExtResource( 72 )
-
-[node name="Particles2" type="Node2D" parent="SlotContainer/Background/Background/Special"]
-rotation = 3.14159
-
-[node name="Particles2" type="Sprite" parent="SlotContainer/Background/Background/Special/Particles2"]
-material = ExtResource( 39 )
-position = Vector2( 0, -150 )
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 69 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Background/Background/Special"]
 anims/Idle = SubResource( 461 )
