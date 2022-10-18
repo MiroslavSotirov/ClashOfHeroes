@@ -11,13 +11,6 @@ func _ready():
 	$AnimationPlayer.connect("animation_finished", self, "_on_animation_finished");
 	#$Character.connect("animation_complete", self, "_on_animation_finished");
 
-func electrify_sword():
-	Globals.singletons["Audio"].play("Electricity4");
-
-func electrify():
-	#CharacterLanding
-	Globals.singletons["Audio"].play("CharacterLanding", 0.6);
-	
 func show_chr(chr):
 	get_node(chr).visible = true;
 	get_node(chr).play_anim("disappear", true);

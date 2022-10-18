@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Loader/AssetLoader.gd"
 }, {
-"base": "Reference",
-"class": "Background",
-"language": "GDScript",
-"path": "res://Main/Slot/Features/Background.gd"
-}, {
 "base": "Control",
 "class": "Fader",
 "language": "GDScript",
@@ -151,7 +146,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AssetLoader": "",
-"Background": "",
 "Fader": "",
 "FallingReel": "",
 "Game": "",

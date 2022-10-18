@@ -21,8 +21,9 @@ func activate_on(x,y):
 	fx.global_position = Globals.singletons["Slot"].get_tile_global_default_position(x, y, true) - offset;
 	#fx.play_anim_then_loop("popup", "idle");
 	fx.get_node("SlashFx").rotation = randf() * TAU;
-#	Globals.singletons["Audio"].play("Electricity");
+
 	Globals.singletons["Game"].shake.y += 2.0;
+	Globals.singletons["Audio"].play("JuniorMech");
 	Globals.singletons["FaderBright"].tween(0.1,0.0,0.2);
 	
 func deactivate_all():

@@ -42,7 +42,7 @@ func activate_on(x,y, targetid):
 	fx.get_node("AnimationPlayer").play("Show");
 	fx.look_at(Globals.singletons["SideCharacters"].get_char("Girl").global_position + Vector2(0.0,-400.0));
 	#fx.get_node("SlashFx").rotation = randf() * TAU;
-#	Globals.singletons["Audio"].play("Electricity");
+
 	Globals.singletons["Game"].shake.x += 5.0;
 	Globals.singletons["FaderBright"].tween(0.1,0.0,0.2);
 	Globals.singletons["Slot"].replace_tile(x, y, targetid);

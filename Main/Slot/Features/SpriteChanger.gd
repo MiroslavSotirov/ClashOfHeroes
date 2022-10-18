@@ -20,7 +20,6 @@ func maybe_change_to(condition, state, otherwise, duration = 1.0, easing = Tween
 	change_to(next, duration, easing);
 		
 func change_to(state, duration = 1.0, easing = Tween.EASE_IN_OUT):
-	prints("BG TO", state)
 	if (state == _current): return;
 	_previous = _current;
 	_current = state;

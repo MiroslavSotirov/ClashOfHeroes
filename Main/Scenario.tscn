@@ -383,20 +383,9 @@ extends VFSMStateBase
 func enter() -> void:
 	print(\"### SPIN STOP STATE: ###\");
 	var data = Globals.singletons[\"Networking\"].lastround;
-	#var anticipation = Globals.singletons[\"Anticipation\"];
 	
 	Globals.fsm_data[\"reels_stopped\"] = false;
 	Globals.fsm_data[\"wild_feature_complete\"] = false;
-
-	#var anticipation_data = data.parsed.anticipation;
-	#if (anticipation_data.value):
-	#	anticipation.show(anticipation_data);
-	#	anticipation.connect(\"activated\", self, \"_anticipation_on\", [], CONNECT_ONESHOT);
-	#	anticipation.connect(\"ended_on_reel\", self, \"_anticipation_off\");
-
-	#if (data.parsed.respin.previous):
-	#	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
-
 	yield(Globals.singletons[\"Slot\"].stop_spin(data), \"completed\");
 	
 	if(Globals.fsm_data[\"has_respin\"]):
@@ -410,50 +399,14 @@ func enter() -> void:
 	
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 
-	#if (data.parsed.respin.previous): 
-	#	Globals.singletons[\"WinlinesFadeAnimationPlayer\"].play(\"To_Normal\");
-
 	if(!Globals.fsm_data[\"in_freespins\"] && data.freeSpinsRemaining > 1):
 		yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 
-#	var special_tiles = Globals.singletons[\"Slot\"].get_tiles_with_id(11);
-#	if (len(special_tiles) > 0):
-#		Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27, 1), 0.3, [11]);
-#		var promises = []
-#		for special in special_tiles:
-#			promises.append(special.stop_popup());
-#		Globals.singletons[\"Audio\"].play('Activator');
-#		yield(Promise.all(promises), \"completed\");
-#
-#		Globals.singletons[\"Slot\"].tint(Color.white, 0.3);
-#		var bar = Globals.singletons[\"Stateful\"].get_value(\"counter\");
-		#Globals.singletons[\"SegmentBar\"].update(bar);
-
-	#yield(Globals.singletons[\"SegmentBar\"].wait_to_update(), \"completed\");
 	if(Globals.singletons[\"Background\"].current == \"Special\"):
 		Globals.singletons[\"Background\"].change_to(\"Normal\");
 		Globals.singletons[\"FlameAnimationPlayer\"].play(\"Hide\");
-		print(\"HIDE FLAME\");
+
 	Globals.fsm_data[\"reels_stopped\"] = true;
-
-func _anticipation_on():
-	Globals.singletons[\"Audio\"].loop('Anticipation0');
-	Globals.singletons[\"Audio\"].play('Impact');
-	Globals.singletons[\"Background\"].change_to(\"FreeSpins\");
-	Globals.singletons[\"Overlap\"].maybe_change_to(!Globals.fsm_data[\"in_freespins\"], \"Dark\", \"FreeSpins\");
-
-func _anticipation_off(reel_index, last_index, effect_index):
-	var sound = 'Anticipation' + str(effect_index);
-	var sound1 = 'Anticipation' + str(effect_index + 1);
-	Globals.singletons[\"Audio\"].fade_to(sound, 0, 1500, 1);
-
-	if (reel_index == last_index):
-		Globals.singletons[\"Audio\"].stop(\"Anticipation0\");
-		Globals.singletons[\"Audio\"].stop(\"Anticipation1\");
-		Globals.singletons[\"Audio\"].stop(\"Anticipation2\");
-		Globals.singletons[\"Anticipation\"].disconnect(\"ended_on_reel\", self, \"_anticipation_off\");
-	else:
-		Globals.singletons[\"Audio\"].play(sound1, 1);
 
 func update(_object, _delta: float) -> void:
 	pass;
