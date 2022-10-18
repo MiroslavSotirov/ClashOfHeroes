@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+path="res://.import/Robot2.spine-json-ffa96ddce3b57f766aa003215a01237a.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/Characters/Robot2.spine-json"
+dest_files=[ "res://.import/Robot2.spine-json-ffa96ddce3b57f766aa003215a01237a.spjson" ]
+
+[params]
+
