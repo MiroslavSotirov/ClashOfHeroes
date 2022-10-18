@@ -7,7 +7,8 @@ func _ready():
 
 func show():
 	$Elements/Logo/SpineSprite.play_anim_then_loop('popup', "idle");
-	Globals.singletons["Audio"].play("LogoPopup", 0.5);
+	Globals.singletons["Audio"].play("LogoPopup");
+	Globals.singletons["Audio"].play_after("BothAppear", 1000);
 	$Elements/RobotLeft.play_anim_then_loop('fall', "front_idle");
 	$Elements/RobotRight.play_anim_then_loop('fall', "front-idle");
 	yield(Globals.get_tree().create_timer(0.05), "timeout");
