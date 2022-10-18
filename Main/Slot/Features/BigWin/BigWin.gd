@@ -44,6 +44,7 @@ func show_win(target, is_total = false):
 	self.target = target;
 	$CounterText.visible = false;
 	$CounterText.rect_scale = Vector2.ZERO;
+	$BigWinAnimation.reset_pose();
 	$BigWinAnimation.visible = false;
 	$BigWinAnimation.position = Vector2(0, -100);
 	$BigWinAnimationPlayer.play("Show");
