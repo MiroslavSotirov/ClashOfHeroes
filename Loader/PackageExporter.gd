@@ -14,7 +14,7 @@ func _get_tool_buttons(): return ["export_pck"]
 func export_pck(distribution=false):
 	prints("Exporting", name);
 	
-	var valid_extensions = ["png", "jpg", "webp", "tscn", "tres", "gd", "ttf", "json", "atlas", "txt"];
+	var valid_extensions = ["png", "jpg", "webp", "tscn", "tres", "gd", "ttf", "json", "spine-json", "atlas", "txt"];
 	var paths = {};
 	
 	for folder in targetpaths:
