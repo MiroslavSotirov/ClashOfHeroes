@@ -1154,6 +1154,7 @@ anims/Show = SubResource( 26 )
 script = ExtResource( 2 )
 
 [node name="LeftSide" type="Node2D" parent="."]
+position = Vector2( 1, 0 )
 
 [node name="Top" type="Node2D" parent="LeftSide"]
 
