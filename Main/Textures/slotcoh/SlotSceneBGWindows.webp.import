@@ -14,7 +14,7 @@ dest_files=[ "res://.import/SlotSceneBGWindows.webp-f928b57b7135ce8f5c5f3aa8cfcb
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

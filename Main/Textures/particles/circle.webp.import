@@ -14,7 +14,7 @@ dest_files=[ "res://.import/circle.webp-f6d649950f329dea359eb51a900a3847.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

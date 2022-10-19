@@ -14,7 +14,7 @@ dest_files=[ "res://.import/FrameFullGlowV2.webp-1e8bb673470e8478986aba61cd6f963
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

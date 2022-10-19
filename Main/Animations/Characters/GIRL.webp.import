@@ -14,7 +14,7 @@ dest_files=[ "res://.import/GIRL.webp-0a7bcfc7f3d183ad0bb315b0b76ba867.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

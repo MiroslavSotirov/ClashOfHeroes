@@ -14,7 +14,7 @@ dest_files=[ "res://.import/FrameWing3.webp-247211f9e210d973068e6e65d640d956.ste
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

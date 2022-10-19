@@ -14,7 +14,7 @@ dest_files=[ "res://.import/FrameTop2.webp-ef4434cf9d049963fc733eb10c36d9b5.stex
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

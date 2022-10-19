@@ -14,7 +14,7 @@ dest_files=[ "res://.import/swing.webp-6dafe02ce08569fb1f58981b9641ddb5.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

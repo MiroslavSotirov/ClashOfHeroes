@@ -14,7 +14,7 @@ dest_files=[ "res://.import/frame_40_delay-0.04s.webp-00c860de1f9326f8ae57226819
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

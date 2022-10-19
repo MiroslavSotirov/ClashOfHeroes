@@ -14,7 +14,7 @@ dest_files=[ "res://.import/Robot2.webp-52b0df9ef37f608ee96aacf8f187f86d.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

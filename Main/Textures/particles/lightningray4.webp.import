@@ -14,7 +14,7 @@ dest_files=[ "res://.import/lightningray4.webp-5499eb35436006e09c8bc14094ff3ad7.
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

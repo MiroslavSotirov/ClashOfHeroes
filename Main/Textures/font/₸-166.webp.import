@@ -14,7 +14,7 @@ dest_files=[ "res://.import/₸-166.webp-f992dc9727c99f5290e01e1b54d39440.stex" 
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

@@ -14,7 +14,7 @@ dest_files=[ "res://.import/fog.webp-2951270b05ab1b9c1a19bf93280450d4.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

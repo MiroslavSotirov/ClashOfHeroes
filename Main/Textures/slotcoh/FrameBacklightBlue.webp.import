@@ -14,7 +14,7 @@ dest_files=[ "res://.import/FrameBacklightBlue.webp-a06c4d3eaa8cfceb1b5ee501bf9b
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

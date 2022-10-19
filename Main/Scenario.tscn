@@ -117,8 +117,10 @@ func enter() -> void:
 	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/Logo/SpineSpriteExtension\").play_anim_then_loop(\"popup\", \"idle\");
 	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/Overlap/Normal/Normal/AnimationPlayer\").play(\"Show\");
 	Globals.singletons[\"FrameAnimationPlayer\"].play(\"ZoomIn\");
+	Globals.singletons[\"Audio\"].play(\"SlotAppearance\");
+	Globals.singletons[\"Audio\"].play_after(\"BothAppear\", 1300);
 
-	yield(Globals.get_tree().create_timer(1.0), \"timeout\");	
+	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 
 	Globals.singletons[\"Game\"].get_node(\"SlotContainer/Slot/ReelContainer\").visible = true;
 	Globals.singletons[\"Game\"].shake += Vector2.ONE * 5.0;
@@ -266,6 +268,7 @@ func enter() -> void:
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = true;
 	if(Globals.fsm_data[\"reverse_spin\"]):
 		Globals.singletons[\"Slot\"].set_reels_speed_multiplier(-1.0);
+		Globals.singletons[\"Audio\"].play(\"Anticipation\");
 	else:
 		Globals.singletons[\"Slot\"].set_reels_speed_multiplier(1.0);
 		
@@ -274,7 +277,7 @@ func enter() -> void:
 	else:
 		Globals.singletons[\"Slot\"].start_spin();
 	
-	if (!Globals.fsm_data[\"in_freespins\"]): Globals.singletons[\"Audio\"].fade_to(\"Melody\", 1, 2000);
+#	if (!Globals.fsm_data[\"in_freespins\"]): Globals.singletons[\"Audio\"].fade_to(\"Melody\", 1, 2000);
 		
 func spin_data_received(data):
 	if(\"code\" in data || \"hasError\" in data):
@@ -388,19 +391,21 @@ func enter() -> void:
 	Globals.fsm_data[\"wild_feature_complete\"] = false;
 	yield(Globals.singletons[\"Slot\"].stop_spin(data), \"completed\");
 	
-	if(Globals.fsm_data[\"has_respin\"]):
+	if (Globals.fsm_data[\"has_respin\"]):
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
 		Globals.singletons[\"Audio\"].play(\"GirlAppear\");
+		Globals.singletons[\"Audio\"].fade_to(\"Anticipation\", 0, 200);
 		
-	if(Globals.fsm_data[\"has_push_reels\"]):
+	if (Globals.fsm_data[\"has_push_reels\"]):
 		Globals.singletons[\"Audio\"].fade_to(\"SpinningReel\", 0, 500);
+		Globals.singletons[\"Audio\"].fade_to(\"Anticipation\", 0, 200);
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 		Globals.singletons[\"Audio\"].play(\"BoyAppear\");
 	
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 
-	if(!Globals.fsm_data[\"in_freespins\"] && data.freeSpinsRemaining > 1):
-		yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+#	if(!Globals.fsm_data[\"in_freespins\"] && data.freeSpinsRemaining > 1):
+#		yield(Globals.get_tree().create_timer(1.5), \"timeout\");
 
 	if(Globals.singletons[\"Background\"].current == \"Special\"):
 		Globals.singletons[\"Background\"].change_to(\"Normal\");
