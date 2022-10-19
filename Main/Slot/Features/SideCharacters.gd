@@ -20,9 +20,6 @@ func show_chr(chr):
 	yield(get_node(chr), "animation_completed")
 	get_node(chr).reset_pose();
 	get_node(chr).play_anim("idle", true, 0.5);
-
-func lightning_show(type = "intro"):
-	pass
 	
 func play(anim, delay = 0.0):
 	if (delay > 0.0):
@@ -52,6 +49,13 @@ func _on_layout_changed(layout):
 	if (!hide_on_portrait): return;
 	
 	var anim = $AnimationPlayerRoot;
-	if (layout.name == "portrait" && anim.assigned_animation != "Hide"): anim.play("Hide");
-	elif (anim.assigned_animation != "Show"): anim.play("Show");
+	if (layout.name == "portrait"): hide_chars();
+	else: show_chars();
 
+func show_chars():
+	if($AnimationPlayerRoot.assigned_animation != "Show"):
+		$AnimationPlayerRoot.play("Show");
+
+func hide_chars():
+	if($AnimationPlayerRoot.assigned_animation != "Hide"):
+		$AnimationPlayerRoot.play("Hide");

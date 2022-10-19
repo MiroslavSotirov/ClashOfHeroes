@@ -395,13 +395,17 @@ func enter() -> void:
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
 		Globals.singletons[\"Audio\"].play(\"GirlAppear\");
 		Globals.singletons[\"Audio\"].fade_to(\"Anticipation\", 0, 200);
+		Globals.singletons[\"Game\"].target_scale = 1.0;
+		if(Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
 		
 	if (Globals.fsm_data[\"has_push_reels\"]):
 		Globals.singletons[\"Audio\"].fade_to(\"SpinningReel\", 0, 500);
 		Globals.singletons[\"Audio\"].fade_to(\"Anticipation\", 0, 200);
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 		Globals.singletons[\"Audio\"].play(\"BoyAppear\");
-	
+		Globals.singletons[\"Game\"].target_scale = 1.0;
+		if(Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
+		
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 
 #	if(!Globals.fsm_data[\"in_freespins\"] && data.freeSpinsRemaining > 1):
@@ -640,6 +644,9 @@ func enter() -> void:
 		Globals.fsm_data[\"wild_feature_complete\"] = true;
 		return;
 	
+	Globals.singletons[\"Game\"].target_scale = 0.75;
+	Globals.singletons[\"SideCharacters\"].show_chars();
+	
 	var split = [[],[],[]];
 	var total = len(data.parsed.randomwild_data);
 	var splitcount = int(len(data.parsed.randomwild_data.tiles)/3.0);
@@ -669,6 +676,7 @@ func enter() -> void:
 		Globals.singletons[\"WildsSystem\"].activate_on(wild_data.x, wild_data.y);
 	
 	yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	Globals.singletons[\"Game\"].target_scale = 1.0;
 	Globals.fsm_data[\"wild_feature_complete\"] = true;
 
 func update(_object, _delta: float) -> void:
@@ -696,7 +704,7 @@ func enter() -> void:
 	if (data.parsed.randomwild_data == null):
 		Globals.fsm_data[\"wild_feature_complete\"] = true;
 		return;
-		
+	
 	Globals.singletons[\"WildsSystem\"].deactivate_all();
 	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
@@ -732,6 +740,9 @@ func enter() -> void:
 		return;
 		
 	Globals.singletons[\"WinLines\"].hide_lines();
+	
+	Globals.singletons[\"Game\"].target_scale = 0.75;
+	Globals.singletons[\"SideCharacters\"].show_chars();
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"Audio\"].play(\"GirlDisappear\");
 	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
@@ -771,7 +782,8 @@ func enter() -> void:
 	if(data.parsed.swap_data == null):
 		Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
 		return;
-	
+	Globals.singletons[\"Game\"].target_scale = 0.75;
+	Globals.singletons[\"SideCharacters\"].show_chars();
 	var skip = {};
 	for tile in data.parsed.swap_data.tiles:
 		if(!skip.has(int(tile.x))): skip[int(tile.x)] = [];
@@ -797,7 +809,8 @@ func enter() -> void:
 	
 	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
-	
+	Globals.singletons[\"Game\"].target_scale = 1.0;
+	if(Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
 	Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
 
 func update(_object, _delta: float) -> void:
@@ -833,19 +846,20 @@ func enter() -> void:
 	var pos = Globals.singletons[\"Slot\"].get_tile_address(fatdata.from);
 	var notint = {};
 	notint[int(pos.x)] = [int(pos.y)];
-
+	Globals.singletons[\"Game\"].target_scale = 0.75;
+	Globals.singletons[\"SideCharacters\"].show_chars();
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5, notint);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"Audio\"].play(\"BoyDisappear\");
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
 	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
-
+	
 	Globals.singletons[\"SlotAnimationPlayer\"].play(\"ZoomIn\");
 	Globals.singletons[\"Audio\"].play(\"Robot1Flight\");
 	Globals.singletons[\"Audio\"].play_after(\"FX1\", 100);
 	yield(Globals.get_tree().create_timer(0.5), \"timeout\");
-	
+	Globals.singletons[\"Game\"].target_scale = 1.0;
 	Globals.singletons[\"ExpandingWilds\"].set_pos(pos.x, pos.y);
 	Globals.singletons[\"ExpandingWilds\"].animationPlayer.play(\"Show\");
 	yield(Globals.get_tree().create_timer(0.7), \"timeout\");
@@ -878,6 +892,7 @@ func enter() -> void:
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.singletons[\"Background\"].change_to(\"Normal\", 1.0);
+	if(Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
 	Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
 	Globals.singletons[\"ExpandingWilds\"].fightfx.visible = false;
 
@@ -912,7 +927,9 @@ func enter() -> void:
 		Globals.fsm_data[\"has_push_reels\"] = false;
 		return;
 	Globals.singletons[\"WinLines\"].hide_lines();
-
+	
+	Globals.singletons[\"Game\"].target_scale = 0.75;	
+	Globals.singletons[\"SideCharacters\"].show_chars();
 	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 3.0);
 	Globals.singletons[\"Audio\"].play(\"BoyDisappear\");
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);

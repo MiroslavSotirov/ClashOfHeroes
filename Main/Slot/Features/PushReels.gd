@@ -8,6 +8,7 @@ func _ready():
 func play_anim():
 	visible = true;
 	$Crash.visible = false;
+	$Robot.visible = true;
 	$Robot.play_anim("fall", false);
 	Globals.singletons["Audio"].play("Robot1Landing");
 	$Robot.reset_pose();
@@ -28,12 +29,17 @@ func play_anim():
 	emit_signal("start_push");
 	yield($Robot, "animation_completed");
 	
-	$Robot.play_anim("fly", false);	
-	Globals.singletons["Audio"].play("Robot1Launch");
-	$Robot.reset_pose();
+	fly_away();
 	yield(Globals.get_tree().create_timer(0.3), "timeout");
 	for i in 5:
 		Globals.singletons["Game"].shake.y += 8.0;
 		if (i == 3): emit_signal("start_spin");
 		yield(Globals.get_tree().create_timer(0.1), "timeout");
 	Globals.singletons["Game"].shake.y -= 50.0;
+	
+func fly_away():
+	$Robot.play_anim("fly", false);	
+	Globals.singletons["Audio"].play("Robot1Launch");
+	$Robot.reset_pose();
+	yield($Robot, "animation_completed")
+	$Robot.visible = false;
