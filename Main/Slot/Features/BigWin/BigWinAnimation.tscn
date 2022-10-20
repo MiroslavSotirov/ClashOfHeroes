@@ -9,6 +9,7 @@ atlas_res = ExtResource( 3 )
 skeleton_file_res = ExtResource( 2 )
 
 [node name="BigWinAnimation" type="SpineSprite"]
+scale = Vector2( 0.85, 0.85 )
 skeleton_data_res = SubResource( 1 )
 preview_skin = "default"
 preview_animation = "-- Empty --"

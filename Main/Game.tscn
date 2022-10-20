@@ -4904,13 +4904,31 @@ material = SubResource( 494 )
 
 [node name="Press-Anywhere-To-Continue" type="Sprite" parent="Intro/Elements/Message"]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 275 )
+position = Vector2( 0, 430 )
 
 [node name="SpriteLangSwap" type="Node" parent="Intro/Elements/Message/Press-Anywhere-To-Continue"]
 script = ExtResource( 87 )
 assetname = "POS.png"
 propertyname = "texture"
 node = NodePath("..")
+
+[node name="Positioner" type="Node2D" parent="Intro/Elements/Message/Press-Anywhere-To-Continue"]
+script = ExtResource( 49 )
+config = {
+"default": {
+"easing": 1.0,
+"position": Vector2( 0, 430 ),
+"scale": Vector2( 1, 1 ),
+"scaleX": Vector2( 1, 1 ),
+"scaleXY": Vector2( 1, 1 ),
+"scaleY": Vector2( 1, 1 ),
+"x": Vector2( 0, 0 ),
+"y": Vector2( 0, 0 )
+},
+"portrait": {
+"position": Vector2( 0, 550 )
+}
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Intro/Elements/Message"]
 anims/show = SubResource( 452 )
@@ -5311,7 +5329,7 @@ config = {
 "scale": Vector2( 0.85, 0.85 )
 },
 "portrait": {
-"position": Vector2( -20, -850 ),
+"position": Vector2( -20, -550 ),
 "scale": Vector2( 1.8, 1.8 )
 },
 "tablet": {
