@@ -175,9 +175,9 @@ func update_win_configs(stake):
 	singletons["WinBar"].bangup_factor = stake * 3;
 	
 	singletons["BigWin"].bangup_factor = stake * 2;
-	singletons["BigWin"].big_win_limit = stake * 0.1;
-	singletons["BigWin"].super_win_limit = stake * 0.2;
-	singletons["BigWin"].mega_win_limit = stake * 0.30;
+	singletons["BigWin"].big_win_limit = stake * 10.0;
+	singletons["BigWin"].super_win_limit = stake * 25.0;
+	singletons["BigWin"].mega_win_limit = stake * 50.0;
 
 func get_dir_contents(rootPath: String) -> Array:
 	var files = []
