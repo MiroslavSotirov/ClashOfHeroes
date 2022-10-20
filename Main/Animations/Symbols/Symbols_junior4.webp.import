@@ -14,7 +14,7 @@ dest_files=[ "res://.import/Symbols_junior4.webp-febf160d14fa3b5c61f08fe68766ab6
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

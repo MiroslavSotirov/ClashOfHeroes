@@ -14,7 +14,7 @@ dest_files=[ "res://.import/symbol_big_Wild.webp-aabe15de857e752ba60450e356c5a3f
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0

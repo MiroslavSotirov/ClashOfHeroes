@@ -14,7 +14,7 @@ dest_files=[ "res://.import/logo.webp-27caca56be18ef0d654961475c7cee0f.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
