@@ -21,6 +21,13 @@ func show_chr(chr):
 	get_node(chr).reset_pose();
 	get_node(chr).play_anim("idle", true, 0.5);
 	
+func hide_chr(chr):
+	get_node(chr).visible = true;
+	get_node(chr).play_anim("disappear", true);
+	get_node(chr).set_timescale(3.0, false);
+	yield(get_node(chr), "animation_completed")
+	get_node(chr).visible = false;
+	
 func play(anim, delay = 0.0):
 	if (delay > 0.0):
 		 yield(get_tree().create_timer(delay), "timeout");

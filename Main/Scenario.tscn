@@ -743,7 +743,7 @@ func enter() -> void:
 	
 	Globals.singletons[\"Game\"].target_scale = 0.75;
 	Globals.singletons[\"SideCharacters\"].show_chars();
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
+	Globals.singletons[\"SideCharacters\"].hide_chr(\"Girl\");
 	Globals.singletons[\"Audio\"].play(\"GirlDisappear\");
 	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
 	
@@ -849,8 +849,8 @@ func enter() -> void:
 	Globals.singletons[\"Game\"].target_scale = 0.75;
 	Globals.singletons[\"SideCharacters\"].show_chars();
 	Globals.singletons[\"Slot\"].tint(Color(0.27, 0.27, 0.27), 0.5, notint);
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 3.0);
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Girl\", \"disappear\", \"idle\", false, 3.0);
+	Globals.singletons[\"SideCharacters\"].hide_chr(\"Boy\");
+	Globals.singletons[\"SideCharacters\"].hide_chr(\"Girl\");
 	Globals.singletons[\"Audio\"].play(\"BoyDisappear\");
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
 	yield(Globals.get_tree().create_timer(0.75), \"timeout\");
@@ -930,7 +930,7 @@ func enter() -> void:
 	
 	Globals.singletons[\"Game\"].target_scale = 0.75;	
 	Globals.singletons[\"SideCharacters\"].show_chars();
-	Globals.singletons[\"SideCharacters\"].spine_play(\"Boy\", \"disappear\", \"idle\", false, 3.0);
+	Globals.singletons[\"SideCharacters\"].hide_chr(\"Boy\");
 	Globals.singletons[\"Audio\"].play(\"BoyDisappear\");
 	Globals.singletons[\"Background\"].change_to(\"Special\", 0.5);
 	Globals.singletons[\"FlameAnimationPlayer\"].play(\"Show\");

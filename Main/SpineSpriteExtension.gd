@@ -50,6 +50,7 @@ func play_anim(anim, loop, timescale_override = null):
 	currently_looping = loop;
 	if (timescale_override != null): set_timescale(timescale_override, false);
 	else: set_timescale(timescale);
+	reset_pose();
 	
 func play_anim_then_loop(anim, loopanim):
 	play_anim(anim, false);
