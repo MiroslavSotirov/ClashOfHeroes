@@ -389,14 +389,17 @@ func enter() -> void:
 	
 	Globals.fsm_data[\"reels_stopped\"] = false;
 	Globals.fsm_data[\"wild_feature_complete\"] = false;
+	# in respin and push reels the stop sound is lounder
+	var stopSound = \"ReelStopLoud\" if Globals.fsm_data[\"has_respin\"] ||Globals.fsm_data[\"has_push_reels\"] else \"ReelStop\";
+	for reel in Globals.singletons.Slot.reels: reel.sounds.stop = stopSound;
 	yield(Globals.singletons[\"Slot\"].stop_spin(data), \"completed\");
-	
+
 	if (Globals.fsm_data[\"has_respin\"]):
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
 		Globals.singletons[\"Audio\"].play(\"GirlAppear\");
 		Globals.singletons[\"Audio\"].fade_to(\"Anticipation\", 0, 200);
 		Globals.singletons[\"Game\"].target_scale = 1.0;
-		if(Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
+		if (Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
 		
 	if (Globals.fsm_data[\"has_push_reels\"]):
 		Globals.singletons[\"Audio\"].fade_to(\"SpinningReel\", 0, 500);
@@ -404,7 +407,7 @@ func enter() -> void:
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 		Globals.singletons[\"Audio\"].play(\"BoyAppear\");
 		Globals.singletons[\"Game\"].target_scale = 1.0;
-		if(Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
+		if (Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
 		
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 
