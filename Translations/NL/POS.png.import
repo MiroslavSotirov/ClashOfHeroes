@@ -14,7 +14,7 @@ dest_files=[ "res://.import/POS.png-75749b7a6c55c5b2c3379d474e26baa8.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.8
 compress/hdr_mode=0
 compress/bptc_ldr=0
