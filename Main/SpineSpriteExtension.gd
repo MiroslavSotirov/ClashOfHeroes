@@ -50,6 +50,8 @@ func play_anim(anim, loop, timescale_override = null):
 	currently_looping = loop;
 	if (timescale_override != null): set_timescale(timescale_override, false);
 	else: set_timescale(timescale);
+	#I don't like this, but its necessary to avoid flickering and issues with poor animation track management
+	yield(VisualServer, "frame_post_draw");
 	reset_pose();
 	
 func play_anim_then_loop(anim, loopanim):
