@@ -10,7 +10,7 @@
 [ext_resource path="res://Main/Textures/slot/winGlow.png" type="Texture" id=8]
 [ext_resource path="res://Main/Slot/Scenes/NormalSlotOverlap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Main/Textures/slotcoh/SlotSceneBG.webp" type="Texture" id=10]
-[ext_resource path="res://Main/Animations/Logo/logo.json" type="SpineSkeletonFileResource" id=11]
+[ext_resource path="res://Main/Animations/Logo/logo.spine-json" type="SpineSkeletonFileResource" id=11]
 [ext_resource path="res://Main/Textures/slotcoh/FrameDropShadow.webp" type="Texture" id=12]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/Swing.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Main/Textures/particles/PNG (Black background)/prah1.png" type="Texture" id=14]
@@ -23,7 +23,7 @@
 [ext_resource path="res://Main/Animations/Symbols/symbol_big_Wild.atlas" type="SpineAtlasResource" id=21]
 [ext_resource path="res://Main/Slot/Features/Intro.gd" type="Script" id=22]
 [ext_resource path="res://Main/Animations/Symbols/symbol_big_Wild.json" type="SpineSkeletonFileResource" id=23]
-[ext_resource path="res://Main/Animations/Characters/fx.json" type="SpineSkeletonFileResource" id=24]
+[ext_resource path="res://Main/Animations/Characters/Ground.spine-json" type="SpineSkeletonFileResource" id=24]
 [ext_resource path="res://Main/Slot/Reels/ReelSpinning.gd" type="Script" id=25]
 [ext_resource path="res://Main/Animations/Characters/fx.atlas" type="SpineAtlasResource" id=26]
 [ext_resource path="res://Main/Textures/particles/circle.webp" type="Texture" id=27]
@@ -39,12 +39,12 @@
 [ext_resource path="res://Main/Slot/Features/Respin/RespinFx.gd" type="Script" id=37]
 [ext_resource path="res://Main/Animations/Respin/Respin.atlas" type="SpineAtlasResource" id=38]
 [ext_resource path="res://Main/Misc/canvasadditive.tres" type="Material" id=39]
-[ext_resource path="res://Main/Animations/Respin/Respin.json" type="SpineSkeletonFileResource" id=40]
+[ext_resource path="res://Main/Animations/Respin/Respin.spine-json" type="SpineSkeletonFileResource" id=40]
 [ext_resource path="res://Main/Animations/Characters/Ground.atlas" type="SpineAtlasResource" id=41]
 [ext_resource path="res://Main/Slot/Features/Stateful.gd" type="Script" id=42]
-[ext_resource path="res://Main/Animations/Characters/Ground.json" type="SpineSkeletonFileResource" id=43]
+[ext_resource path="res://Main/Animations/Characters/fx.spine-json" type="SpineSkeletonFileResource" id=43]
 [ext_resource path="res://Main/SpineSpriteExtension.gd" type="Script" id=44]
-[ext_resource path="res://Main/Animations/Characters/Robot1.json" type="SpineSkeletonFileResource" id=45]
+[ext_resource path="res://Main/Animations/Characters/Robot1.spine-json" type="SpineSkeletonFileResource" id=45]
 [ext_resource path="res://Main/Misc/LogoResizer.gd" type="Script" id=46]
 [ext_resource path="res://Main/Textures/animated/fire/frame_08_delay-0.03s.webp" type="Texture" id=47]
 [ext_resource path="res://Main/Textures/animated/fire/frame_17_delay-0.03s.webp" type="Texture" id=48]
@@ -68,8 +68,10 @@
 [ext_resource path="res://Main/Textures/animated/fire/frame_21_delay-0.03s.webp" type="Texture" id=66]
 [ext_resource path="res://Main/Misc/ClickWaiter.gd" type="Script" id=67]
 [ext_resource path="res://Main/Textures/animated/fire/frame_32_delay-0.03s.webp" type="Texture" id=68]
+[ext_resource path="res://Main/Animations/Characters/BOY.spine-json" type="SpineSkeletonFileResource" id=69]
 [ext_resource path="res://Main/Slot/Tiles/TileScene.tscn" type="PackedScene" id=70]
 [ext_resource path="res://Main/Textures/animated/fire/frame_10_delay-0.04s.webp" type="Texture" id=71]
+[ext_resource path="res://Main/Animations/Characters/GIRL.spine-json" type="SpineSkeletonFileResource" id=72]
 [ext_resource path="res://Main/Textures/animated/fire/frame_36_delay-0.03s.webp" type="Texture" id=73]
 [ext_resource path="res://Main/Textures/animated/fire/frame_27_delay-0.03s.webp" type="Texture" id=74]
 [ext_resource path="res://Main/Textures/animated/fire/frame_28_delay-0.04s.webp" type="Texture" id=75]
@@ -168,8 +170,6 @@
 [ext_resource path="res://Main/Textures/slotcoh/SlotSceneBGWindows.webp" type="Texture" id=169]
 [ext_resource path="res://Main/Animations/Characters/GIRL.atlas" type="SpineAtlasResource" id=170]
 [ext_resource path="res://Main/Animations/Characters/BOY.atlas" type="SpineAtlasResource" id=171]
-[ext_resource path="res://Main/Animations/Characters/GIRL.json" type="SpineSkeletonFileResource" id=172]
-[ext_resource path="res://Main/Animations/Characters/BOY.json" type="SpineSkeletonFileResource" id=173]
 [ext_resource path="res://Main/Animations/Characters/Robot2.spine-json" type="SpineSkeletonFileResource" id=174]
 
 [sub_resource type="Gradient" id=498]
@@ -198,7 +198,7 @@ skeleton_file_res = ExtResource( 174 )
 
 [sub_resource type="SpineSkeletonDataResource" id=478]
 atlas_res = ExtResource( 41 )
-skeleton_file_res = ExtResource( 43 )
+skeleton_file_res = ExtResource( 24 )
 
 [sub_resource type="SpineSkeletonDataResource" id=466]
 atlas_res = ExtResource( 3 )
@@ -262,13 +262,13 @@ tracks/1/keys = {
 
 [sub_resource type="SpineSkeletonDataResource" id=493]
 atlas_res = ExtResource( 171 )
-skeleton_file_res = ExtResource( 173 )
+skeleton_file_res = ExtResource( 69 )
 
 [sub_resource type="CanvasItemMaterial" id=494]
 
 [sub_resource type="SpineSkeletonDataResource" id=495]
 atlas_res = ExtResource( 170 )
-skeleton_file_res = ExtResource( 172 )
+skeleton_file_res = ExtResource( 72 )
 
 [sub_resource type="Animation" id=452]
 resource_name = "show"
@@ -1211,7 +1211,7 @@ skeleton_file_res = ExtResource( 23 )
 
 [sub_resource type="SpineSkeletonDataResource" id=476]
 atlas_res = ExtResource( 26 )
-skeleton_file_res = ExtResource( 24 )
+skeleton_file_res = ExtResource( 43 )
 
 [sub_resource type="Animation" id=475]
 length = 0.001

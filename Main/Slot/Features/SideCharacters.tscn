@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Main/Animations/Characters/GIRL.json" type="SpineSkeletonFileResource" id=1]
+[ext_resource path="res://Main/Animations/Characters/GIRL.spine-json" type="SpineSkeletonFileResource" id=1]
 [ext_resource path="res://Main/Animations/Characters/GIRL.atlas" type="SpineAtlasResource" id=2]
-[ext_resource path="res://Main/Animations/Characters/BOY.json" type="SpineSkeletonFileResource" id=3]
+[ext_resource path="res://Main/Animations/Characters/BOY.spine-json" type="SpineSkeletonFileResource" id=3]
 [ext_resource path="res://Main/SpineSpriteExtension.gd" type="Script" id=4]
 [ext_resource path="res://Main/Slot/Features/SideCharacters.gd" type="Script" id=5]
 [ext_resource path="res://Main/Animations/Characters/BOY.atlas" type="SpineAtlasResource" id=6]

@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+path="res://.import/fx.spine-json-474e87a73973cd055b60f922d54e392e.spjson"
+
+[deps]
+
+source_file="res://Main/Animations/Characters/fx.spine-json"
+dest_files=[ "res://.import/fx.spine-json-474e87a73973cd055b60f922d54e392e.spjson" ]
+
+[params]
+
