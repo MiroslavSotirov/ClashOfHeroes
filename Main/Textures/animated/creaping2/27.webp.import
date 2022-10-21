@@ -15,7 +15,7 @@ dest_files=[ "res://.import/27.webp-16ef75d2104fd4daa4a9802191e5630a.stex" ]
 [params]
 
 compress/mode=1
-compress/lossy_quality=0.8
+compress/lossy_quality=0.6
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
