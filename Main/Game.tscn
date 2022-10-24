@@ -4268,8 +4268,8 @@ anims/RESET = SubResource( 491 )
 
 [node name="Boy" type="SpineSprite" parent="Intro/Elements"]
 visible = false
-position = Vector2( -175, 431 )
-scale = Vector2( 0.65, 0.65 )
+position = Vector2( -175, 401 )
+scale = Vector2( 0.6, 0.6 )
 skeleton_data_res = SubResource( 493 )
 preview_skin = "Default"
 preview_animation = "idle"
@@ -4473,8 +4473,8 @@ material = SubResource( 494 )
 
 [node name="Girl" type="SpineSprite" parent="Intro/Elements"]
 visible = false
-position = Vector2( 159, 435 )
-scale = Vector2( 0.7, 0.7 )
+position = Vector2( 159, 405 )
+scale = Vector2( 0.6, 0.6 )
 skeleton_data_res = SubResource( 495 )
 preview_skin = "default"
 preview_animation = "-- Empty --"
