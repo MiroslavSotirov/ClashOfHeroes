@@ -46,6 +46,7 @@ jobs:
           find ClashOfHeroes/Audio/ -name '*.wav' -exec cp {} ClashOfHeroes/dist/audio \;
           cd ClashOfHeroes/dist/audio && python3 ../../generate_audio_data.py && cd ../../..
           ./Godot_v3.4.5-stable_linux_headless.64 -export_pck --path ClashOfHeroes/;
+          find ClashOfHeroes/*.pck -exec gzip -9 -n {} \; -exec mv {}.gz {} \;
       - name: Generate index.html
         run: |
           cd ClashOfHeroes && node generate_index.js cdn="https://elysium-games.s3.eu-west-1.amazonaws.com/" && mv index.html config.json dist/;
