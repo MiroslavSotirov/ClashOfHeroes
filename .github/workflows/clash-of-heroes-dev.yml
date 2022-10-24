@@ -46,6 +46,8 @@ jobs:
           find ClashOfHeroes/Audio/ -name '*.wav' -exec cp {} ClashOfHeroes/dist/audio \;
           cd ClashOfHeroes/dist/audio && python3 ../../generate_audio_data.py && cd ../../..
           ./Godot_v3.4.5-stable_linux_headless.64 -export_pck --path ClashOfHeroes/;
+      - name: Compressing pck files as gzip
+        run: |
           find ClashOfHeroes/ -name "*.pck" -exec gzip -9 -n {} \; -exec mv {}.gz {} \;
       - name: Generate index.html
         run: |
