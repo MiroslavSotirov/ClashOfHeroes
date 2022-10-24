@@ -1,4 +1,4 @@
-[gd_scene load_steps=243 format=2]
+[gd_scene load_steps=242 format=2]
 
 [ext_resource path="res://Main/Scenario.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Slot/Features/SwapTiles/SwapTilesSystem.gd" type="Script" id=2]
@@ -104,7 +104,6 @@
 [ext_resource path="res://Main/Textures/animated/fire/frame_43_delay-0.04s.webp" type="Texture" id=102]
 [ext_resource path="res://Main/Textures/animated/fire/frame_44_delay-0.03s.webp" type="Texture" id=103]
 [ext_resource path="res://Main/Textures/animated/fire/frame_48_delay-0.03s.webp" type="Texture" id=104]
-[ext_resource path="res://Main/Textures/slot/slot-grid.png" type="Texture" id=105]
 [ext_resource path="res://Main/Slot/Features/SpriteChanger.gd" type="Script" id=107]
 [ext_resource path="res://Main/AudioSystem.gd" type="Script" id=108]
 [ext_resource path="res://Main/Textures/animated/fire/frame_49_delay-0.04s.webp" type="Texture" id=109]
@@ -5303,11 +5302,6 @@ shadow_item_cull_mask = 0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Slot/Overlap/LightWindows"]
 anims/Idle = SubResource( 496 )
 anims/RESET = SubResource( 497 )
-
-[node name="ReelGrid" type="Sprite" parent="SlotContainer/Slot/Overlap"]
-visible = false
-position = Vector2( 0, 25 )
-texture = ExtResource( 105 )
 
 [node name="FrameAnimationPlayer" type="AnimationPlayer" parent="SlotContainer/Slot/Overlap"]
 anims/RESET = SubResource( 469 )
