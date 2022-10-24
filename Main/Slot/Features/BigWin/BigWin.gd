@@ -11,6 +11,8 @@ var super_win_limit : float = 100;
 var mega_win_limit : float = 200;
 
 var bangup_factor : float = 1;
+var sum_min_scale: float = 0.8;
+var sum_max_scale: float = 1.3;
 
 var shown = false;
 var tween : Tween;
@@ -68,7 +70,7 @@ func show_win(target, is_total = false):
 	tween = Tween.new();
 	add_child(tween);
 	var time = min(1.0 + (self.target / self.bangup_factor), 20.0);
-	var scale = lerp(1, 1.5, min(1, target / (mega_win_limit - big_win_limit)));
+	var scale = lerp(sum_min_scale, sum_max_scale, min(1, target / (mega_win_limit - big_win_limit)));
 	
 	tween.interpolate_method(self, "set_text", 0, self.target, time, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT);
 	tween.interpolate_property($CounterText, "rect_scale", Vector2.ONE, Vector2.ONE * scale, time, Tween.TRANS_LINEAR, Tween.EASE_IN);
