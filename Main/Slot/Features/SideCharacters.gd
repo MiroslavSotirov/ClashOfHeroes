@@ -9,24 +9,33 @@ func _ready():
 	Globals.connect("layoutchanged", self, "_on_layout_changed");
 	_on_layout_changed(Globals.current_layout);
 	$AnimationPlayer.connect("animation_finished", self, "_on_animation_finished");
-	#$Character.connect("animation_complete", self, "_on_animation_finished");
 
 func show_chr(chr):
-	get_node(chr).visible = true;
-	get_node(chr).play_anim("disappear", true);
-	get_node(chr).set_timescale(3.0, false);
-	get_node(chr).reset_pose();
-	get_node(chr).get_animation_state().get_current(0).set_reverse(true);
-	yield(get_node(chr), "animation_completed")
-	get_node(chr).reset_pose();
-	get_node(chr).play_anim("idle", true, 0.5);
+	var character = get_node(chr);
+	if (character == null):
+		print("no such character", character);
+		return;
+
+	character.visible = true;
+	character.play_anim("disappear", true);
+	character.set_timescale(3.0, false);
+	character.reset_pose();
+	character.get_animation_state().get_current(0).set_reverse(true);
+	yield(character, "animation_completed")
+	character.reset_pose();
+	character.play_anim("idle", true, 0.5);
 	
 func hide_chr(chr):
-	get_node(chr).visible = true;
-	get_node(chr).play_anim("disappear", true);
-	get_node(chr).set_timescale(3.0, false);
-	yield(get_node(chr), "animation_completed")
-	get_node(chr).visible = false;
+	var character = get_node(chr);
+	if (character == null):
+		print("no such character", character);
+		return;
+
+	character.visible = true;
+	character.play_anim("disappear", true);
+	character.set_timescale(3.0, false);
+	yield(character, "animation_completed")
+	character.visible = false;
 	
 func play(anim, delay = 0.0):
 	if (delay > 0.0):
@@ -55,9 +64,10 @@ func _on_animation_finished(name, track = null, __ = null):
 func _on_layout_changed(layout):
 	if (!hide_on_portrait): return;
 	
-	var anim = $AnimationPlayerRoot;
-	if (layout.name == "portrait"): hide_chars();
-	else: show_chars();
+	if (layout.name == "portrait"):
+		hide_chars();
+	else:
+		show_chars();
 
 func show_chars():
 	if($AnimationPlayerRoot.assigned_animation != "Show"):

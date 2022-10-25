@@ -398,23 +398,22 @@ func enter() -> void:
 	
 	if (Globals.fsm_data[\"has_respin\"]):
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
+#		if (isPortrait): Globals.singletons[\"SideCharacters\"].hide_chars();
 		Globals.singletons[\"Audio\"].play(\"GirlAppear\");
 		Globals.singletons[\"Audio\"].fade_to(\"Anticipation\", 0, 200);
 		Globals.singletons[\"Game\"].target_scale = 1.0;
-		if (isPortrait): Globals.singletons[\"SideCharacters\"].hide_chars();
 		
 	if (Globals.fsm_data[\"has_push_reels\"]):
+		Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
+#		if (!isPortrait): Globals.singletons[\"SideCharacters\"].hide_chars();
 		Globals.singletons[\"Audio\"].fade_to(\"SpinningReel\", 0, 500);
 		Globals.singletons[\"Audio\"].fade_to(\"Anticipation\", 0, 200);
-		Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 		Globals.singletons[\"Audio\"].play(\"BoyAppear\");
 		Globals.singletons[\"Game\"].target_scale = 1.0;
-		if (isPortrait): Globals.singletons[\"SideCharacters\"].hide_chars();
 
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 
-#	if(!Globals.fsm_data[\"in_freespins\"] && data.freeSpinsRemaining > 1):
-#		yield(Globals.get_tree().create_timer(1.5), \"timeout\");
+	if (isPortrait): Globals.singletons[\"SideCharacters\"].hide_chars();
 
 	if(Globals.singletons[\"Background\"].current == \"Special\"):
 		Globals.singletons[\"Background\"].change_to(\"Normal\");
@@ -875,8 +874,8 @@ func enter() -> void:
 	Globals.singletons[\"LightningAnimationPlayer\"].play(\"Show\")
 
 	Globals.singletons[\"Audio\"].fade_to(\"FX1\", 0, 1000);
-	Globals.singletons[\"Audio\"].play_after(\"Wild3\", 300); #OK
-	Globals.singletons[\"Audio\"].play_after(\"FX2\", 1200); #OK
+	Globals.singletons[\"Audio\"].play_after(\"Wild3\", 300);
+	Globals.singletons[\"Audio\"].play_after(\"FX2\", 1200);
 	
 	for i in 15:
 		Globals.singletons[\"Game\"].shake += Vector2.ONE * 20.0;

@@ -6,6 +6,7 @@ func _ready():
 
 func play_anim():
 	visible = true;
+	$Robot.visible = true;
 	$Crash.visible = false;
 	$Respin.visible = false;
 	$Robot.play_anim("fall", false);
@@ -24,6 +25,7 @@ func play_anim():
 	yield(Globals.get_tree().create_timer(0.9), "timeout");
 
 	$Robot.play_anim("fly", false);
+	$Robot.connect("animation_completed", $Robot, "hide", [], CONNECT_ONESHOT);
 	Globals.singletons["Audio"].play("Robot2Launch");
 	yield(Globals.get_tree().create_timer(0.3), "timeout");
 	
@@ -41,4 +43,3 @@ func play_anim():
 	$Respin.play_anim("close", false);
 	yield($Respin, "animation_completed")
 	$Respin.visible = false;
-
