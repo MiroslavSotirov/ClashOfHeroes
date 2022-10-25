@@ -391,15 +391,17 @@ func enter() -> void:
 	Globals.fsm_data[\"wild_feature_complete\"] = false;
 	# in respin and push reels the stop sound is lounder
 	var stopSound = \"ReelStopLoud\" if Globals.fsm_data[\"has_respin\"] ||Globals.fsm_data[\"has_push_reels\"] else \"ReelStop\";
+	var isPortrait = Globals.current_layout.name == \"portrait\";
+	
 	for reel in Globals.singletons.Slot.reels: reel.sounds.stop = stopSound;
 	yield(Globals.singletons[\"Slot\"].stop_spin(data), \"completed\");
-
+	
 	if (Globals.fsm_data[\"has_respin\"]):
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
 		Globals.singletons[\"Audio\"].play(\"GirlAppear\");
 		Globals.singletons[\"Audio\"].fade_to(\"Anticipation\", 0, 200);
 		Globals.singletons[\"Game\"].target_scale = 1.0;
-		if (Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
+		if (isPortrait): Globals.singletons[\"SideCharacters\"].hide_chars();
 		
 	if (Globals.fsm_data[\"has_push_reels\"]):
 		Globals.singletons[\"Audio\"].fade_to(\"SpinningReel\", 0, 500);
@@ -407,8 +409,8 @@ func enter() -> void:
 		Globals.singletons[\"SideCharacters\"].show_chr(\"Boy\");
 		Globals.singletons[\"Audio\"].play(\"BoyAppear\");
 		Globals.singletons[\"Game\"].target_scale = 1.0;
-		if (Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
-		
+		if (isPortrait): Globals.singletons[\"SideCharacters\"].hide_chars();
+
 	Globals.singletons[\"Slot\"].get_node(\"ReelContainer\").rect_clip_content = false;
 
 #	if(!Globals.fsm_data[\"in_freespins\"] && data.freeSpinsRemaining > 1):
@@ -813,7 +815,8 @@ func enter() -> void:
 	Globals.singletons[\"Slot\"].tint(Color.white, 1.0);
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.singletons[\"Game\"].target_scale = 1.0;
-	if(Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
+	if (Globals.current_layout.name == \"portrait\"): Globals.singletons[\"SideCharacters\"].hide_chars();
+	
 	Globals.fsm_data[\"swap_tiles_feature_complete\"] = true;
 
 func update(_object, _delta: float) -> void:
@@ -895,7 +898,7 @@ func enter() -> void:
 	Globals.singletons[\"SideCharacters\"].show_chr(\"Girl\");
 	yield(Globals.get_tree().create_timer(1.0), \"timeout\");
 	Globals.singletons[\"Background\"].change_to(\"Normal\", 1.0);
-	if(Globals.landscape): Globals.singletons[\"SideCharacters\"].hide_chars();
+	if (Globals.current_layout.name == \"portrait\"): Globals.singletons[\"SideCharacters\"].hide_chars();
 	Globals.fsm_data[\"expanding_tiles_feature_complete\"] = true;
 	Globals.singletons[\"ExpandingWilds\"].fightfx.visible = false;
 
