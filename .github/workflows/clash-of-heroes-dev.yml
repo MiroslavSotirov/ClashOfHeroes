@@ -46,15 +46,18 @@ jobs:
           find ClashOfHeroes/Audio/ -name '*.wav' -exec cp {} ClashOfHeroes/dist/audio \;
           cd ClashOfHeroes/dist/audio && python3 ../../generate_audio_data.py && cd ../../..
           ./Godot_v3.4.5-stable_linux_headless.64 -export_pck --path ClashOfHeroes/;
+          
       - name: Generate index.html
         run: |
           cd ClashOfHeroes && node generate_index.js cdn="https://elysium-games.s3.eu-west-1.amazonaws.com/" && mv index.html config.json dist/;
+          
       - name: Get version
         id: tag
         run: |
           packageVersion=$(cat ClashOfHeroes/package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | tr -d '[[:space:]]') && ((packageVersion++))
           sed -i -e "s/version\":.*/version\": \"${packageVersion}\"/g" ClashOfHeroes/package.json
           echo "::set-output name=new_tag::$packageVersion"
+          
       - name: Build docker image and push to docker repo
         run: |
           docker login harbor.elysiumstudios.se -u ${{ env.HARBOR_USERNAME }} -p ${{ env.HARBOR_PASSWORD }}
@@ -78,12 +81,12 @@ jobs:
           helm repo add elysium-charts https://harbor.elysiumstudios.se/chartrepo/elysium/ --username=${{ env.HARBOR_USERNAME }} --password=${{ env.HARBOR_PASSWORD }} 
           helm cm-push charts/clash-of-heroes/ elysium-charts
           
-      - name: Update ClashOfHeroes release in flux repo
-        run: |
-          cd infrastructure/
-          sed -i -e 's/version:.*/version: "${{ steps.tag.outputs.new_tag }}"/g' dev/apps-infra/deployments/clash-of-heroes/release.yaml
-          git config --global user.email "workflow@elysiumstudios.se"
-          git config --global user.name "ClashOfHeroes Workflow"
-          git add dev/apps-infra/deployments/clash-of-heroes/release.yaml
-          git commit -m "Deploy ClashOfHeroes ${{ steps.tag.outputs.new_tag }}"
-          git push
+#       - name: Update ClashOfHeroes release in flux repo
+#         run: |
+#           cd infrastructure/
+#           sed -i -e 's/version:.*/version: "${{ steps.tag.outputs.new_tag }}"/g' dev/apps-infra/deployments/clash-of-heroes/release.yaml
+#           git config --global user.email "workflow@elysiumstudios.se"
+#           git config --global user.name "ClashOfHeroes Workflow"
+#           git add dev/apps-infra/deployments/clash-of-heroes/release.yaml
+#           git commit -m "Deploy ClashOfHeroes ${{ steps.tag.outputs.new_tag }}"
+#           git push
